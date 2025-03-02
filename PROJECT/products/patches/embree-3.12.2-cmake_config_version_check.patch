@@ -1,0 +1,12 @@
+--- embree/common/cmake/embree-config-version.cmake.orig	2025-01-14 10:19:31.266248500 +0100
++++ embree/common/cmake/embree-config-version.cmake	2025-01-14 10:20:09.383804967 +0100
+@@ -10,6 +10,9 @@
+   IF (${PACKAGE_FIND_VERSION} VERSION_EQUAL @EMBREE_VERSION@)
+     SET(PACKAGE_VERSION_EXACT 1)  
+   ENDIF()
++ELSEIF (${PACKAGE_FIND_VERSION_MAJOR} EQUAL 0)
++  # Make the package suitable, especially for Embree 3/4 compatible softwares
++  SET(PACKAGE_VERSION_COMPATIBLE 1)
+ ELSE()
+   SET(PACKAGE_VERSION_UNSUITABLE 1)
+ ENDIF()

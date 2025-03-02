@@ -1,0 +1,63 @@
+default :
+{
+    name : 'libbatch'
+    build_source : 'cmake'
+    cmake_options : '-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig'
+    get_source : 'release'
+    web_link : 'https://github.com/SalomePlatform/libbatch/archive/refs/tags/' + $version + '.tar.gz'
+
+    git_info :
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + $name + '.git'
+        repo_dev : $repo
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+   }
+    depend :
+    [
+        'Python'
+    ]
+    build_depend :
+    [
+        'cmake'
+        'swig'
+        'cppunit'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : 'yes'
+    }
+    archive_info :
+    {
+      archive_name : 'LIBBATCH.tgz'
+    }
+}
+
+default_win :
+{
+    cmake_options : '-DCMAKE_GENERATOR="Visual Studio 15 2017 Win64" -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\\=/%/bin/swig.exe'
+    depend :
+    [
+        'Python'
+        'pthreads'
+    ]
+}
+  
+version_V2_4_6 :
+{
+    cmake_options : '-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DLIBBATCH_CXX_STANDARD=17 -DLIBBATCH_MKDIR_COMMAND=/bin/mkdir -DLIBBATCH_CP_COMMAND=/bin/cp -DLIBBATCH_SH_COMMAND=/bin/sh'
+}
+
+version_V2_4_6_win :
+{
+    cmake_options : '-DCMAKE_GENERATOR="Visual Studio 15 2017 Win64" -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\\=/%/bin/swig.exe -DLIBBATCH_CXX_STANDARD=17 '
+    properties :
+    {
+        single_install_dir : 'yes'
+    }
+}

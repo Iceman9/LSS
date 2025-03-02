@@ -1,0 +1,143 @@
+
+APPLICATION :
+{
+    name : "LSS"
+    workdir : $PROJECTS.projects.project.workdir
+    tag : "V9_11_0"
+    dev : 'no'
+    verbose : 'no'
+    debug : 'no'
+    base : 'no'
+    python3 : 'yes'
+    cmake_generator : 'Ninja'
+
+    environ :
+    {
+        build :
+        {
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + 'SOURCE' + $VARS.sep + 'CONFIGURATION'
+            SALOME_USE_64BIT_IDS : '1'
+            VTK_SMP_IMPLEMENTATION_TYPE : 'TBB'
+            SALOME_GMSH_HEADERS_STD : '1'
+        }
+        launch :
+        {
+            PYTHONIOENCODING : 'UTF_8'
+            SALOME_MODULES_ORDER : 'SHAPER:SHAPERSTUDY:GEOM:SMESH:PARAVIS'
+            SALOME_ON_DEMAND : 'HIDE'
+        }
+        SALOME_trace : 'local'
+        SALOME_MODULES : 'SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS'
+        PRODUCT_ROOT_DIR : $workdir
+    }
+
+    products :
+    {
+        boost : '1.79.0'
+        CAS : '7.5.3p5'
+        catalyst : '2.0.0'
+        cgns : '4.2.0'
+        cmake : '3.26.6'
+        cppunit : '1.13.2'
+        doxygen : '1.9.7'
+        eigen : '3.3.4'
+        embree : '3.13.2'
+        freeimage : '3.16.0'
+        freetype : '2.9.1'
+        gmsh : '4.10.3'
+        graphviz : '2.50.0'
+        hdf5 : '1.10.3'
+        ispc : '1.15.0'
+        libbatch : 'V2_4_6'
+        libxml2 : '2.9.14'
+        matplotlib : '3.10.0'
+        medfile : '4.1.1'
+        metis : '5.1.0'
+        netcdf : '4.6.2'
+        netgen : '6.2.2101'
+        numpy : '2.2.3'
+        omniORB : '4.3.0'
+        omniORBpy : '4.3.0'
+        opencv : '3.2.0'
+        openmpi : 'native'
+        openVKL : '0.11.0'
+        ospray : '2.4.0'
+        ParaView :
+        {
+            tag : '5.11.0'
+            base : 'no'
+            section : 'version_5_11_0'
+            hpc : 'yes'
+        }
+        openblas : '0.3.26'
+        planegcs : '0.18-3cb6890'
+        Python : '3.13.2'
+        PyQt : '5.15.11'
+        pyqt5sip : '12.17.0'
+        qt : '5.15.16'
+        qwt : '6.3.0'
+        rkCommon : '1.5.1'
+        scipy : '1.14.1'
+        scotch :
+        {
+            tag : '6.1.2'
+            section : 'default'
+            hpc : 'yes'
+        }
+        sip : '6.10.0'
+        swig : '4.0.2'
+        system_packages : 'native'
+        tbb : '2020.3'
+        tcl : '8.6.0'
+        tk : '8.6.0'
+        TTK : 'f8dafde2d7'
+        # SALOME MODULES
+        CONFIGURATION : True
+        SALOME : True
+        SHAPER : True
+        SHAPERSTUDY : True
+        KERNEL : True
+        MEDCOUPLING :
+        {
+            tag : 'V9_11_0'
+            base : 'no'
+            section : 'version_V9_11_0_MPI'
+            hpc : 'yes'
+        }
+        GUI : True
+        GEOM : True
+        SMESH : True
+        NETGENPLUGIN : True
+        GMSHPLUGIN : True
+        FIELDS : True
+        PARAVIS:
+        {
+            tag : 'V9_11_0'
+            base : 'no'
+            section : 'version_V9_11_0_MPI'
+            hpc : 'yes'
+        }
+        DOCUMENTATION : True
+        PARAVISADDONS : True
+    }
+
+    profile :
+    {
+        product : 'SALOME'
+        launcher_name : 'INSTALL/SALOME/salome'
+    }
+    virtual_app :
+    {
+        name : 'salome'
+        application_name : 'APPLI'
+    }
+    properties :
+    {
+        mesa_launcher_in_package : 'no'
+        git_server : 'github'
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : 'no'
+        use_mesa : 'no'
+    }
+}

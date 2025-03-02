@@ -1,0 +1,37 @@
+default :
+{
+    name : 'qt'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend :
+    [
+        'freetype'
+        'Python'
+    ]
+    patches : [ ]
+    check_install :
+    [
+        'lib/libQt5DBus.so'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
+version_5_15_16 :
+{
+    web_link : 'https://download.qt.io/archive/qt/5.15/5.15.16/single/qt-everywhere-opensource-src-5.15.16.tar.xz'
+    patches :
+    [
+        'qt-5.12.10-gcc-gt-13.0.0.patch'
+    ]
+}

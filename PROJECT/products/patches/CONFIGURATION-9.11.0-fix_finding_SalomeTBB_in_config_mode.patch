@@ -1,0 +1,19 @@
+--- CONFIGURATION/cmake/FindSalomeTBB.cmake.org	2025-02-19 14:38:40.460914524 +0100
++++ CONFIGURATION/cmake/FindSalomeTBB.cmake	2025-02-19 14:38:48.722532165 +0100
+@@ -50,11 +50,11 @@
+     #Config mode
+     LIST(GET TBB_IMPORTED_TARGETS 0 _first_tbb_target)
+ 
+-    # 1. Get TBB libraries dir
+-    GET_TARGET_PROPERTY(_tbb_f_lib ${_first_tbb_target} IMPORTED_LOCATION_RELASE)
+-    IF(NOT ${_tbb_f_lib})
+-      GET_TARGET_PROPERTY(_tbb_f_lib ${_first_tbb_target} IMPORTED_LOCATION_DEBUG)    
+-    ENDIF()
++    GET_TARGET_PROPERTY(_tbb_f_lib ${_first_tbb_target} LOCATION)
++    # Does not work with CMake ==, >? 3.26
++    # IF(NOT ${_tbb_f_lib})
++    #   GET_TARGET_PROPERTY(_tbb_f_lib ${_first_tbb_target} IMPORTED_LOCATION_DEBUG)
++    # ENDIF()
+     GET_FILENAME_COMPONENT(_tbb_lib ${_tbb_f_lib} DIRECTORY)
+     GET_FILENAME_COMPONENT(_tbb_lib ${_tbb_lib} ABSOLUTE)
+ 

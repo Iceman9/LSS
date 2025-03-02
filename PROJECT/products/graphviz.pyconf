@@ -1,0 +1,53 @@
+default :
+{
+    name : 'graphviz'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    # This is not the release but actual source code.
+    web_link : 'https://gitlab.com/graphviz/graphviz/-/archive/' + $version + '/graphviz-' + $version + '.tar.gz'
+    system_info :
+    {
+        rpm :
+        [
+            'graphviz'
+        ]
+        rpm_dev :
+        [
+            'graphviz-devel'
+        ]
+        apt :
+        [
+            'graphviz'
+        ]
+        apt_dev :
+        [
+            'libgraphviz-dev'
+        ]
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend : [ ]
+    build_depend : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+        single_install_dir : 'yes'
+        compile_and_runtime : 'yes'
+    }
+}
+
+version_2_50_0 :
+{
+    # This one has configure shipped...
+    web_link : 'https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/2.50.0/graphviz-2.50.0.tar.gz'
+    build_depend :
+    [
+      'swig'
+    ]
+}

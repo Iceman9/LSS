@@ -1,0 +1,61 @@
+default :
+{
+    name : 'ParaView'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://github.com/Kitware/ParaView/archive/refs/tags/v' + $version + '.tar.gz'
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend :
+    [
+        'Python'
+        'hdf5'
+        'qt'
+        'PyQt'
+        'sip'
+        'pyqt5sip'
+        'boost'
+        'libxml2'
+        'freetype'
+        'matplotlib'
+        'cgns'
+    ]
+    opt_depend :
+    [
+        'openmpi' # MPI build activated via hpc : 'yes' in application
+        'ospray'
+        'tbb'
+        'netcdf'
+        'catalyst'
+    ]
+    build_depend :
+    [
+        'cmake'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+    }
+  }
+
+version_5_11_0 :
+{
+    web_link : 'https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.11&type=source&os=Sources&downloadFile=ParaView-v5.11.0.tar.gz'
+    patches :
+    [
+        'ParaView-5.11.0-find_cgns.patch'
+        'ParaView-5.11.0-find_custom_libxml2.patch' # So that VTK can find LibXML2 or all packages required ParaView via Cmake will cause KO
+        'ParaView-5.11.0-find_libxml2_no_cache_search.patch' # Find LibXml2 fails after find_library is called more than once...
+        'ParaView-5.11.0-find_mpi.patch'
+        'ParaView-5.11.0-gil.patch'
+        'ParaView-5.11.0-third_party_gcc_egt_13.patch'
+        'ParaView-5.11.0-VTK-9.2.0-python_3.13_port.patch'
+        'ParaView-5.11.0-VTK-9.2.0-mpi4py_update_to_4.patch'
+    ]
+}

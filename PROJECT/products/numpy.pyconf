@@ -1,0 +1,49 @@
+default :
+{
+    name : 'numpy'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://github.com/numpy/numpy/releases/download/v' + $version + '/numpy-' + $version + '.tar.gz'
+    system_info :
+    {
+        rpm :
+        [
+            'python3-numpy'
+        ]
+        rpm_dev : [ ]
+        apt :
+        [
+            'python3-numpy'
+        ]
+        apt_dev : [ ]
+    }
+    git_info :
+    {
+        repo : 'https://github.com/numpy/numpy.git'
+        repo_dev : $repo
+        tag : 'v' + $default.version
+    }
+    archive_info :
+    {
+        archive_name : 'numpy-' + $APPLICATION.products.numpy + '.tar.gz'
+    }
+    environ :
+    {
+        env_script : 'numpy.py'
+    }
+    depend :
+    [
+        'Python'
+        'openblas'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+        pip : 'no'
+    }
+    post_script : 'install_post_numpy_packages.sh'
+}

@@ -1,0 +1,38 @@
+default :
+{
+    name : 'netgen'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://github.com/NGSolve/netgen/archive/refs/tags/v' + $version +'.tar.gz'
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend :
+    [
+        'CAS'
+        'tcl'
+        'tk'
+    ]
+    patches : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
+version_6_2_2101 :
+{
+    build_source : 'cmake'
+    cmake_options : ' -DUSE_GUI=OFF -DUSE_PYTHON=OFF -DUSE_MPI=OFF -DUSE_OCC=ON -DUSE_INTERNAL_TCL=OFF -DBUILD_STUB_FILES=OFF -DOCC_INCLUDE_DIR=$CAS_ROOT_DIR/include/opencascade -DOCC_LIBRARY_DIR=$CAS_ROOT_DIR/lib -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_CXX_STANDARD=17  -DUSE_NATIVE_ARCH=OFF '
+    patches :
+    [
+        'netgen-6.2.0-2101-salome.patch'
+        'netgen-6.2.0-2101-version.patch' # See what happens if you remove this
+                                          # 'innocent' patch
+    ]
+}

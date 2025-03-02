@@ -1,0 +1,58 @@
+--- ParaView/VTK/ThirdParty/libproj/vtklibproj/src/proj_json_streaming_writer.hpp.old	2024-11-08 10:10:05.238427000 +0100
++++ ParaView/VTK/ThirdParty/libproj/vtklibproj/src/proj_json_streaming_writer.hpp	2024-11-08 10:11:13.716188293 +0100
+@@ -36,6 +36,12 @@
+ 
+ #define CPL_DLL
+ 
++// Check if the compiler is GCC and the version is 13.0 or higher
++#if defined(__GNUC__) && (__GNUC__ > 13 || (__GNUC__ == 13 && __GNUC_MINOR__ >= 0))
++#include <cstdint>
++#endif
++
++
+ #include "proj/util.hpp"
+ NS_PROJ_START
+ 
+--- ParaView/VTK/IO/PIO/PIOData.h.old	2024-11-08 10:30:29.296527000 +0100
++++ ParaView/VTK/IO/PIO/PIOData.h	2024-11-08 10:31:03.933466530 +0100
+@@ -11,6 +11,11 @@
+ #include <string>
+ #include <valarray>
+ 
++// Check if the compiler is GCC and the version is 13.0 or higher
++#if defined(__GNUC__) && (__GNUC__ > 13 || (__GNUC__ == 13 && __GNUC_MINOR__ >= 0))
++#include <cstdint>
++#endif
++
+ struct Cstring_less
+ {
+   bool operator()(const char* p, const char* q) const { return strcmp(p, q) < 0; };
+--- ParaView/VTK/IO/Image/vtkSEPReader.h.old	2024-11-08 10:35:01.224254000 +0100
++++ ParaView/VTK/IO/Image/vtkSEPReader.h	2024-11-08 10:35:12.084024147 +0100
+@@ -28,6 +28,12 @@
+ #include <array>  // for std::array
+ #include <string> // for std::string
+ 
++
++// Check if the compiler is GCC and the version is 13.0 or higher
++#if defined(__GNUC__) && (__GNUC__ > 13 || (__GNUC__ == 13 && __GNUC_MINOR__ >= 0))
++#include <cstdint>
++#endif
++
+ namespace details
+ {
+ enum class EndiannessType : std::uint8_t
+--- ParaView/VTK/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h.old	2024-11-08 10:47:01.163784000 +0100
++++ ParaView/VTK/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h	2024-11-08 10:47:12.513070954 +0100
+@@ -51,6 +51,11 @@
+ 
+ #include <vector> // for std::vector
+ 
++// Check if the compiler is GCC and the version is 13.0 or higher
++#if defined(__GNUC__) && (__GNUC__ > 13 || (__GNUC__ == 13 && __GNUC_MINOR__ >= 0))
++#include <cstdint>
++#endif
++
+ struct _object;
+ typedef struct _object PyObject;
+ class vtkSmartPyObject;

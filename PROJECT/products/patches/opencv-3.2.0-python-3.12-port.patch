@@ -1,0 +1,11 @@
+--- opencv/modules/python/src2/pycompat.hpp.org	2025-02-18 21:18:23.220430105 +0100
++++ opencv/modules/python/src2/pycompat.hpp	2025-02-18 21:18:33.330495693 +0100
+@@ -57,7 +57,7 @@
+ #define PyString_Check PyUnicode_Check
+ #define PyString_FromString PyUnicode_FromString
+ #define PyString_FromStringAndSize PyUnicode_FromStringAndSize
+-#define PyString_Size PyUnicode_GET_SIZE
++#define PyString_Size PyUnicode_GET_LENGTH
+ 
+ // PyUnicode_AsUTF8 isn't available until Python 3.3
+ #if (PY_VERSION_HEX < 0x03030000)

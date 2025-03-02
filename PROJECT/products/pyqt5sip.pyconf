@@ -1,0 +1,47 @@
+default :
+{
+    name : 'pyqt5sip'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://github.com/Python-SIP/sip/archive/refs/tags/' + $version + '.tar.gz'
+    patches : [ ]
+    system_info :
+    {
+        rpm : [ ]
+        rpm_dev :
+        [
+            'python3-sip-devel'
+        ]
+        apt :
+        [
+            'python3-sip'
+        ]
+        apt_dev :
+        [
+            'python3-sip-dev'
+        ]
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend :
+    [
+        'Python'
+        'qt'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
+version_12_17_0 :
+{
+    # From PyPi... cause upstream likes to complicate things.
+    web_link : 'https://files.pythonhosted.org/packages/01/79/086b50414bafa71df494398ad277d72e58229a3d1c1b1c766d12b14c2e6d/pyqt5_sip-12.17.0.tar.gz'
+}

@@ -1,0 +1,65 @@
+default :
+{
+    name : 'libxml2'
+    build_source : 'cmake'
+    cmake_options : '-DLIBXML2_WITH_PYTHON=ON'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://github.com/GNOME/libxml2/archive/refs/tags/v' + $version + '.tar.gz'
+    git_info :
+    {
+        repo : "https://github.com/GNOME/libxml2.git"
+        repo_dev : $repo
+        tag : 'v' + $default.version
+    }
+    system_info :
+    {
+        rpm :
+        [
+            'libxml2'
+        ]
+        rpm_dev :
+        [
+            'libxml2-devel'
+        ]
+        apt :
+        [
+            'libxml2'
+        ]
+        apt_dev :
+        [
+            'libxml2-dev'
+        ]
+    }
+    archive_info : { }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend :
+    [
+        'Python'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
+default_win :
+{
+    properties :
+    {
+        incremental : 'yes'
+        single_install_dir : 'yes'
+    }
+}
+
+version_2_9_14 :
+{
+    web_link : 'https://download.gnome.org/sources/libxml2/2.9/libxml2-2.9.14.tar.xz'
+    post_script: 'create_libxml2_lib_to_lib64_symlink.sh'
+}

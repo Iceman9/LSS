@@ -1,0 +1,454 @@
+--- medfile/python/medstructelement_int_wrap.cc.org	2025-02-18 09:59:39.851729144 +0100
++++ medfile/python/medstructelement_int_wrap.cc	2025-02-18 10:05:20.978528462 +0100
+@@ -22960,7 +22960,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23175,7 +23175,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23358,7 +23358,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg4);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23381,7 +23381,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23519,7 +23519,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23542,7 +23542,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23842,7 +23842,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg4);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23953,7 +23953,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/medparameter_long_wrap.cc.org	2025-02-18 09:59:39.830828126 +0100
++++ medfile/python/medparameter_long_wrap.cc	2025-02-18 10:05:07.988995421 +0100
+@@ -22699,7 +22699,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_parameter_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg4);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_parameter_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -22798,7 +22798,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_parameter_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg3);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_parameter_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/medequivalence_int_wrap.cc.org	2025-02-18 09:59:39.878976100 +0100
++++ medfile/python/medequivalence_int_wrap.cc	2025-02-18 10:03:16.735072335 +0100
+@@ -23227,7 +23227,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/medparameter_int_wrap.cc.org	2025-02-18 09:59:39.884067778 +0100
++++ medfile/python/medparameter_int_wrap.cc	2025-02-18 10:04:53.683280161 +0100
+@@ -22699,7 +22699,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_parameter_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg4);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_parameter_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -22798,7 +22798,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_parameter_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg3);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_parameter_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/medsubdomain_int_wrap.cc.org	2025-02-18 09:59:39.846843172 +0100
++++ medfile/python/medsubdomain_int_wrap.cc	2025-02-18 10:06:16.276374576 +0100
+@@ -23155,7 +23155,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23178,7 +23178,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg9);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/medmesh_long_wrap.cc.org	2025-02-18 09:59:39.856622827 +0100
++++ medfile/python/medmesh_long_wrap.cc	2025-02-18 10:04:40.399554597 +0100
+@@ -22757,7 +22757,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_mesh_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_mesh_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -22778,7 +22778,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_sorting_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg8);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_sorting_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -22801,7 +22801,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_axis_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg10);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_axis_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -22947,7 +22947,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_mesh_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_mesh_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -22968,7 +22968,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_sorting_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg9);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_sorting_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -22991,7 +22991,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_axis_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg11);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_axis_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23281,7 +23281,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_grid_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg3);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_grid_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -24336,7 +24336,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_sorting_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg3);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_sorting_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -29667,7 +29667,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_axis_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_axis_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -29792,7 +29792,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_axis_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_axis_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/med_enumtest_typemap.i.org	2025-02-18 09:59:39.859325000 +0100
++++ medfile/python/med_enumtest_typemap.i	2025-02-18 10:02:59.910320722 +0100
+@@ -128,7 +128,7 @@
+   if (pclass == NULL) printf("%s\n","Can't get class $1_basetype");
+   Py_DECREF(pmod);
+   pargs  = Py_BuildValue("(i)",*$1);
+-  pinst  = PyEval_CallObject(pclass, pargs);
++  pinst  = PyObject_Call(pclass, pargs, NULL);
+   if (pinst == NULL) printf("%s\n","Can't instanciate class $1_basetype");
+   $result=SWIG_Python_AppendOutput($result, pinst);
+ }
+--- medfile/python/medsubdomain_long_wrap.cc.org	2025-02-18 09:59:39.863634009 +0100
++++ medfile/python/medsubdomain_long_wrap.cc	2025-02-18 10:06:31.348886423 +0100
+@@ -23155,7 +23155,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23178,7 +23178,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg9);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/medfield_int_wrap.cc.org	2025-02-18 09:59:39.817660600 +0100
++++ medfile/python/medfield_int_wrap.cc	2025-02-18 09:59:59.544109799 +0100
+@@ -24036,7 +24036,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_field_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_field_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -24699,7 +24699,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_field_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_field_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -25815,7 +25815,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/medstructelement_long_wrap.cc.org	2025-02-18 09:59:39.837393031 +0100
++++ medfile/python/medstructelement_long_wrap.cc	2025-02-18 10:06:03.795705871 +0100
+@@ -22960,7 +22960,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23175,7 +23175,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23358,7 +23358,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg4);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23381,7 +23381,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23519,7 +23519,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23542,7 +23542,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23842,7 +23842,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg4);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -23953,7 +23953,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/medfield_long_wrap.cc.org	2025-02-18 09:59:39.873959697 +0100
++++ medfile/python/medfield_long_wrap.cc	2025-02-18 10:04:13.857738582 +0100
+@@ -24036,7 +24036,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_field_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_field_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -24699,7 +24699,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_field_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_field_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+@@ -25815,7 +25815,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/python/medequivalence_long_wrap.cc.org	2025-02-18 09:59:39.841733910 +0100
++++ medfile/python/medequivalence_long_wrap.cc	2025-02-18 10:03:35.839611313 +0100
+@@ -23227,7 +23227,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_Call(pclass, pargs, NULL);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     resultobj=SWIG_Python_AppendOutput(resultobj, pinst);
+   }
+--- medfile/config/py-compile.org	2025-02-18 10:41:48.840638000 +0100
++++ medfile/config/py-compile	2025-02-18 10:47:05.450476946 +0100
+@@ -116,7 +116,8 @@
+ fi
+ 
+ $PYTHON -c "
+-import sys, os, py_compile, imp
++import sys, os, py_compile
++import importlib.util
+ 
+ files = '''$files'''
+ 
+@@ -129,15 +130,16 @@
+ 	    continue
+     sys.stdout.write(file)
+     sys.stdout.flush()
+-    if hasattr(imp, 'get_tag'):
+-        py_compile.compile(filepath, imp.cache_from_source(filepath), path)
++    if hasattr(sys.implementation, 'cache_tag'):
++        py_compile.compile(filepath, importlib.util.cache_from_source(filepath), path)
+     else:
+         py_compile.compile(filepath, filepath + 'c', path)
+ sys.stdout.write('\n')" || exit $?
+ 
+ # this will fail for python < 1.5, but that doesn't matter ...
+ $PYTHON -O -c "
+-import sys, os, py_compile, imp
++import sys, os, py_compile
++import importlib.util
+ 
+ # pypy does not use .pyo optimization
+ if hasattr(sys, 'pypy_translation_info'):
+@@ -153,8 +155,8 @@
+ 	    continue
+     sys.stdout.write(file)
+     sys.stdout.flush()
+-    if hasattr(imp, 'get_tag'):
+-        py_compile.compile(filepath, imp.cache_from_source(filepath, False), path)
++    if hasattr(sys.implementation, 'cache_tag'):
++        py_compile.compile(filepath, importlib.util.cache_from_source(filepath, False), path)
+     else:
+         py_compile.compile(filepath, filepath + 'o', path)
+ sys.stdout.write('\n')" 2>/dev/null || :

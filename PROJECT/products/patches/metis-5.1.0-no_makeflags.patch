@@ -1,0 +1,11 @@
+--- metis/Makefile.ref	2020-07-31 14:26:18.619759000 +0200
++++ metis/Makefile	2020-07-31 14:26:26.137356000 +0200
+@@ -64,7 +64,7 @@
+ 	@if [ ! -f $(BUILDDIR)/Makefile ]; then \
+ 		cat BUILD.txt; \
+ 	else \
+-	  	make -C $(BUILDDIR) $@ $(MAKEFLAGS); \
++	  	make -C $(BUILDDIR) $@; \
+ 	fi
+
+ uninstall:

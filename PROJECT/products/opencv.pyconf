@@ -1,0 +1,62 @@
+default :
+{
+    name : 'opencv'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://github.com/opencv/opencv/archive/refs/tags/' + $version + '.tar.gz'
+    system_info :
+    {
+        rpm :
+        [
+            'opencv'
+        ]
+        rpm_dev :
+        [
+            'opencv-devel'
+        ]
+        apt :
+        [
+            'python3-opencv'
+        ]
+        apt_dev :
+        [
+            'libopencv-dev'
+        ]
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend :
+    [
+        'Python'
+        'numpy'
+        'openblas'
+    ]
+    build_depend :
+    [
+        'cmake'
+    ]
+    patches : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
+version_3_2_0 :
+{
+    patches :
+    [
+        'opencv-3.2.0-do_not_search_python2.patch'
+        'opencv-3.2.0-fix_opencvcompiler_options_conditional_block.patch'
+        'opencv-3.2.0-persistence.patch'
+        'opencv-3.2.0-priority_to_openblas.patch'
+        'opencv-3.2.0-python-3.10-port.patch'
+        'opencv-3.2.0-python-3.12-port.patch'
+    ]
+}

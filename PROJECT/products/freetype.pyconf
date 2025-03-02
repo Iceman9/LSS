@@ -1,0 +1,74 @@
+default :
+{
+    name : 'freetype'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://download.savannah.gnu.org/releases/freetype/freetype-' + $version + '.tar.gz'
+    system_info :
+    {
+        rpm :
+        [
+            'freetype'
+        ]
+        rpm_dev :
+        [
+            'freetype-devel'
+        ]
+        apt :
+        [
+            'libfreetype6'
+        ]
+        apt_dev :
+        [
+            'libfreetype6-dev'
+        ]
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend : [ ]
+    build_depend :
+    [
+        'cmake'
+    ]
+    patches : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    check_install :
+    [
+        'lib/pkgconfig/freetype2.pc'
+    ]
+    properties :
+    {
+        incremental : 'yes'
+        single_install_dir : 'no'
+    }
+}
+
+default_win :
+{
+    build_source : 'script'
+    archive_info :
+    {
+        archive_name : 'freetype-' + $APPLICATION.products.freetype + '_windows.tar.gz'
+    }
+    depend : [ ]
+    check_install : [ ]
+    properties :
+    {
+        incremental : 'yes'
+        single_install_dir : 'yes'
+    }
+}
+
+# needed in order to screen with windows version - see below
+version_2_9_1 :
+{
+    build_source : 'script'
+    # CMake generates broken static library...
+    cmake_options : '-DCMAKE_CXX_FLAGS=-fPIC -DCMAKE_C_FLAGS=-fPIC -DFT_WITH_PNG=On -DFT_WITH_BZIP2=On'
+    patches : [ ]
+}

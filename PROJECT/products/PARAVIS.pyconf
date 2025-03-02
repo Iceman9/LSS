@@ -1,0 +1,97 @@
+default :
+{
+    name : 'PARAVIS'
+    build_source : 'cmake'
+    cmake_options : '-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON'
+    get_source : 'release'
+    web_link : 'https://github.com/SalomePlatform/paravis/archive/refs/tags/' + $version + '.tar.gz'
+    git_info :
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + $name + '.git'
+        repo_dev : $repo
+    }
+    environ :
+    {
+        _PV_PLUGIN_PATH : $install_dir + $VARS.sep + 'lib' + $VARS.sep + 'paraview'
+        SalomeAppConfig_ : $install_dir + $VARS.sep + 'share' + $VARS.sep + 'salome' + $VARS.sep + 'resources' + $VARS.sep + 'paravis'
+    }
+    depend :
+    [
+        'KERNEL'
+        'GUI'
+        'MEDCOUPLING'
+        'FIELDS'
+        'GEOM'
+        'SMESH'
+        'Python'
+        'qt'
+        'boost'
+        'hdf5'
+        'medfile'
+        'ParaView'
+        'CAS'
+        'omniORB'
+        'libxml2'
+    ]
+    opt_depend : [ ]
+    build_depend :
+    [
+        'cmake'
+        'swig'
+        'cppunit'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties :
+    {
+        has_salome_gui : 'yes'
+        is_SALOME_module : 'yes'
+        incremental : 'yes'
+    }
+    patches : [ ]
+    archive_info :
+    {
+        archive_name : 'PARAVIS.tgz'
+    }
+  }
+
+default_MPI :
+{
+    cmake_options : '-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON  -DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}'
+    depend :
+    [
+        'KERNEL'
+        'GUI'
+        'MEDCOUPLING'
+        'FIELDS'
+        'GEOM'
+        'SMESH'
+        'Python'
+        'qt'
+        'boost'
+        'hdf5'
+        'medfile'
+        'ParaView'
+        'CAS'
+        'omniORB'
+        'libxml2'
+        'openmpi'
+    ]
+}
+
+version_V9_11_0 :
+{
+    patches :
+    [
+        'PARAVIS-9.11.0-Python-3.12_port.patch'
+    ]
+}
+
+version_V9_11_0_MPI :
+{
+    cmake_options : '-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON  -DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}'
+    patches :
+    [
+        'PARAVIS-9.11.0-Python-3.12_port.patch'
+    ]
+}

@@ -1,0 +1,13 @@
+--- SMESH/src/StdMeshersGUI/StdMeshersGUI_DistrPreview.cxx.org	2025-02-26 10:37:13.113466178 +0100
++++ SMESH/src/StdMeshersGUI/StdMeshersGUI_DistrPreview.cxx	2025-02-26 10:39:01.435943819 +0100
+@@ -354,8 +354,8 @@
+ {
+   setAxisScale( myDensity->xAxis(), 0.0, 1.0 );
+   setAxisScale( myDensity->yAxis(), 0.0, 1.0 );
+-  myDensity->setSamples( 0, 0, 0 );
+-  myDistr->setSamples( 0, 0, 0 );
++  myDensity->setSamples( (double *)NULL, (double *)NULL, 0 );
++  myDistr->setSamples( (double *)NULL, (double *)NULL, 0 );
+   QwtText mt = myMsg->label();
+   mt.setText( tr( "SMESH_INVALID_FUNCTION" ) );
+   myMsg->setLabel( mt );

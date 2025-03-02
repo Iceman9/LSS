@@ -1,0 +1,29 @@
+--- KERNEL/src/DSC/DSC_Python/calcium.i.org	2025-02-20 18:48:36.459807862 +0100
++++ KERNEL/src/DSC/DSC_Python/calcium.i	2025-02-20 18:49:33.050700208 +0100
+@@ -742,7 +742,7 @@
+    catch(Engines::DSC::PortNotDefined& _e) {
+       Py_BLOCK_THREADS
+       PyObject* excc = PyObject_GetAttrString(dsc, "PortNotDefined");
+-      PyObject* exci = PyEval_CallObject(excc, (PyObject *)NULL);
++      PyObject* exci = PyObject_Call(excc, (PyObject *)NULL, NULL);
+       PyErr_SetObject(excc, exci);
+       Py_XDECREF(excc);
+       Py_XDECREF(exci);
+@@ -751,7 +751,7 @@
+    catch(Engines::DSC::PortNotConnected& _e) {
+       Py_BLOCK_THREADS
+       PyObject* excc = PyObject_GetAttrString(dsc, "PortNotConnected");
+-      PyObject* exci = PyEval_CallObject(excc, (PyObject *)NULL);
++      PyObject* exci = PyObject_Call(excc, (PyObject *)NULL, NULL);
+       PyErr_SetObject(excc, exci);
+       Py_XDECREF(excc);
+       Py_XDECREF(exci);
+@@ -760,7 +760,7 @@
+    catch(Engines::DSC::BadPortType& _e) {
+       Py_BLOCK_THREADS
+       PyObject* excc = PyObject_GetAttrString(dsc, "BadPortType");
+-      PyObject* exci = PyEval_CallObject(excc, (PyObject *)NULL);
++      PyObject* exci = PyObject_Call(excc, (PyObject *)NULL, NULL);
+       PyErr_SetObject(excc, exci);
+       Py_XDECREF(excc);
+       Py_XDECREF(exci);

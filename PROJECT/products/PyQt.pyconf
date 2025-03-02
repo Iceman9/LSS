@@ -1,0 +1,52 @@
+default :
+{
+    name : 'PyQt'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    system_info :
+    {
+        rpm :
+        [
+            'python3-qt5'
+        ]
+        rpm_dev :
+        [
+            'python3-qt5-devel'
+        ]
+        apt :
+        [
+            'python3-pyqt5'
+        ]
+        apt_dev :
+        [
+            'pyqt5-dev'
+            'pyqt5-dev-tools'
+        ]
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend :
+    [
+        'Python'
+        'qt'
+        'sip'
+        'pyqt5sip'
+    ]
+    patches : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+        single_install_dir : 'no'
+    }
+}
+
+version_5_15_11 :
+{
+    web_link : 'https://files.pythonhosted.org/packages/0e/07/c9ed0bd428df6f87183fca565a79fee19fa7c88c7f00a7f011ab4379e77a/PyQt5-5.15.11.tar.gz'
+}

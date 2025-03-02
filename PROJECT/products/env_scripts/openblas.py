@@ -1,0 +1,8 @@
+import os.path
+import os
+
+def set_env(env: 'Environ', prereq_dir: str, version: str) -> None:
+    env.set('OPENBLAS_ROOT_DIR', prereq_dir)
+    env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+    env.prepend('PKG_CONFIG_PATH', os.path.join(prereq_dir, 'lib',
+                                                'pkgconfig'))

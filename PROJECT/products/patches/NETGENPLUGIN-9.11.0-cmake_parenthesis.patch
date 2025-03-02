@@ -1,0 +1,11 @@
+--- NETGENPLUGIN/doc/salome/gui/NETGENPLUGIN/CMakeLists.txt.org	2025-02-26 10:45:23.569613383 +0100
++++ NETGENPLUGIN/doc/salome/gui/NETGENPLUGIN/CMakeLists.txt	2025-02-26 10:45:35.417734247 +0100
+@@ -22,7 +22,7 @@
+ SALOME_CONFIGURE_FILE(static/header.html.in ${CMAKE_CURRENT_BINARY_DIR}/static/header.html)
+ SALOME_CONFIGURE_FILE(static/header_py.html.in ${CMAKE_CURRENT_BINARY_DIR}/static/header_py.html)
+ 
+-SET(smesh_file "$(SMESH_ROOT_DIR)/bin/salome/collect_mesh_methods.py")
++SET(smesh_file "${SMESH_ROOT_DIR}/bin/salome/collect_mesh_methods.py")
+ SET(kernel_file "$ENV{KERNEL_ROOT_DIR}/bin/salome/prepare_generating_doc.py")
+ 
+ # Define requared environment variables

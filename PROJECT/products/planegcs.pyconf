@@ -1,0 +1,35 @@
+default :
+{
+    name : 'planegcs'
+    build_source : 'cmake'
+    get_source : 'archive'
+    # This tool is actually part of FreeCAD, so when in SALOME the version is
+    # mentioned as '0.18-3cb6890', it actually means the commit of FreeCAD
+    # 3cb690 and the directory where the code is is:
+    # FreeCAD/src/Mod/Sketcher/App/planegcs
+    # CadQuery is another project probably using PlaneGCS solver as well, and
+    # they created the repo that hosts the code. Don't know why they just don't
+    # integrate the code themselves instead of cutting and storing archives
+    # without proper description.
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend :
+    [
+        'eigen'
+        'boost'
+    ]
+    build_depend :
+    [
+        'cmake'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+    }
+    patches : [ ]
+}

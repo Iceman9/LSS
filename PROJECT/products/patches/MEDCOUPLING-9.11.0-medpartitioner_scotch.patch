@@ -1,0 +1,13 @@
+--- MEDCOUPLING/src/MEDPartitioner/MEDPARTITIONER_ScotchGraph.cxx.old	2024-11-02 18:06:48.216934257 +0100
++++ MEDCOUPLING/src/MEDPartitioner/MEDPARTITIONER_ScotchGraph.cxx	2024-11-02 18:06:49.920939288 +0100
+@@ -58,8 +58,8 @@
+ #ifdef MEDCOUPLING_USE_64BIT_IDS
+   std::vector<int> indexVec( _graph->getIndex(), _graph->getIndexArray()->end() );
+   std::vector<int> valueVec( _graph->getValues(), _graph->getValuesArray()->end() );
+-  int * xadj=indexVec.data();
+-  int * adjncy=valueVec.data();
++  const int * xadj=indexVec.data();
++  const int * adjncy=valueVec.data();
+ #else
+   int * xadj=const_cast<int*>(_graph->getIndex());
+   int * adjncy=const_cast<int*>(_graph->getValues());

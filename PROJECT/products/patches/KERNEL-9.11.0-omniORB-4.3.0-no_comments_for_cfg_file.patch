@@ -1,0 +1,20 @@
+--- KERNEL/bin/ORBConfigFile.py.orig	2022-06-27 15:52:19.093819000 +0200
++++ KERNEL/bin/ORBConfigFile.py	2022-06-27 15:53:34.847728000 +0200
+@@ -41,9 +41,14 @@
+ 
+ def fillOrbConfigFileNoNS(prefix,orbdata):
+   GIOP_MaxMsgSize = 2097152000  # 2 GBytes
+-  orbdata.append("%sgiopMaxMsgSize = %s # 2 GBytes"%(prefix,GIOP_MaxMsgSize))
+-  orbdata.append("%straceLevel = 0 # critical errors only"%(prefix))
+-  orbdata.append("%smaxGIOPConnectionPerServer = 500 # to allow containers parallel launch"%(prefix))
++  # orbdata.append("%sgiopMaxMsgSize = %s # 2 GBytes"%(prefix,GIOP_MaxMsgSize))
++  # orbdata.append("%straceLevel = 0 # critical errors only"%(prefix))
++  # orbdata.append("%smaxGIOPConnectionPerServer = 500 # to allow containers parallel launch"%(prefix))
++  # orbdata.append("%snativeCharCodeSet = UTF-8"%(prefix))
++  # Do not allow comments!
++  orbdata.append("%sgiopMaxMsgSize = %s"%(prefix,GIOP_MaxMsgSize))
++  orbdata.append("%straceLevel = 0"%(prefix))
++  orbdata.append("%smaxGIOPConnectionPerServer = 500"%(prefix))
+   orbdata.append("%snativeCharCodeSet = UTF-8"%(prefix))
+   return GIOP_MaxMsgSize
+ 

@@ -1,0 +1,25 @@
+--- KERNEL/bin/salomeContext.py.org	2025-02-19 15:12:11.188341000 +0100
++++ KERNEL/bin/salomeContext.py	2025-02-19 15:12:21.971140228 +0100
+@@ -511,7 +511,7 @@
+   #
+ 
+   def _showSoftwareVersions(self, softwares=None):
+-    config = configparser.SafeConfigParser()
++    config = configparser.ConfigParser()
+     absoluteAppliPath = os.getenv('ABSOLUTE_APPLI_PATH')
+     filename = os.path.join(absoluteAppliPath, "sha1_collections.txt")
+     versions = {}
+--- KERNEL/bin/parseConfigFile.py.org	2025-02-19 15:12:17.317546000 +0100
++++ KERNEL/bin/parseConfigFile.py	2025-02-19 15:12:37.801731642 +0100
+@@ -46,9 +46,9 @@
+ #
+ 
+ # :TRICKY: So ugly solution...
+-class MultiOptSafeConfigParser(configparser.SafeConfigParser):
++class MultiOptSafeConfigParser(configparser.ConfigParser):
+   def __init__(self):
+-    configparser.SafeConfigParser.__init__(self)
++    configparser.ConfigParser.__init__(self)
+ 
+   # copied from python 2.6.8 Lib.ConfigParser.py
+   # modified (see code comments) to handle duplicate keys

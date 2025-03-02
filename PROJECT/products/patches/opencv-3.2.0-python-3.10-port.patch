@@ -1,0 +1,11 @@
+--- opencv/modules/python/src2/cv2.cpp.orig	2022-06-27 12:53:08.833645000 +0200
++++ opencv/modules/python/src2/cv2.cpp	2022-06-27 12:53:14.371573969 +0200
+@@ -727,7 +727,7 @@
+     (void)name;
+     if(!obj || obj == Py_None)
+         return true;
+-    char* str = PyString_AsString(obj);
++    const char* str = PyString_AsString(obj);
+     if(!str)
+         return false;
+     value = String(str);

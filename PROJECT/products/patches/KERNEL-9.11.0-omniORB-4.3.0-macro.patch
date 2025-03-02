@@ -1,0 +1,89 @@
+--- KERNEL/src/DSC/DSC_User/Datastream/Calcium/calciumf.c.orig	2022-06-27 13:43:32.120842000 +0200
++++ KERNEL/src/DSC/DSC_User/Datastream/Calcium/calciumf.c	2022-06-27 13:46:02.947456756 +0200
+@@ -24,7 +24,7 @@
+ #include "calciumf.h"
+ #include "CalciumFortranInt.h"
+ #include <stdio.h>
+-#include <omniconfig.h>   // to get SIZEOF_LONG
++#include <omniconfig.h>   // to get OMNI_SIZEOF_LONG
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -170,9 +170,9 @@
+ {
+   char* cnom=fstr1(STR_PTR(nom),STR_LEN(nom));
+ 
+-#if   !SIZEOF_INT
+-#error "The macro SIZEOF_INT must be defined."
+-#elif SIZEOF_INT == 4
++#if   !OMNI_SIZEOF_INT
++#error "The macro OMNI_SIZEOF_INT must be defined."
++#elif OMNI_SIZEOF_INT == 4
+   *err=cp_lin_fort_((void *)*compo,*dep,ti,tf,iter,cnom,*max,n,tab);
+ #else
+   fprintf(stderr,"End of CPLIN: %s : Can't use fortran INTEGER*4 because int C is not 32bits long on this machine.\n",
+@@ -185,9 +185,9 @@
+             cal_int *max,cal_int *n, long *tab,cal_int *err STR_PLEN(nom))
+ {
+   char* cnom=fstr1(STR_PTR(nom),STR_LEN(nom));
+-#if   !SIZEOF_LONG
+-#error "The macro SIZEOF_LONG must be defined."
+-#elif SIZEOF_LONG == 8
++#if   !OMNI_SIZEOF_LONG
++#error "The macro OMNI_SIZEOF_LONG must be defined."
++#elif OMNI_SIZEOF_LONG == 8
+   *err=cp_llg_fort_((void *)*compo,*dep,ti,tf,iter,cnom,*max,n,tab);
+ #else
+   fprintf(stderr,"End of CPLLG: %s : Can't use fortran INTEGER*8 because long C is not 64bits long on this machine.\n",
+@@ -200,9 +200,9 @@
+                                     cal_int *max,cal_int *n, long *tab,cal_int *err STR_PLEN(nom))
+ {
+  char* cnom=fstr1(STR_PTR(nom),STR_LEN(nom));
+-#if   !SIZEOF_LONG
+-#error "The macro SIZEOF_LONG must be defined."
+-#elif SIZEOF_LONG == 8
++#if   !OMNI_SIZEOF_LONG
++#error "The macro OMNI_SIZEOF_LONG must be defined."
++#elif OMNI_SIZEOF_LONG == 8
+   *err=cp_lln_fort_((void *)*compo,*dep,ti,tf,iter,cnom,*max,n,tab);
+ #else
+   fprintf(stderr,"End of CPLLN: %s : Can't use fortran INTEGER*8 because long C is not 64bits long on this machine.\n",
+@@ -384,9 +384,9 @@
+   float tti=0.;
+   if(*dep == CP_TEMPS)tti=*ti;
+   char* cnom=fstr1(STR_PTR(nom),STR_LEN(nom));
+-#if   !SIZEOF_INT
+-#error "The macro SIZEOF_INT must be defined."
+-#elif SIZEOF_INT == 4
++#if   !OMNI_SIZEOF_INT
++#error "The macro OMNI_SIZEOF_INT must be defined."
++#elif OMNI_SIZEOF_INT == 4
+   *err=cp_ein_fort_((void *)*compo,*dep,tti,*iter,cnom,*n,tab);
+ #else
+   fprintf(stderr,"CPEIN: %s %f %d : Can't use fortran INTEGER*4 because int C is not 32bits long on this machine.\n",
+@@ -400,9 +400,9 @@
+   float tti=0.;
+   if(*dep == CP_TEMPS)tti=*ti;
+   char* cnom=fstr1(STR_PTR(nom),STR_LEN(nom));
+-#if   !SIZEOF_LONG
+-#error "The macro SIZEOF_LONG must be defined."
+-#elif SIZEOF_LONG == 8
++#if   !OMNI_SIZEOF_LONG
++#error "The macro OMNI_SIZEOF_LONG must be defined."
++#elif OMNI_SIZEOF_LONG == 8
+   *err=cp_elg_fort_((void *)*compo,*dep,tti,*iter,cnom,*n,tab);
+ #else
+   fprintf(stderr,"CPELG: %s %f %d : Can't use fortran INTEGER*8 because long C is not 64bits long on this machine.\n",
+@@ -416,9 +416,9 @@
+   float tti=0.;
+   if(*dep == CP_TEMPS)tti=*ti;
+   char* cnom=fstr1(STR_PTR(nom),STR_LEN(nom));
+-#if   !SIZEOF_LONG
+-#error "The macro SIZEOF_LONG must be defined."
+-#elif SIZEOF_LONG == 8
++#if   !OMNI_SIZEOF_LONG
++#error "The macro OMNI_SIZEOF_LONG must be defined."
++#elif OMNI_SIZEOF_LONG == 8
+   *err=cp_eln_fort_((void *)*compo,*dep,tti,*iter,cnom,*n,tab);
+ #else
+   fprintf(stderr,"CPELN: %s %f %d : Can't use fortran INTEGER*8 because long C is not 64bits long on this machine.\n",

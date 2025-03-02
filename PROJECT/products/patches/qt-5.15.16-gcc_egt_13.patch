@@ -1,0 +1,10 @@
+--- qt/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/geometry.hpp.old	2024-11-07 20:47:14.112728088 +0100
++++ qt/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/geometry.hpp	2024-11-07 20:47:48.413847296 +0100
+@@ -3,6 +3,7 @@
+ #include <mapbox/geometry/geometry.hpp>
+ #include <mapbox/geometry/point_arithmetic.hpp>
+ #include <mapbox/geometry/for_each_point.hpp>
++#include <cstdint>
+ 
+ namespace mbgl {
+ 

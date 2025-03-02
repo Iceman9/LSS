@@ -1,0 +1,36 @@
+default :
+{
+    name : 'scotch'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://gitlab.inria.fr/scotch/scotch/-/archive/v' + $version + '/scotch-v' + $version + '.tar.gz'
+    system_info :
+    {
+        rpm :
+        [
+            'scotch'
+        ]
+        rpm_dev :
+        [
+            'scotch-devel'
+        ]
+        apt : [ ]
+        apt_dev :
+        [
+            'libscotch-dev'
+        ]
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+    }
+}

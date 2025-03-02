@@ -1,0 +1,77 @@
+default :
+{
+    name : 'SMESH'
+    build_source : 'cmake'
+    get_source : 'release'
+    web_link : 'https://github.com/SalomePlatform/smesh/archive/refs/tags/' + $version + '.tar.gz'
+    cmake_options : '-DSALOME_SMESH_USE_CGNS:BOOL=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF -DSALOME_SMESH_USE_TBB=ON'
+    git_info :
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + $name + '.git'
+        repo_dev : $repo
+    }
+    environ :
+    {
+        _SMESH_MeshersList : 'StdMeshers'
+        SalomeAppConfig_ : $install_dir + $VARS.sep + 'share' + $VARS.sep + 'salome' + $VARS.sep + 'resources' + $VARS.sep + 'smesh'
+    }
+    depend :
+    [
+        'KERNEL'
+        'GUI'
+        'GEOM'
+        'MEDCOUPLING'
+        'Python'
+        'qt'
+        'PyQt'
+        'boost'
+        'CAS'
+        'hdf5'
+        'medfile'
+        'qwt'
+        'ParaView'
+        'libxml2'
+        'omniORB'
+        'cgns'
+        'tbb'
+    ]
+    build_depend :
+    [
+        'cmake'
+        'swig'
+        'doxygen'
+        'cppunit'
+    ]
+    opt_depend :
+    [
+        'SHAPERSTUDY'
+        'TopIIVolMesh'
+    ]
+    patches : [ ]
+    check_install :
+    [
+        'share/doc/salome/gui/SMESH/yams/index.html'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties :
+    {
+        incremental : 'yes'
+        has_salome_gui : 'yes'
+        is_SALOME_module : 'yes'
+        has_unit_tests : True
+    }
+    archive_info :
+    {
+        archive_name : 'SMESH.tgz'
+    }
+}
+
+version_V9_11_0 :
+{
+    patches :
+    [
+        'SMESH-9.11.0-Qt-5.15.16.patch'
+        'SMESH-9.11.0-qwt-6.3.0-port.patch'
+    ]
+}

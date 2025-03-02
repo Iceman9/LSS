@@ -1,0 +1,57 @@
+--- CAS/adm/genproj.tcl.orig	2024-11-28 12:14:06.712989457 +0100
++++ CAS/adm/genproj.tcl	2024-11-28 12:14:35.961077243 +0100
+@@ -2507,10 +2507,10 @@
+     set aCmplFlagsRelease "-O2"
+     set aCmplFlagsDebug   "-O0 -g"
+     if { "$thePlatform" == "wnt" || "$thePlatform" == "uwp" } {
+-      lappend aCmplFlags "-std=gnu++0x"
++      # lappend aCmplFlags "-std=gnu++0x"
+       lappend aCmplFlags "-D_WIN32_WINNT=0x0501"
+     } else {
+-      lappend aCmplFlags "-std=c++0x"
++      # lappend aCmplFlags "-std=c++0x"
+       lappend aCmplFlags "-fPIC"
+       lappend aCmplFlags "-DOCC_CONVERT_SIGNALS"
+     }
+--- CAS/adm/cmake/occt_defs_flags.cmake.orig	2024-11-28 12:17:08.373526798 +0100
++++ CAS/adm/cmake/occt_defs_flags.cmake	2024-11-28 12:17:11.461535783 +0100
+@@ -114,11 +114,11 @@
+ if ("x${CMAKE_CXX_COMPILER_ID}" STREQUAL "xClang")
+   if (APPLE)
+     # CLang can be used with both libstdc++ and libc++, however on OS X libstdc++ is outdated.
+-    set (CMAKE_CXX_FLAGS "-std=c++0x -stdlib=libc++ ${CMAKE_CXX_FLAGS}")
++    set (CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
+   elseif(NOT WIN32)
+     # CLang for Windows (at least CLang 8.0 distributed with VS 2019)
+     # does not support option "-std=c++0x"
+-    set (CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
++    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+   endif()
+   # Optimize size of binaries
+   set (CMAKE_SHARED_LINKER_FLAGS "-Wl,-s ${CMAKE_SHARED_LINKER_FLAGS}")
+@@ -128,13 +128,13 @@
+   set (CMAKE_SHARED_LINKER_FLAGS "-Wl,--export-all-symbols")
+ 
+   # Require C++11
+-  set (CMAKE_CXX_FLAGS "-std=gnu++0x ${CMAKE_CXX_FLAGS}")
++  # set (CMAKE_CXX_FLAGS "-std=gnu++0x ${CMAKE_CXX_FLAGS}")
+   # Optimize size of binaries
+   set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
+   set (CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
+ elseif (DEFINED CMAKE_COMPILER_IS_GNUCXX)
+   # Require C++11
+-  set (CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
++  # set (CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
+   # Optimize size of binaries
+   set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
+   set (CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
+--- CAS/CMakeLists.txt.orig	2024-11-28 12:22:32.790451281 +0100
++++ CAS/CMakeLists.txt	2024-11-28 12:22:38.806468126 +0100
+@@ -37,6 +37,7 @@
+ 
+ # the name of the project
+ project (OCCT)
++set(CMAKE_CXX_STANDARD 11)
+ 
+ if (WIN32)
+   add_definitions(-DUNICODE)

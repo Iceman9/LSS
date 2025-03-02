@@ -1,0 +1,53 @@
+default :
+{
+    name : 'hdf5'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5_' + $version + '.tar.gz'
+    system_info :
+    {
+        rpm : [ ]
+        rpm_dev :
+        [
+          'hdf5-devel'
+        ]
+        apt : [ ]
+        apt_dev :
+        [
+          'libhdf5-dev'
+        ]
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    patches : [ ]
+    depend : [ ]
+    opt_depend :
+    [
+        'openmpi'
+    ]
+    build_depend :
+    [
+        'cmake'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+        single_install_dir : 'yes'
+    }
+    post_script : 'fix_permissions.sh'
+}
+
+version_1_10_3 :
+{
+    web_link : 'https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_10_3.tar.gz'
+    patches :
+    [
+        'hdf5-1.10.3.patch'
+    ]
+}

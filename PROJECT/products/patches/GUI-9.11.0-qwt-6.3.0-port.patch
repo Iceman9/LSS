@@ -1,0 +1,143 @@
+diff --color -ruNZ GUI/src/Plot2d/Plot2d_Curve.cxx GUI.new/src/Plot2d/Plot2d_Curve.cxx
+--- GUI/src/Plot2d/Plot2d_Curve.cxx	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/src/Plot2d/Plot2d_Curve.cxx	2025-02-25 16:03:59.358904261 +0100
+@@ -160,7 +160,7 @@
+       aCurve->clearDeviationData();
+     }
+   } else {
+-    aCurve->setSamples( NULL, NULL, 0 );
++    aCurve->setSamples( (double *)NULL, (double *)NULL, 0 );
+   }
+ }
+ 
+diff --color -ruNZ GUI/src/Plot2d/Plot2d_Histogram.cxx GUI.new/src/Plot2d/Plot2d_Histogram.cxx
+--- GUI/src/Plot2d/Plot2d_Histogram.cxx	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/src/Plot2d/Plot2d_Histogram.cxx	2025-02-25 15:35:37.681091135 +0100
+@@ -140,7 +140,7 @@
+   pointList aPoints = getPointList();
+   int aSize = aPoints.size();
+ 
+-  QwtArray<QwtIntervalSample> anIntervals( aSize );
++  QVector<QwtIntervalSample> anIntervals( aSize );
+   double aX;
+   double aWidth = myWidth <= 0 ? myDefWidth : myWidth; // VSR: width is either manually assigned or auto-calculated
+   for ( int i = 0; i < aSize; i++ ) {
+diff --color -ruNZ GUI/src/Plot2d/Plot2d_Histogram.h GUI.new/src/Plot2d/Plot2d_Histogram.h
+--- GUI/src/Plot2d/Plot2d_Histogram.h	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/src/Plot2d/Plot2d_Histogram.h	2025-02-25 15:36:04.747291170 +0100
+@@ -29,6 +29,7 @@
+ #include "Plot2d_Object.h"
+ 
+ #include <qwt_series_data.h>
++#include <QVector>
+ 
+ class PLOT2D_EXPORT Plot2d_Histogram : public Plot2d_Object
+ {
+diff --color -ruNZ GUI/src/Plot2d/Plot2d_PlotItems.cxx GUI.new/src/Plot2d/Plot2d_PlotItems.cxx
+--- GUI/src/Plot2d/Plot2d_PlotItems.cxx	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/src/Plot2d/Plot2d_PlotItems.cxx	2025-02-25 19:26:48.665165788 +0100
+@@ -41,6 +41,7 @@
+ #include <qwt_legend.h>
+ #include <qwt_legend_label.h>
+ #include <qwt_plot_dict.h>
++#include <qwt_graphic.h>
+ 
+ const int SPACING = 10;
+ const int SYMBOL_SIZE = 13;
+@@ -295,7 +296,7 @@
+ 
+   size_t size() const
+   {
+-    return qwtMin(myMin.size(), myMax.size());
++    return qMin(myMin.size(), myMax.size());
+   }
+   bool values(size_t i, double &min, double &max) {
+     if(myMin.contains((int)i) && myMax.contains((int)i)) { //!< TODO: conversion from size_t to int
+@@ -739,7 +740,7 @@
+       if ( i < (int)myData.size() - 2 ) {
+         const int yy1 = theYMap.transform( myData.sample(i+1).interval.minValue() );
+         const int yy2 = theYMap.transform( myData.sample(i+1).interval.maxValue() );
+-        if ( y2 == qwtMin( yy1, yy2 ) ) {
++        if ( y2 == qMin( yy1, yy2 ) ) {
+           const int xx2 = theXMap.transform( myData.sample(i+1).interval.minValue() );
+           if ( xx2 != x0 && ( ( xx2 < x0 && x2 < x0 ) ||
+                               ( xx2 > x0 && x2 > x0 ) ) ) {
+@@ -762,7 +763,7 @@
+       if ( i < (int)myData.size() - 2 ) {
+         const int xx1 = theXMap.transform( myData.sample(i+1).interval.minValue() );
+         const int xx2 = theXMap.transform( myData.sample(i+1).interval.maxValue() );
+-        if ( x2 == qwtMin( xx1, xx2 ) ) {
++        if ( x2 == qMin( xx1, xx2 ) ) {
+           const int yy2 = theYMap.transform( myData.sample(i+1).value );
+           if ( yy2 != y0 && ( ( yy2 < y0 && y2 < y0 ) ||
+                               ( yy2 > y0 && y2 > y0 ) ) ) {
+@@ -922,7 +923,7 @@
+       if ( i < (int)iData.size() - 2 ) {
+         const int yy1 = theYMap.transform( iData.sample(i+1).interval.minValue() );
+         const int yy2 = theYMap.transform( iData.sample(i+1).interval.maxValue() );
+-        if ( y2 == qwtMin( yy1, yy2 ) ) {
++        if ( y2 == qMin( yy1, yy2 ) ) {
+           const int xx2 = theXMap.transform( iData.sample(i+1).interval.minValue() );
+           if ( xx2 != x0 && ( ( xx2 < x0 && x2 < x0 ) ||
+                               ( xx2 > x0 && x2 > x0 ) ) ) {
+@@ -948,7 +949,7 @@
+       if ( i < (int)iData.size() - 2 ) {
+         const int xx1 = theXMap.transform( iData.sample(i+1).interval.minValue() );
+         const int xx2 = theXMap.transform( iData.sample(i+1).interval.maxValue() );
+-        if ( x2 == qwtMin( xx1, xx2 ) ) {
++        if ( x2 == qMin( xx1, xx2 ) ) {
+           const int yy2 = theYMap.transform( iData.sample(i+1).value );
+           if ( yy2 != y0 && ( ( yy2 < y0 && y2 < y0 ) ||
+                               ( yy2 > y0 && y2 > y0 ) ) ) {
+diff --color -ruNZ GUI/src/Plot2d/Plot2d_PlotItems.h GUI.new/src/Plot2d/Plot2d_PlotItems.h
+--- GUI/src/Plot2d/Plot2d_PlotItems.h	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/src/Plot2d/Plot2d_PlotItems.h	2025-02-24 15:57:49.247319590 +0100
+@@ -33,7 +33,9 @@
+ #include <qwt_plot_curve.h>
+ #include <qwt_plot.h>
+ #include <qwt_series_data.h>
+-#include <qwt_compat.h>
++// #include <qwt_compat.h>
++#include <qrect.h>
++typedef QRectF QwtDoubleRect;
+ 
+ class PLOT2D_EXPORT Plot2d_QwtLegendLabel : public QwtLegendLabel
+ {
+diff --color -ruNZ GUI/src/Plot2d/Plot2d_ViewFrame.cxx GUI.new/src/Plot2d/Plot2d_ViewFrame.cxx
+--- GUI/src/Plot2d/Plot2d_ViewFrame.cxx	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/src/Plot2d/Plot2d_ViewFrame.cxx	2025-02-25 19:34:09.341123321 +0100
+@@ -63,6 +63,7 @@
+ #include <QLocale>
+ #include <QXmlStreamWriter>
+ #include <QXmlStreamReader>
++#include <QList>
+ 
+ #include <qwt_math.h>
+ #include <qwt_plot_layout.h>
+@@ -77,6 +78,8 @@
+ #include <qwt_plot_renderer.h>
+ #include <qwt_legend.h>
+ #include <qwt_scale_widget.h>
++#include <qwt_scale_map.h>
++#include <qwt_spline_curve_fitter.h>
+ 
+ #include <stdlib.h>
+ #include <limits>
+@@ -87,6 +90,8 @@
+ 
+ #define FITALL_EVENT           ( QEvent::User + 9999 )
+ 
++typedef QList<double> QwtValueList;
++
+ const char* imageZoomCursor[] = {
+ "32 32 3 1",
+ ". c None",
+@@ -2863,7 +2868,7 @@
+   else if ( myCurveType == 2 ) {
+     curve->setStyle( QwtPlotCurve::Lines );
+     QwtSplineCurveFitter* fitter = new QwtSplineCurveFitter();
+-    fitter->setSplineSize( 250 );
++    // fitter->setSplineSize( 250 );
+     curve->setCurveAttribute( QwtPlotCurve::Fitted, true );
+     curve->setCurveFitter( fitter );
+   }

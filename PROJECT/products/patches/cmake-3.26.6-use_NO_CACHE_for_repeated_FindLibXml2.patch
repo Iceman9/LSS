@@ -1,0 +1,10 @@
+--- cmake/Modules/FindLibXml2.cmake.org	2025-02-22 10:29:16.368775000 +0100
++++ cmake/Modules/FindLibXml2.cmake	2025-02-22 10:29:39.094221878 +0100
+@@ -75,6 +75,7 @@
+    HINTS
+    ${PC_LIBXML_LIBDIR}
+    ${PC_LIBXML_LIBRARY_DIRS}
++   NO_CACHE
+    )
+ 
+ find_program(LIBXML2_XMLLINT_EXECUTABLE xmllint)

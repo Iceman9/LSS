@@ -1,0 +1,120 @@
+--- ParaView/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx.org	2025-02-22 15:13:46.022261504 +0100
++++ ParaView/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx	2025-02-22 15:16:28.673729944 +0100
+@@ -115,6 +115,7 @@
+   return result;
+ }
+ 
++#if PY_VERSION_HEX < 0x03080000
+ std::string vtk_Py_WideToUTF8(const wchar_t* arg)
+ {
+   std::string result;
+@@ -129,6 +130,7 @@
+   return result;
+ }
+ #endif
++#endif
+ 
+ std::vector<vtkWeakPointer<vtkPythonInterpreter>>* GlobalInterpreters;
+ std::vector<std::string> PythonPaths;
+@@ -809,15 +811,23 @@
+   if (vtklib.empty())
+   {
+     VTKPY_DEBUG_MESSAGE(
+-      "`GetVTKVersion` library couldn't be found. Will use `Py_GetProgramName` next.");
++      "`GetVTKVersion` library couldn't be found. Will use `sys.executable` next.");
+   }
+ 
+   if (vtklib.empty())
+   {
+-#if PY_VERSION_HEX >= 0x03000000
+-    vtklib = vtk_Py_WideToUTF8(Py_GetProgramName());
++#if PY_VERSION_HEX >= 0x03080000
++    vtkPythonScopeGilEnsurer gilEnsurer;
++    PyObject* executable_path = PySys_GetObject("executable");
++    if (executable_path != Py_None)
++    {
++      vtklib = PyUnicode_AsUTF8AndSize(executable_path, nullptr);
++    }
++
++#elif PY_VERSION_HEX >= 0x03000000
++     vtklib = vtk_Py_WideToUTF8(Py_GetProgramName());
+ #else
+-    vtklib = Py_GetProgramName();
++     vtklib = Py_GetProgramName();
+ #endif
+   }
+ 
+--- ParaView/VTK/Wrapping/PythonCore/PyVTKTemplate.cxx.org	2025-02-22 15:17:44.604342948 +0100
++++ ParaView/VTK/Wrapping/PythonCore/PyVTKTemplate.cxx	2025-02-22 15:18:21.477399638 +0100
+@@ -788,8 +788,10 @@
+ {
+   // make sure python has readied the type object
+   PyType_Ready(&PyVTKTemplate_Type);
+-  // call the allocator provided by python for this type
+-  PyObject* self = PyVTKTemplate_Type.tp_alloc(&PyVTKTemplate_Type, 0);
++  // call the superclass new function
++  PyObject* empty = PyTuple_New(0);
++  PyObject* self = PyVTKTemplate_Type.tp_base->tp_new(&PyVTKTemplate_Type, empty, nullptr);
++  Py_DECREF(empty);
+   // call the superclass init function
+   PyObject* args = PyTuple_New(2);
+   PyTuple_SET_ITEM(args, 0, PyString_FromString(name));
+--- ParaView/VTK/Wrapping/PythonCore/PyVTKNamespace.cxx.org	2025-02-22 15:17:11.069633000 +0100
++++ ParaView/VTK/Wrapping/PythonCore/PyVTKNamespace.cxx	2025-02-22 15:17:00.856724000 +0100
+@@ -113,8 +113,10 @@
+   {
+     // make sure python has readied the type object
+     PyType_Ready(&PyVTKNamespace_Type);
+-    // call the allocator provided by python for this type
+-    self = PyVTKNamespace_Type.tp_alloc(&PyVTKNamespace_Type, 0);
++    // call the superclass new function
++    PyObject* empty = PyTuple_New(0);
++    self = PyVTKNamespace_Type.tp_base->tp_new(&PyVTKNamespace_Type, empty, nullptr);
++    Py_DECREF(empty);
+     // call the superclass init function
+     PyObject* args = PyTuple_New(1);
+     PyTuple_SET_ITEM(args, 0, PyString_FromString(name));
+--- ParaView/VTK/Wrapping/Python/vtkmodules/test/Testing.py.org	2025-02-22 15:19:05.213754574 +0100
++++ ParaView/VTK/Wrapping/Python/vtkmodules/test/Testing.py	2025-02-22 15:19:22.096333677 +0100
+@@ -513,8 +513,10 @@
+     """
+     # Make the test suites from the arguments.
+     suites = []
+-    for case in cases:
+-        suites.append(unittest.makeSuite(case[0], case[1]))
++    loader = unittest.TestLoader()
++    # the "name" is ignored (it was always just 'test')
++    for test,name in cases:
++        suites.append(loader.loadTestsFromTestCase(test))
+     test_suite = unittest.TestSuite(suites)
+ 
+     # Now run the tests.
+--- ParaView/Wrapping/Python/paraview/detail/pythonalgorithm.py.org	2025-02-22 15:50:47.057447504 +0100
++++ ParaView/Wrapping/Python/paraview/detail/pythonalgorithm.py	2025-02-22 15:51:03.962830247 +0100
+@@ -3,7 +3,7 @@
+ from functools import wraps
+ from xml.dom.minidom import parseString
+ from xml.parsers.expat import ExpatError
+-from inspect import getargspec
++from inspect import getfullargspec
+ 
+ import sys
+ 
+@@ -135,7 +135,7 @@
+         attrs = smproperty._update_property_defaults(func, attrs)
+ 
+         if attrs.get("number_of_elements", None) is None:
+-            attrs["number_of_elements"] = len(getargspec(func).args) - 1
++            attrs["number_of_elements"] = len(getfullargspec(func).args) - 1
+ 
+         if attrs.get("default_values", None) is None:
+             attrs["default_values"] = "None"
+@@ -147,7 +147,7 @@
+         # if not set.
+         if attrs.get("repeat_command", None) is not None and \
+                 attrs.get("number_of_elements_per_command", None) is None:
+-                    attrs["number_of_elements_per_command"] = len(getargspec(func).args) - 1
++                    attrs["number_of_elements_per_command"] = len(getfullargspec(func).args) - 1
+         return attrs
+ 
+     @staticmethod

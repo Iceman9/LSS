@@ -1,0 +1,52 @@
+default :
+{
+    name : 'GMSHPLUGIN'
+    build_source : 'cmake'
+    get_source : 'release'
+    web_link : 'https://github.com/SalomePlatform/gmshplugin/archive/refs/tags/' + $version + '.tar.gz'
+    git_info :
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + $name + '.git'
+        repo_dev : $repo
+    }
+    environ :
+    {
+        _SMESH_MeshersList : 'GMSHPlugin'
+        SalomeAppConfig_ : $install_dir + $VARS.sep + 'share' + $VARS.sep + 'salome' + $VARS.sep + 'resources' + $VARS.sep + 'gmshplugin'
+    }
+    depend :
+    [
+        'KERNEL'
+        'GUI'
+        'SMESH'
+        'gmsh'
+        'boost'
+        'Python'
+    ]
+    build_depend :
+    [
+        'cmake'
+        'swig'
+        'doxygen'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties :
+    {
+        is_SALOME_module : 'yes'
+        incremental : 'yes'
+    }
+    patches : [ ]
+    archive_info :
+    {
+        archive_name : 'GMSHPLUGIN.tgz'
+    }
+}
+
+version_V9_11_0:
+{
+    patches :
+    [
+        'GMSHPLUGIN-9.11.0-cmake_parenthesis.patch'
+    ]
+}

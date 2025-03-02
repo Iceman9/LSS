@@ -1,0 +1,61 @@
+default :
+{
+    name : 'metis'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://github.com/KarypisLab/METIS/archive/refs/tags/v' + $version + '.tar.gz'
+    system_info :
+    {
+        rpm : 
+        [ 
+            "metis" 
+        ]
+        rpm_dev :
+        [
+            'metis-devel'
+        ]
+        apt : 
+        [ 
+            "libmetis5" 
+        ]
+        apt_dev :
+        [
+            'libmetis-dev'
+        ]
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend : [ ]
+    build_depend :
+    [
+        'cmake'
+    ]
+    patches : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : 'yes'
+        is_SALOME_module : 'no'
+    }
+}
+
+version_5_1_0 :
+{
+    get_source : 'git'
+    git_info :
+    {
+      repo: 'https://github.com/KarypisLab/METIS.git'
+      tag : 'v5.1.1-DistDGL-v0.5'
+    }
+    web_link: 'https://github.com/KarypisLab/METIS/archive/refs/tags/v5.1.1-DistDGL-v0.5.tar.gz'
+    patches :
+    [
+        'metis-5.1.0-use_cat_not_more.patch'
+        'metis-5.1.0-no_makeflags.patch'
+    ]
+}

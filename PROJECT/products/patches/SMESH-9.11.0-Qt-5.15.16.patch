@@ -1,0 +1,10 @@
+--- SMESH/src/SMESHGUI/SMESHGUI_MeshInfo.h.org	2025-02-22 10:42:12.969412000 +0100
++++ SMESH/src/SMESHGUI/SMESHGUI_MeshInfo.h	2025-02-22 10:43:39.918424586 +0100
+@@ -37,6 +37,7 @@
+ #include <QMap>
+ #include <QSet>
+ #include <QToolBox>
++#include <QTextStream>
+ 
+ #include <SALOMEconfig.h>
+ #include CORBA_SERVER_HEADER(SMESH_Filter)

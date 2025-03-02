@@ -1,0 +1,51 @@
+default :
+{
+    name : 'medfile'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    test_build : 'make test'
+    get_source : 'archive'
+    web_link : 'https://files.salome-platform.org/Salome/medfile/med-' + $version + '.tar.gz'
+    archive_info :
+    {
+        archive_prefix : 'med'
+    }
+    environ :
+    {
+        env_script : 'med.py'
+    }
+    depend :
+    [
+        'hdf5'
+        'Python'
+    ]
+    opt_depend :
+    [
+        'openmpi'
+    ]
+    build_depend :
+    [
+        'cmake'
+    ]
+    patches :
+    [
+        'medfile-4.1.1-port_to_python_greater_than_3.13.patch'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : 'yes'
+      has_unit_tests : 'yes'
+    }
+  }
+
+version_4_1_1 :
+{
+    test_build : 'make check'
+    build_depend :
+    [
+        'swig'
+    ]
+}

@@ -1,0 +1,41 @@
+default :
+{
+    name : 'PARAVISADDONS'
+    build_source : 'cmake'
+    cmake_options : ''
+    get_source : 'release'
+    web_link : 'https://github.com/SalomePlatform/paravisaddons_common/archive/refs/tags/' + $version + '.tar.gz'
+    git_info :
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + 'paravisaddons_common.git'
+        repo_dev : $repo
+    }
+    environ :
+    {
+        env_script : $name + '.py'
+    }
+    depend :
+    [
+        'PARAVIS'
+    ]
+    opt_depend :
+    [
+        'openmpi'
+    ]
+    build_depend :
+    [
+        'cmake'
+        'swig'
+        'cppunit'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties :
+    {
+        incremental : 'yes'
+    }
+    archive_info :
+    {
+        archive_name : 'PARAVISADDONS.tgz'
+    }
+}

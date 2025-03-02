@@ -1,0 +1,52 @@
+default :
+{
+    name : 'SHAPER'
+    build_source : 'cmake'
+    get_source : 'release'
+    web_link : 'https://github.com/SalomePlatform/shaper/archive/refs/tags/' + $version + '.tar.gz'
+    git_info :
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + $name + '.git'
+        repo_dev : $repo
+    }
+    environ :
+    {
+        SalomeAppConfig_ : $install_dir + $VARS.sep + 'share' + $VARS.sep + 'salome' + $VARS.sep + 'resources' + $VARS.sep + 'shaper'
+    }
+    depend :
+    [
+        'KERNEL'
+        'GUI'
+        'boost'
+        'CAS'
+        'Python'
+        'hdf5'
+        'omniORB'
+        'qt'
+        'ParaView'
+        'planegcs'
+        'eigen'
+        'libxml2'
+    ]
+    build_depend :
+    [
+        'cmake'
+        'swig'
+        'doxygen'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties :
+    {
+        has_salome_gui : 'yes'
+        is_SALOME_module : 'yes'
+        incremental : 'yes'
+        has_unit_tests : 'yes'
+    }
+    cmake_options : '-DCMAKE_CXX_FLAGS=-fpermissive -DNO_SolveSpace=TRUE -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DADD_COMPATIBILITY_TESTS=ON -DADD_MODELS_TESTS=ON -DADD_HDF_TESTS=ON'
+    patches : [ ]
+    archive_info :
+    {
+        archive_name : 'SHAPER.tgz'
+    }
+}

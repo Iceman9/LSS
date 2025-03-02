@@ -1,0 +1,36 @@
+# Rather than compiling OpenMPI, make sure that the host machine has it
+# This is especially important for distributions, if you ever need one. It's a
+# massive pita to ship MPI.
+
+default :
+{
+    name : 'openmpi'
+    get_source : 'native'
+    system_info : 
+    {
+        apt :
+        {
+            'libopenmpi3'
+        }
+        apt_dev :
+        {
+            'libopenmpi-dev'
+        }
+        DB12 :
+        {
+            apt :
+            {
+                'libopenmpi3'
+            }
+            apt_dev :
+            {
+                'libopenmpi-dev'
+            }
+        }
+    }
+    environ :
+    {
+        env_script : 'openmpi.py'
+    }
+    depend : [ ]
+}

@@ -1,0 +1,54 @@
+default :
+{
+    name : 'TTK'
+    build_source : 'script'
+    compil_script : $name + $VARS.scriptExtension
+    get_source : 'release'
+    web_link : 'https://github.com/topology-tool-kit/ttk/archive/' + $version + '.tar.gz'
+    environ :
+    {
+        env_script : 'TTK.py'
+    }
+    depend :
+    [
+        'Python'
+        'openblas'
+        'hdf5'
+        'tbb'
+        'libxml2'
+        'eigen'
+        'matplotlib'
+        'ParaView'
+        'boost'
+        'qt'
+        'embree'
+        'graphviz'
+        'catalyst'
+    ]
+    build_depend :
+    [
+        'cmake'
+        'swig'
+    ]
+    opt_depend :
+    [
+        'openmpi'
+    ]
+    patches : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        single_install_dir : 'no'
+        incremental : 'yes'
+    }
+}
+
+version_f8dafde2d7 :
+{
+    patches :
+    [
+        'ttk-f8dafde2d7-find_embree_and_graphviz.patch'
+    ]
+}

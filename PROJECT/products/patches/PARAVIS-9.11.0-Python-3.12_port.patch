@@ -1,0 +1,17 @@
+--- PARAVIS/src/PVGUI/PVGUI_Module.cxx.org	2025-02-22 11:30:47.732046000 +0100
++++ PARAVIS/src/PVGUI/PVGUI_Module.cxx	2025-02-22 11:36:46.639345636 +0100
+@@ -823,12 +823,12 @@
+         vtkSmartPyObject save_cam(PyObject_GetAttrString(trace_mod, const_cast<char*>("SaveCameras")));
+         vtkSmartPyObject camera_trace(PyObject_CallMethod(save_cam, const_cast<char*>("get_trace"), NULL));
+         // Convert to a single string
+-        vtkSmartPyObject ret(PyUnicode_FromUnicode(Py_DecodeLocale(end_line.toStdString().c_str(), NULL), end_line.size()));
++        vtkSmartPyObject ret(PyUnicode_FromWideChar(Py_DecodeLocale(end_line.toStdString().c_str(), NULL), end_line.size()));
+         vtkSmartPyObject final_string(PyObject_CallMethod(ret, const_cast<char*>("join"),
+             const_cast<char*>("O"), (PyObject*)camera_trace));
+         if (PyUnicode_CheckExact(final_string))
+           {
+-            QString camera_qs(Py_EncodeLocale(PyUnicode_AS_UNICODE(final_string.GetPointer()), NULL));  // deep copy
++            QString camera_qs(Py_EncodeLocale(PyUnicode_AsWideCharString(final_string.GetPointer(), NULL), NULL));  // deep copy
+             traceString = traceString + end_line  + end_line + QString("#### saving camera placements for all active views")
+                 + end_line + end_line + camera_qs + end_line;
+           }
