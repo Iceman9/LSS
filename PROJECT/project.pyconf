@@ -18,8 +18,6 @@ JOBPATH : $project_path + "jobs/"
 MACHINEPATH : $project_path + "machines/"
 ARCHIVEFTP: 'ftp.cea.fr/pub/salome/prerequisites/'
 
-workdir : $PWD + "/../"
-
 git_info :
 {
   git_server :
