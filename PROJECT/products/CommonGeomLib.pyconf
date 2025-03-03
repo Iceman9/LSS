@@ -1,0 +1,23 @@
+default :
+{
+    name : "CommonGeomLib"
+    build_source : "cmake"
+    get_source : "release"
+    web_link : 'https://github.com/SalomePlatform/common_geometry_lib/archive/refs/tags/' + $version + '.tar.gz'
+    depend :
+    [
+        "CAS"
+        "CONFIGURATION"
+    ]
+    build_depend :
+    [
+        "cmake"
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental : "yes"
+    }
+}
