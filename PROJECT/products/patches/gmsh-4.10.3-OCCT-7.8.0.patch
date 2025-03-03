@@ -1,0 +1,20 @@
+--- gmsh/CMakeLists.txt.org	2025-03-03 20:13:00.774035482 +0100
++++ gmsh/CMakeLists.txt	2025-03-03 20:16:17.593313295 +0100
+@@ -1264,7 +1264,7 @@
+   elseif(OCC_INC)
+     set(OCC_LIBS_REQUIRED
+ 	# subset of DataExchange
+-      	TKSTEP TKSTEP209 TKSTEPAttr TKSTEPBase TKIGES TKXSBase
++      	TKDEIGES TKDESTEP TKXSBase
+       	# ModelingAlgorithms
+       	TKOffset TKFeat TKFillet TKBool TKMesh TKHLR TKBO TKPrim TKShHealing
+       	TKTopAlgo TKGeomAlgo
+@@ -1304,7 +1304,7 @@
+     find_package(Freetype)
+     if(FREETYPE_FOUND)
+       set(OCC_CAF_LIBS_REQUIRED
+-          TKXDESTEP TKXDEIGES TKXCAF TKLCAF TKVCAF TKCAF TKV3d TKService TKCDF)
++          TKDESTEP TKDEIGES TKXCAF TKLCAF TKVCAF TKCAF TKV3d TKService TKCDF)
+       list(LENGTH OCC_CAF_LIBS_REQUIRED NUM_OCC_CAF_LIBS_REQUIRED)
+       set(OCC_CAF_LIBS)
+       foreach(OCC ${OCC_CAF_LIBS_REQUIRED})

@@ -1,0 +1,88 @@
+--- netgen/cmake/cmake_modules/FindOpenCasCade.cmake.org	2025-03-02 23:04:32.798126216 +0100
++++ netgen/cmake/cmake_modules/FindOpenCasCade.cmake	2025-03-02 23:04:18.294272170 +0100
+@@ -59,7 +59,6 @@
+     TKGeomAlgo
+     TKGeomBase
+     TKHLR
+-    TKIGES
+     TKLCAF
+     TKMath
+     TKMesh
+@@ -67,17 +66,13 @@
+     TKPrim
+     TKService
+     TKShHealing
+-    TKSTEP
+-    TKSTEP209
+-    TKSTEPAttr
+-    TKSTEPBase
+-    TKSTL
+     TKTopAlgo
+     TKV3d
+     TKXCAF
+-    TKXDEIGES
+-    TKXDESTEP
+     TKXSBase
++    TKDEIGES
++    TKDESTEP
++    TKDESTL
+ )
+ 
+ if(OCC_LINK_FREETYPE)--- netgen/libsrc/occ/Partition_Loop3d.hxx.org	2025-03-03 18:47:18.498735680 +0100
++++ netgen/libsrc/occ/Partition_Loop3d.hxx	2025-03-03 18:47:12.774673652 +0100
+@@ -10,27 +10,16 @@
+ #ifndef _Partition_Loop3d_HeaderFile
+ #define _Partition_Loop3d_HeaderFile
+ 
+-#ifndef _TopTools_ListOfShape_HeaderFile
+-#include <TopTools_ListOfShape.hxx>
+-#endif
+-#ifndef _TopTools_IndexedDataMapOfShapeListOfShape_HeaderFile
+-#include <TopTools_IndexedDataMapOfShapeListOfShape.hxx>
+-#endif
+-#ifndef _Standard_Boolean_HeaderFile
++#include <Standard_Version.hxx>
+ #include <Standard_Boolean.hxx>
+-#endif
+-#ifndef _Standard_Real_HeaderFile
+ #include <Standard_Real.hxx>
+-#endif
+-#ifndef _Standard_Version_HeaderFile
+-#include <Standard_Version.hxx>
+-#endif
++#include <TopTools_ListOfShape.hxx>
++#include <TopTools_IndexedDataMapOfShapeListOfShape.hxx>
+ 
+-#if OCC_VERSION_HEX < 0x070000
++#if OCC_VERSION_HEX < 0x070000 || OCC_VERSION_HEX > 0x070799
+ #else
+    #include <TopTools_ShapeMapHasher.hxx>
+    #include <TopTools_OrientedShapeMapHasher.hxx>
+-   #include <TopTools_MapOfOrientedShape.hxx>
+ #endif
+ 
+ class TopoDS_Shape;
+@@ -38,6 +27,8 @@
+ #if OCC_VERSION_HEX < 0x070000
+    class TopTools_ListOfShape;
+    class TopTools_MapOfOrientedShape;
++#else
++   #include <TopTools_MapOfOrientedShape.hxx>
+ #endif
+ 
+ class TopoDS_Edge;
+--- netgen/libsrc/occ/occgenmesh.cpp.org	2025-03-03 18:48:55.259790785 +0100
++++ netgen/libsrc/occ/occgenmesh.cpp	2025-03-03 18:50:49.301048394 +0100
+@@ -1257,9 +1257,9 @@
+ 
+                 for (int k = 1; k <=3; k++)
+                   {
+-                    int n = triangulation->Triangles()(j)(k);
+-                    p[k-1] = triangulation->Nodes()(n).Transformed(loc);
+-                    par[k-1] = triangulation->UVNodes()(n);
++                    int n = triangulation->Triangle(j)(k);
++                    p[k-1] = triangulation->Node(n).Transformed(loc);
++                    par[k-1] = triangulation->UVNode(n);
+                   }
+ 
+                 //double maxside = 0;

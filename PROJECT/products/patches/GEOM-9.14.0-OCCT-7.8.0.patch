@@ -1,0 +1,19 @@
+--- GEOM/src/GEOMImpl/GEOMImpl_ShapeDriver.cxx.org	2025-03-03 14:09:21.439956579 +0100
++++ GEOM/src/GEOMImpl/GEOMImpl_ShapeDriver.cxx	2025-03-03 14:12:13.800925378 +0100
+@@ -1162,7 +1162,15 @@
+   // IMP 0019766
+ 
+   if (theMode == GEOMImpl_WBM_KeepCurveType) {
+-#if OCC_VERSION_LARGE > 0x07050305
++#if OCC_VERSION_LARGE > 0x07079999
++    aFW->FixEdgeCurves();
++    if (aFW->StatusEdgeCurves(ShapeExtend_FAIL1)) {
++      Standard_ConstructionError::Raise("Wire construction failed: cannot update Bezier or B-Spline curve ends, because they don't correspond to the first and last poles");
++    }
++    if (aFW->StatusEdgeCurves(ShapeExtend_FAIL)) {
++      Standard_ConstructionError::Raise("Wire construction failed: cannot rebuild curves through new points");
++    }
++#elif OCC_VERSION_LARGE > 0x07050305
+     aFW->FixCurves();
+     if (aFW->StatusCurves(ShapeExtend_FAIL1)) {
+       Standard_ConstructionError::Raise("Wire construction failed: cannot update Bezier or B-Spline curve ends, because they don't correspond to the first and last poles");
