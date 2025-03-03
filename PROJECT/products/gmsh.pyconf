@@ -60,16 +60,12 @@ version_4_10_3 :
     ]
     patches :
     [
-       'gmsh_gcc_gt_13.patch'
+        'gmsh-4.10.3-OCCT-7.8.0.patch'
     ]
 }
 
 version_4_10_3_win :
 {
-    patches :
-    [
-        'gmsh-4.10.3-windows.patch'
-    ]
     depend :
     [
         'CAS'
@@ -77,5 +73,9 @@ version_4_10_3_win :
         'hdf5'
         'medfile'
         'cgns'
+    ]
+    patches :
+    [
+        'gmsh-4.10.3-windows.patch'
     ]
 }

@@ -45,11 +45,3 @@ default_MPI :
         'openmpi'
     ]
 }
-
-version_V9_11_0 :
-{
-    patches :
-    [
-        'FIELDS-9.11.0-python_3.12_port.patch'
-    ]
-}

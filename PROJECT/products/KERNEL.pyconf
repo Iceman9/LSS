@@ -30,7 +30,7 @@ default :
         'swig'
         'doxygen'
         'cppunit'
-        'CONFIGURATION'
+        'SALOMEBOOTSTRAP'
     ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -46,14 +46,12 @@ default :
     }
 }
 
-version_V9_11_0:
+version_V9_14_0:
 {
     patches:
     [
         'KERNEL-9.11.0-numpy-2_calcium_compatibility.patch'
-        'KERNEL-9.11.0-omniORB-4.3.0-macro.patch'
         'KERNEL-9.11.0-omniORB-4.3.0-no_comments_for_cfg_file.patch'
         'KERNEL-9.11.0-python-3.12_port_1.patch'
-        'KERNEL-9.11.0-python-3.12_port_2.patch'
     ]
 }

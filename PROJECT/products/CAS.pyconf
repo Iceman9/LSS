@@ -38,10 +38,6 @@ version_7_8_1:
     cmake_options : $default.cmake_default_command + ' -DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON'
     get_source : 'release'
     web_link : 'https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_8_1.tar.gz'
-    patches:
-    [
-        'CAS-7.5.3p-do_not_randomly_append_std_flag_in_cmake.patch'
-    ]
 }
 
 version_7_5_3p5:

@@ -19,7 +19,6 @@ default :
         'omniORB'
         'omniORBpy'
         'qt'
-        'CONFIGURATION'
         'KERNEL'
         'GEOM'
         'SHAPER'

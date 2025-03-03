@@ -36,6 +36,7 @@ default :
     opt_depend :
     [
         'openmpi'
+        'SALOMEBOOTSTRAP'
     ]
     build_depend :
     [
@@ -59,7 +60,7 @@ default :
     }
 }
 
-version_V9_11_0:
+version_V9_14_0:
 {
     patches :
     [
