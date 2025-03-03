@@ -2,20 +2,20 @@
 APPLICATION :
 {
     name : "LSS"
-    workdir : $PROJECTS.projects.project.workdir
-    tag : "V9_11_0"
+    tag : "V9_14_0"
     dev : 'no'
     verbose : 'no'
     debug : 'no'
     base : 'no'
     python3 : 'yes'
     cmake_generator : 'Ninja'
+    workdir : $LOCAL.workdir
 
     environ :
     {
         build :
         {
-            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + 'SOURCE' + $VARS.sep + 'CONFIGURATION'
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'CONFIGURATION'
             SALOME_USE_64BIT_IDS : '1'
             VTK_SMP_IMPLEMENTATION_TYPE : 'TBB'
             SALOME_GMSH_HEADERS_STD : '1'
@@ -34,7 +34,7 @@ APPLICATION :
     products :
     {
         boost : '1.79.0'
-        CAS : '7.5.3p5'
+        CAS : '7.8.1'
         catalyst : '2.0.0'
         cgns : '4.2.0'
         cmake : '3.26.6'
@@ -48,7 +48,7 @@ APPLICATION :
         graphviz : '2.50.0'
         hdf5 : '1.10.3'
         ispc : '1.15.0'
-        libbatch : 'V2_4_6'
+        libbatch : 'V2_5_0'
         libxml2 : '2.9.14'
         matplotlib : '3.10.0'
         medfile : '4.1.1'
@@ -92,33 +92,35 @@ APPLICATION :
         tk : '8.6.0'
         TTK : 'f8dafde2d7'
         # SALOME MODULES
-        CONFIGURATION : True
-        SALOME : True
-        SHAPER : True
-        SHAPERSTUDY : True
-        KERNEL : True
+        'CommonGeomLib'
+        'CONFIGURATION'
+        'SALOME'
+        'SALOMEBOOTSTRAP'
+        'SHAPER'
+        'SHAPERSTUDY'
+        'KERNEL'
         MEDCOUPLING :
         {
-            tag : 'V9_11_0'
+            tag : 'V9_14_0'
             base : 'no'
-            section : 'version_V9_11_0_MPI'
+            section : 'version_V9_14_0_MPI'
             hpc : 'yes'
         }
-        GUI : True
-        GEOM : True
-        SMESH : True
-        NETGENPLUGIN : True
-        GMSHPLUGIN : True
-        FIELDS : True
+        'GUI'
+        'GEOM'
+        'SMESH'
+        'NETGENPLUGIN'
+        'GMSHPLUGIN'
+        'FIELDS'
         PARAVIS:
         {
-            tag : 'V9_11_0'
+            tag : 'V9_14_0'
             base : 'no'
-            section : 'version_V9_11_0_MPI'
+            section : 'version_V9_14_0_MPI'
             hpc : 'yes'
         }
-        DOCUMENTATION : True
-        PARAVISADDONS : True
+        'DOCUMENTATION'
+        'PARAVISADDONS'
     }
 
     profile :
