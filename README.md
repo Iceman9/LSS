@@ -44,6 +44,8 @@ ln -s /path/to/salomeTools/sat sat
 ./sat init -l ${PWD}/LOGS
 # Set the location of archives
 ./sat init -a ${PWD}/ARCHIVES # Location of archive files
+# Set the workdir to LSS directory
+./sat init -w ${PWD}
 ```
 
 ### Preparing source
