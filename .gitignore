@@ -8,3 +8,4 @@ env_build.sh
 lss
 sat
 notes
+__pycache__
