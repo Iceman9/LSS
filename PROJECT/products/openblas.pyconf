@@ -22,5 +22,5 @@ default :
 default_win :
 {
     build_source : 'cmake'
-    cmake_options : '-DBUILD_WITHOUT_LAPACK=no -DNOFORTRAN=0 -DBUILD_SHARED_LIBS=ON -DCMAKE_C_COMPILER:FILEPATH=cl'
+    cmake_options : '-DBUILD_WITHOUT_LAPACK=no -DNOFORTRAN=1 -DBUILD_SHARED_LIBS=ON -DCMAKE_C_COMPILER:FILEPATH=cl'
 }

@@ -32,13 +32,13 @@ if NOT %ERRORLEVEL% == 0 (
 )
 
 if NOT exist "%PRODUCT_INSTALL%\lib\python%PYTHON_VERSION%\site-packages\sipbuild\module\source" mkdir %PRODUCT_INSTALL%\lib\python%PYTHON_VERSION%\site-packages\sipbuild\module\source
-xcopy %BUILD_DIR%\sipbuild\module\source\12 %PRODUCT_INSTALL%\lib\site-packages\sipbuild\module\source\12 /E /I
+xcopy %BUILD_DIR%\sipbuild\module\source\12 %PRODUCT_INSTALL%\lib\site-packages\sipbuild\module\source\12 /E /I /Y
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on xcopy /E /I %BUILD_DIR%/sipbuild/module/source/12 %PRODUCT_INSTALL%/lib/site-packages/sipbuild/module/source
     exit 1
 )
 
-xcopy %BUILD_DIR%\sipbuild\module\source\13 %PRODUCT_INSTALL%\Lib\site-packages\sipbuild\module\source\13 /E /I
+xcopy %BUILD_DIR%\sipbuild\module\source\13 %PRODUCT_INSTALL%\Lib\site-packages\sipbuild\module\source\13 /E /I /Y
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on xcopy /E /I %BUILD_DIR%\sipbuild\module\source\13 %PRODUCT_INSTALL%\Lib\site-packages\sipbuild\module\source
     exit 1

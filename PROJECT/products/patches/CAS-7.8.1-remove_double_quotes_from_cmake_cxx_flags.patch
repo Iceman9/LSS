@@ -5,7 +5,7 @@
  
  # Configure and install cmake config file
 +# CMAKE_CXX_FLAGS contained multiple quotation marks as in a list of strings
-+STRING(CONCAT CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
++STRING(REPLACE "\"" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
  configure_file("${CMAKE_SOURCE_DIR}/adm/templates/OpenCASCADEConfig.cmake.in" "OpenCASCADEConfig.cmake" @ONLY)
  install(FILES "${CMAKE_BINARY_DIR}/OpenCASCADEConfig.cmake" DESTINATION  "${INSTALL_DIR_CMAKE}")
  

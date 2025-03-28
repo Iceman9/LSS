@@ -26,3 +26,14 @@ default :
     patches : [ ]
     post_script : "fix_permissions.sh"
 }
+
+default_win : { }
+
+version_4_3_2 :
+{
+    patches :
+    [
+        'omniORB-4.3.2-MSVC-Remove_timespec_redefinition.patch'
+    ]
+
+}
