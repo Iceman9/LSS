@@ -7,6 +7,9 @@ def set_env(env: 'Environ', prereq_dir: str, version: str) -> None:
         pyver = 'python' + env.get('PYTHON_VERSION')
         env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver,
                                                'site-packages'))
+    else:
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'Lib',
+                                               'site-packages'))
 
 def set_nativ_env(env: 'Environ') -> None:
     pass

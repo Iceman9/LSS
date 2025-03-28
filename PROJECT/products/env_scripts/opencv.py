@@ -13,8 +13,8 @@ def set_env(env: 'Environ', prereq_dir: str, version: str) -> None:
         env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 
                                                'site-packages'))
     else:
-        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','bin'))
-        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','lib'))
+        env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
+        env.prepend('PATH', os.path.join(prereq_dir, 'lib'))
         env.set('OpenCV_INCLUDE_DIRS', os.path.join(prereq_dir, 'include') + 
                                        ';' + 
                                        os.path.join(prereq_dir, 'include',
