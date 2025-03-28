@@ -1,0 +1,11 @@
+--- GUI/src/Qtx/QtxRubberBand.cxx.org	2025-03-23 01:36:06.919867200 +0100
++++ GUI/src/Qtx/QtxRubberBand.cxx	2025-03-23 01:37:03.357188200 +0100
+@@ -30,7 +30,7 @@
+ #include <QShowEvent>
+ #include <QVectorIterator>
+ 
+-#include <math.h>
++#include <cmath>
+ 
+ /*!
+   \class QtxAbstractRubberBand

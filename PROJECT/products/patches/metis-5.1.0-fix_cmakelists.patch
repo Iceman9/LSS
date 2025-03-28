@@ -1,0 +1,26 @@
+--- metis/CMakeLists.txt.org	2025-03-19 20:54:38.263577600 +0100
++++ metis/CMakeLists.txt	2025-03-19 21:01:05.025519600 +0100
+@@ -4,11 +4,7 @@
+ set(GKLIB_PATH "${CMAKE_SOURCE_DIR}/GKlib" CACHE PATH "path to GKlib")
+ set(SHARED FALSE CACHE BOOL "build a shared library")
+ 
+-if(MSVC)
+-  set(METIS_INSTALL FALSE)
+-else()
+-  set(METIS_INSTALL TRUE)
+-endif()
++set(METIS_INSTALL TRUE)
+ 
+ # Configure libmetis library.
+ if(SHARED)
+@@ -38,8 +34,8 @@
+ 
+ # Add include directories.
+ include_directories(${GKLIB_PATH})
+-include_directories(build/xinclude)
++include_directories(include)
+ # Recursively look for CMakeLists.txt in subdirs.
+-add_subdirectory("build/xinclude")
++add_subdirectory("include")
+ add_subdirectory("libmetis")
+ add_subdirectory("programs")

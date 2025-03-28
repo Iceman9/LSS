@@ -1,0 +1,24 @@
+--- pthreads/pthread.h.org	2025-03-18 22:33:35.973952200 +0100
++++ pthreads/pthread.h	2025-03-18 22:33:55.272504900 +0100
+@@ -315,13 +315,14 @@
+ 
+ #if !defined(HAVE_STRUCT_TIMESPEC)
+ #define HAVE_STRUCT_TIMESPEC
+-#if !defined(_TIMESPEC_DEFINED)
+-#define _TIMESPEC_DEFINED
+-struct timespec {
+-        time_t tv_sec;
+-        long tv_nsec;
+-};
+-#endif /* _TIMESPEC_DEFINED */
++// VS 2022 timespec defined in time.h
++// #if !defined(_TIMESPEC_DEFINED)
++// #define _TIMESPEC_DEFINED
++// struct timespec {
++//         time_t tv_sec;
++//         long tv_nsec;
++// };
++// #endif /* _TIMESPEC_DEFINED */
+ #endif /* HAVE_STRUCT_TIMESPEC */
+ 
+ #if !defined(SIG_BLOCK)

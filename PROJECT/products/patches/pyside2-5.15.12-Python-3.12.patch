@@ -1,0 +1,58 @@
+--- pyside/sources/pyside2/PySide2/support/generate_pyi.py.org	2025-03-07 10:32:14.530929276 +0100
++++ pyside/sources/pyside2/PySide2/support/generate_pyi.py	2025-03-07 10:32:37.970956478 +0100
+@@ -116,8 +116,10 @@
+         """
+         def _typevar__repr__(self):
+             return "typing." + self.__name__
+-        typing.TypeVar.__repr__ = _typevar__repr__
+-
++        try:
++            typing.TypeVar.__repr__ = _typevar__repr__
++        except Exception as e:
++            pass
+         # Adding a pattern to substitute "Union[T, NoneType]" by "Optional[T]"
+         # I tried hard to replace typing.Optional by a simple override, but
+         # this became _way_ too much.
+--- pyside/sources/shiboken2/libshiboken/signature/signature_helper.cpp.org	2025-03-07 10:29:54.786778945 +0100
++++ pyside/sources/shiboken2/libshiboken/signature/signature_helper.cpp	2025-03-07 10:31:42.490892956 +0100
+@@ -106,6 +106,7 @@
+     assert(PyType_Check(type));
+     PyType_Ready(type);
+     PyObject *dict = type->tp_dict;
++    if (dict == NULL) dict = PyType_GetDict(type);
+     for (; gsp->name != nullptr; gsp++) {
+         PyObject *have_descr = PyDict_GetItemString(dict, gsp->name);
+         if (have_descr != nullptr) {
+@@ -347,6 +348,7 @@
+      */
+     auto *type = reinterpret_cast<PyTypeObject *>(obtype);
+     PyObject *dict = type->tp_dict;
++    if (dict == NULL) dict = PyType_GetDict(type);
+     PyMethodDef *meth = type->tp_methods;
+ 
+     if (meth == nullptr)
+--- pyside/sources/shiboken2/libshiboken/CMakeLists.txt.org	2025-03-07 10:10:23.779783761 +0100
++++ pyside/sources/shiboken2/libshiboken/CMakeLists.txt	2025-03-07 10:10:46.575679255 +0100
+@@ -111,7 +111,7 @@
+ )
+ 
+ if (NOT "${PYTHON_NUMPY_LOCATION}" STREQUAL "")
+-    target_include_directories(libshiboken PRIVATE ${PYTHON_NUMPY_LOCATION}/core/include)
++    target_include_directories(libshiboken PRIVATE ${PYTHON_NUMPY_LOCATION}/_core/include)
+     target_compile_definitions(libshiboken PRIVATE -DHAVE_NUMPY
+                                            PRIVATE -DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION)
+ 
+--- pyside/sources/shiboken2/libshiboken/pep384impl.h.org	2025-03-07 10:03:57.502822133 +0100
++++ pyside/sources/shiboken2/libshiboken/pep384impl.h	2025-03-07 10:06:54.021089946 +0100
+@@ -182,7 +182,11 @@
+ #ifdef Py_LIMITED_API
+ LIBSHIBOKEN_API int _PepLong_AsInt(PyObject *);
+ #else
++#  if PY_VERSION_HEX < 0x030d0000
+ #define _PepLong_AsInt _PyLong_AsInt
++#  else
++#define _PepLong_AsInt PyLong_AsInt
++#  endif
+ #endif
+ 
+ /*****************************************************************************

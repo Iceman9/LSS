@@ -1,0 +1,17 @@
+--- ParaView/VTK/CMake/FindTBB.cmake.org	2025-03-27 19:32:25.711609346 +0100
++++ ParaView/VTK/CMake/FindTBB.cmake	2025-03-27 19:34:48.829554386 +0100
+@@ -84,9 +84,11 @@
+   endif ()
+ endforeach ()
+ unset(_tbb_find_component)
+-find_package(TBB CONFIG ${_tbb_find_quiet}
+-  COMPONENTS ${_tbb_find_components}
+-  OPTIONAL_COMPONENTS ${_tbb_find_optional_components})
++IF(NOT TARGET TBB::tbb)
++  find_package(TBB CONFIG ${_tbb_find_quiet}
++    COMPONENTS ${_tbb_find_components}
++    OPTIONAL_COMPONENTS ${_tbb_find_optional_components})
++ENDIF()
+ unset(_tbb_find_quiet)
+ unset(_tbb_find_components)
+ unset(_tbb_find_optional_components)

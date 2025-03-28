@@ -1,0 +1,11 @@
+--- CAS/CMakeLists.txt.org	2025-03-22 20:51:15.097320000 +0100
++++ CAS/CMakeLists.txt	2025-03-22 20:52:03.502565200 +0100
+@@ -1315,6 +1315,8 @@
+ endif()
+ 
+ # Configure and install cmake config file
++# CMAKE_CXX_FLAGS contained multiple quotation marks as in a list of strings
++STRING(CONCAT CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+ configure_file("${CMAKE_SOURCE_DIR}/adm/templates/OpenCASCADEConfig.cmake.in" "OpenCASCADEConfig.cmake" @ONLY)
+ install(FILES "${CMAKE_BINARY_DIR}/OpenCASCADEConfig.cmake" DESTINATION  "${INSTALL_DIR_CMAKE}")
+ 

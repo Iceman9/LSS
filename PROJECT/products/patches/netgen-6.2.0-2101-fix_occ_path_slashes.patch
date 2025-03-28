@@ -1,0 +1,12 @@
+--- netgen/CMakeLists.txt.org	2025-03-24 20:47:58.112312100 +0100
++++ netgen/CMakeLists.txt	2025-03-24 20:55:48.252455900 +0100
+@@ -586,6 +586,9 @@
+ # Generate package config file
+ get_directory_property(NETGEN_COMPILE_DEFINITIONS COMPILE_DEFINITIONS)
+ 
++# Make OCC_LIBRARY_DIR CMake compliant path.
++cmake_path(SET ENV_OCC_LIBRARY_DIR "${OCC_LIBRARY_DIR}")
++set(OCC_LIBRARY_DIR ${ENV_OCC_LIBRARY_DIR})
+ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/NetgenConfig.cmake.in
+     ${CMAKE_CURRENT_BINARY_DIR}/NetgenConfig.cmake @ONLY ESCAPE_QUOTES)
+ 

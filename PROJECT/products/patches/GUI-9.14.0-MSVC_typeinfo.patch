@@ -1,0 +1,22 @@
+--- GUI/src/SUIT/SUIT_DataObjectKey.cxx.org	2025-03-23 20:58:39.816227000 +0100
++++ GUI/src/SUIT/SUIT_DataObjectKey.cxx	2025-03-23 20:57:57.934550800 +0100
+@@ -28,7 +28,7 @@
+ #include <typeinfo>
+ #define _typeinfo std::type_info
+ #else
+-#include <typeinfo.h>
++#include <typeinfo>
+ #define _typeinfo type_info
+ #endif
+ 
+--- GUI/src/SUIT/SUIT_DataOwner.cxx.org	2025-03-23 20:59:50.899792900 +0100
++++ GUI/src/SUIT/SUIT_DataOwner.cxx	2025-03-23 20:59:58.725961000 +0100
+@@ -26,7 +26,7 @@
+ #include <typeinfo>
+ #define _typeinfo std::type_info
+ #else
+-#include <typeinfo.h>
++#include <typeinfo>
+ #define _typeinfo type_info
+ #endif
+ 

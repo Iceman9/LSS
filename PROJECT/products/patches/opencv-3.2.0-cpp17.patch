@@ -1,0 +1,11 @@
+--- opencv/3rdparty/openexr/IlmImf/ImfAttribute.cpp.org	2016-12-23 13:54:44.000000000 +0100
++++ opencv/3rdparty/openexr/IlmImf/ImfAttribute.cpp	2025-03-22 12:26:36.591991700 +0100
+@@ -61,7 +61,7 @@
+ 
+ namespace {
+ 
+-struct NameCompare: std::binary_function <const char *, const char *, bool>
++struct NameCompare
+ {
+     bool
+     operator () (const char *x, const char *y) const

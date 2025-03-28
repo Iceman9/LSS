@@ -6,7 +6,7 @@ diff --color -ruNZ CONFIGURATION/cmake/FindPyQt5.cmake CONFIGURATION.new/cmake/F
  #   - or <xyz>/sip/QtCore, for a custom install
  #   - or <xyz>/share/sip/QtCore, for a custom install
 -FIND_FILE(PYQT_SIP_MAIN_FILE qobject.sip PATH_SUFFIXES share/sip/QtCore sip/QtCore share/sip/PyQt5/QtCore lib/python3/dist-packages/PyQt5/bindings/QtCore lib64/python3.10/site-packages/PyQt5/bindings/QtCore lib64/python3.11/site-packages/PyQt5/bindings/QtCore)
-+FIND_FILE(PYQT_SIP_MAIN_FILE qobject.sip PATH_SUFFIXES share/sip/QtCore sip/QtCore share/sip/PyQt5/QtCore lib/python3/dist-packages/PyQt5/bindings/QtCore lib64/python3.10/site-packages/PyQt5/bindings/QtCore lib64/python3.11/site-packages/PyQt5/bindings/QtCore lib/python3.12/site-packages/PyQt5/bindings/QtCore lib/python3.13/site-packages/PyQt5/bindings/QtCore)
++FIND_FILE(PYQT_SIP_MAIN_FILE qobject.sip PATH_SUFFIXES share/sip/QtCore sip/QtCore share/sip/PyQt5/QtCore lib/python3/dist-packages/PyQt5/bindings/QtCore lib64/python3.10/site-packages/PyQt5/bindings/QtCore lib64/python3.11/site-packages/PyQt5/bindings/QtCore lib/python3.12/site-packages/PyQt5/bindings/QtCore lib/python3.13/site-packages/PyQt5/bindings/QtCore Lib/PyQt5/bindings/QtCore)
  
  IF(PYQT_SIP_MAIN_FILE)
    GET_FILENAME_COMPONENT(PYQT_SIPS_DIR "${PYQT_SIP_MAIN_FILE}" PATH)

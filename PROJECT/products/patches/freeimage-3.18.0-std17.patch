@@ -1,0 +1,11 @@
+--- freeimage/Source/OpenEXR/IlmImf/ImfAttribute.cpp.org	2025-03-09 20:33:13.718709300 +0100
++++ freeimage/Source/OpenEXR/IlmImf/ImfAttribute.cpp	2025-03-09 20:33:23.561719800 +0100
+@@ -63,7 +63,7 @@
+ 
+ namespace {
+ 
+-struct NameCompare: std::binary_function <const char *, const char *, bool>
++struct NameCompare
+ {
+     bool
+     operator () (const char *x, const char *y) const

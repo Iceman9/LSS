@@ -1,0 +1,17 @@
+--- GEOM/src/GEOMImpl/GEOMImpl_ICurvesOperations.cxx.org	2025-03-24 00:41:57.222013800 +0100
++++ GEOM/src/GEOMImpl/GEOMImpl_ICurvesOperations.cxx	2025-03-24 00:45:13.081840700 +0100
+@@ -25,11 +25,13 @@
+ // E.A. : between pymath.h and Standard_math.h which define
+ // E.A. : some same symbols : acosh, asinh, ...
+ #include <Standard_Real.hxx>
++#include <Python.h>
+ #include <pyport.h>
+ #include <pymath.h>
++#else
++#include <Python.h>
+ #endif
+ 
+-#include <Python.h>
+ #include <structmember.h>
+ 
+ #ifdef HAVE_FINITE

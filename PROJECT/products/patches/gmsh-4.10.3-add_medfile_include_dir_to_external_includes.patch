@@ -1,0 +1,10 @@
+--- gmsh/CMakeLists.txt.org	2025-03-19 20:04:56.225088700 +0100
++++ gmsh/CMakeLists.txt	2025-03-19 20:04:15.868975900 +0100
+@@ -1002,6 +1002,7 @@
+       if(MED_LIB)
+         set_config_option(HAVE_MED "Med")
+         list(APPEND EXTERNAL_LIBRARIES ${MED_LIB})
++        list(APPEND EXTERNAL_INCLUDES ${MEDFILE_ROOT_DIR}/include)
+       endif()
+     endif()
+     if(ENABLE_CGNS)

@@ -1,0 +1,253 @@
+diff --color -ruNZ GUI/src/SALOME_PYQT/SalomePyQt/CMakeLists.txt GUI.new/src/SALOME_PYQT/SalomePyQt/CMakeLists.txt
+--- GUI/src/SALOME_PYQT/SalomePyQt/CMakeLists.txt	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/src/SALOME_PYQT/SalomePyQt/CMakeLists.txt	2025-02-25 21:31:21.270696354 +0100
+@@ -31,6 +31,8 @@
+   ${SIP_INCLUDE_DIR}
+   ${Boost_INCLUDE_DIRS}
+   ${CMAKE_CURRENT_SOURCE_DIR}
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build/SalomePyQt
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build
+   ${PROJECT_SOURCE_DIR}/src/CAM
+   ${PROJECT_SOURCE_DIR}/src/Event
+   ${PROJECT_SOURCE_DIR}/src/LightApp
+@@ -63,12 +65,12 @@
+   INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/Plot2d)
+ ELSE(SALOME_USE_PLOT2DVIEWER)
+   #disable 'ENABLE_PLOT2D' feature
+-  SET(PYQT_SIPFLAGS ${PYQT_SIPFLAGS} "-xENABLE_PLOT2D;")
++  SET(PYQT_SIP6FLAGS ${PYQT_SIP6FLAGS} "--disabled-feature ENABLE_PLOT2D")
+ ENDIF(SALOME_USE_PLOT2DVIEWER)
+ 
+ IF(SALOME_LIGHT_ONLY)
+   #disable 'ENABLE_CORBA' feature
+-  SET(PYQT_SIPFLAGS ${PYQT_SIPFLAGS} "-xENABLE_CORBA;")
++  SET(PYQT_SIP6FLAGS ${PYQT_SIP6FLAGS} "--disabled-feature ENABLE_CORBA")
+ ELSE(SALOME_LIGHT_ONLY)
+   INCLUDE_DIRECTORIES(
+     ${PROJECT_SOURCE_DIR}/src/SalomeApp
+@@ -112,7 +116,7 @@
+ QT_WRAP_MOC(_moc_SOURCES ${_moc_HEADERS})
+ 
+ # sources / sip wrappings
+-PYQT_WRAP_SIP(_sip_SOURCES ${_sip_files})
++PYQT_WRAP_SIP(_sip_SOURCES ${_sip_files} OPTIONS ${PYQT_SIP6FLAGS})
+ 
+ # sources / static
+ SET(_other_SOURCES SalomePyQt.cxx)
+diff --color -ruNZ GUI/src/SALOME_PYQT/SalomePyQt/pyproject.toml.in GUI.new/src/SALOME_PYQT/SalomePyQt/pyproject.toml.in
+--- GUI/src/SALOME_PYQT/SalomePyQt/pyproject.toml.in	1970-01-01 01:00:00.000000000 +0100
++++ GUI.new/src/SALOME_PYQT/SalomePyQt/pyproject.toml.in	2025-02-25 16:04:42.674984917 +0100
+@@ -0,0 +1,20 @@
++# Specify the build system.
++[build-system]
++requires = ["sip >=6.8.6, <7", "PyQt-builder >=1.14.1, <2"]
++build-backend = "sipbuild.api"
++
++# Specify the PEP 621 metadata for the project.
++[project]
++name = "SalomePyQt"
++
++[tool.sip]
++project-factory = "pyqtbuild:PyQtProject"
++
++[tool.sip.project]
++sip-include-dirs=["@PYQT_SIPS_DIR@"]
++sip-files-dir = "."
++abi-version = "12.15"
++
++[tool.sip.bindings.SalomePyQt]
++sip-file="SalomePyQt.sip"
++protected-is-public=false
+diff --color -ruNZ GUI/src/SALOME_PYQT/SALOME_PYQT_GUILight/CMakeLists.txt GUI.new/src/SALOME_PYQT/SALOME_PYQT_GUILight/CMakeLists.txt
+--- GUI/src/SALOME_PYQT/SALOME_PYQT_GUILight/CMakeLists.txt	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/src/SALOME_PYQT/SALOME_PYQT_GUILight/CMakeLists.txt	2025-02-25 21:32:44.404413924 +0100
+@@ -30,6 +30,8 @@
+   ${SIP_INCLUDE_DIR}
+   ${PTHREAD_INCLUDE_DIR}
+   ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build/SalomePyQtGUILight
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build
+   ${PROJECT_SOURCE_DIR}/src/CAM
+   ${PROJECT_SOURCE_DIR}/src/Event
+   ${PROJECT_SOURCE_DIR}/src/LightApp
+diff --color -ruNZ GUI/src/SALOME_PYQT/SALOME_PYQT_GUILight/pyproject.toml.in GUI.new/src/SALOME_PYQT/SALOME_PYQT_GUILight/pyproject.toml.in
+--- GUI/src/SALOME_PYQT/SALOME_PYQT_GUILight/pyproject.toml.in	1970-01-01 01:00:00.000000000 +0100
++++ GUI.new/src/SALOME_PYQT/SALOME_PYQT_GUILight/pyproject.toml.in	2025-02-24 15:57:49.247319590 +0100
+@@ -0,0 +1,20 @@
++# Specify the build system.
++[build-system]
++requires = ["sip >=6.8.6, <7", "PyQt-builder >=1.14.1, <2"]
++build-backend = "sipbuild.api"
++
++# Specify the PEP 621 metadata for the project.
++[project]
++name = "SalomePyQtGUILight"
++
++[tool.sip]
++project-factory = "pyqtbuild:PyQtProject"
++
++[tool.sip.project]
++sip-include-dirs = ["@PYQT_SIPS_DIR@"]
++sip-files-dir = "."
++abi-version = "12.15"
++
++[tool.sip.bindings.SalomePyQtGUILight]
++sip-file="SALOME_PYQT_GUILight.sip"
++protected-is-public=false
+\ No newline at end of file
+diff --color -ruNZ GUI/tools/PyConsole/src/python/CMakeLists.txt GUI.new/tools/PyConsole/src/python/CMakeLists.txt
+--- GUI/tools/PyConsole/src/python/CMakeLists.txt	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/tools/PyConsole/src/python/CMakeLists.txt	2025-02-25 15:19:42.227842506 +0100
+@@ -26,15 +26,19 @@
+ 
+ # additional include directories
+ INCLUDE_DIRECTORIES(
+-  $(QT_INCLUDES)
++  ${QT_INCLUDES}
+   ${PYTHON_INCLUDE_DIRS}
+   ${SIP_INCLUDE_DIR}
+   ${PROJECT_BINARY_DIR}
+   ${CMAKE_CURRENT_SOURCE_DIR}/..
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build/PyConsolePy
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build
+ )
+ 
+ # additional preprocessor / compiler flags
+ ADD_DEFINITIONS(${QT_DEFINITIONS})
++# SIP6
++# ADD_DEFINITIONS(-DSIP_PROTECTED_IS_PUBLIC -Dprotected=public)
+ 
+ # libraries to link to
+ SET(_link_LIBRARIES ${QT_LIBRARIES} ${PYTHON_LIBRARIES} PyConsole)
+diff --color -ruNZ GUI/tools/PyConsole/src/python/pyproject.toml.in GUI.new/tools/PyConsole/src/python/pyproject.toml.in
+--- GUI/tools/PyConsole/src/python/pyproject.toml.in	1970-01-01 01:00:00.000000000 +0100
++++ GUI.new/tools/PyConsole/src/python/pyproject.toml.in	2025-02-25 15:11:39.200073411 +0100
+@@ -0,0 +1,20 @@
++# Specify the build system.
++[build-system]
++requires = ["sip >=5.0.0, <7", "PyQt-builder >=1.6, <2"]
++build-backend = "sipbuild.api"
++
++# Specify the PEP 621 metadata for the project.
++[project]
++name = "PyConsolePy"
++
++[tool.sip]
++project-factory = "pyqtbuild:PyQtProject"
++
++[tool.sip.project]
++sip-include-dirs = ["@PYQT_SIPS_DIR@"]
++sip-files-dir = "."
++abi-version = "12.15"
++
++[tool.sip.bindings.PyConsolePy]
++sip-file="PyConsolePy.sip"
++protected-is-public=false
+diff --color -ruNZ GUI/tools/PyEditor/src/python/CMakeLists.txt GUI.new/tools/PyEditor/src/python/CMakeLists.txt
+--- GUI/tools/PyEditor/src/python/CMakeLists.txt	2023-06-19 18:39:06.000000000 +0200
++++ GUI.new/tools/PyEditor/src/python/CMakeLists.txt	2025-02-25 21:30:35.861789770 +0100
+@@ -26,16 +26,20 @@
+ 
+ # additional include directories
+ INCLUDE_DIRECTORIES(
+-  $(QT_INCLUDES)
++  ${QT_INCLUDES}
+   ${PYTHON_INCLUDE_DIRS}
+   ${SIP_INCLUDE_DIR}
+   ${PROJECT_BINARY_DIR}
+   ${CMAKE_CURRENT_SOURCE_DIR}/..
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build/PyEditorPy
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build
+ )
+ 
+ # additional preprocessor / compiler flags
+ ADD_DEFINITIONS(${QT_DEFINITIONS})
+ 
++# SIP6
++# ADD_DEFINITIONS(-DSIP_PROTECTED_IS_PUBLIC -Dprotected=public)
+ # libraries to link to
+ SET(_link_LIBRARIES ${QT_LIBRARIES} ${PYTHON_LIBRARIES} PyEditor)
+ 
+diff --color -ruNZ GUI/tools/PyEditor/src/python/pyproject.toml.in GUI.new/tools/PyEditor/src/python/pyproject.toml.in
+--- GUI/tools/PyEditor/src/python/pyproject.toml.in	1970-01-01 01:00:00.000000000 +0100
++++ GUI.new/tools/PyEditor/src/python/pyproject.toml.in	2025-02-25 15:14:12.452194501 +0100
+@@ -0,0 +1,20 @@
++# Specify the build system.
++[build-system]
++requires = ["sip >=5.0.0, <7", "PyQt-builder >=1.6, <2"]
++build-backend = "sipbuild.api"
++
++# Specify the PEP 621 metadata for the project.
++[project]
++name = "PyEditorPy"
++
++[tool.sip]
++project-factory = "pyqtbuild:PyQtProject"
++
++[tool.sip.project]
++sip-include-dirs = ["@PYQT_SIPS_DIR@"]
++sip-files-dir = "."
++abi-version = "12.15"
++
++[tool.sip.bindings.PyEditorPy]
++sip-file="PyEditorPy.sip"
++protected-is-public=false
+--- GUI/tools/PyEditor/src/python/PyEditorPy.sip.org	2025-03-23 20:35:29.215321100 +0100
++++ GUI/tools/PyEditor/src/python/PyEditorPy.sip	2025-03-23 20:35:37.085207000 +0100
+@@ -92,10 +92,10 @@
+   void setText( const QString& text );
+   void setCurrentLine( int );
+ 
+-protected:
+-  virtual void keyPressEvent( QKeyEvent* );
+-  virtual void resizeEvent( QResizeEvent* );
+-  virtual void paintEvent( QPaintEvent* );
++// protected:
++//   virtual void keyPressEvent( QKeyEvent* );
++//   virtual void resizeEvent( QResizeEvent* );
++//   virtual void paintEvent( QPaintEvent* );
+ 
+ private:
+   PyEditor_Editor( const PyEditor_Editor& );
+--- GUI/tools/PyConsole/src/python/PyConsolePy.sip.org	2025-03-23 20:36:21.053141300 +0100
++++ GUI/tools/PyConsole/src/python/PyConsolePy.sip	2025-03-23 20:36:26.274361200 +0100
+@@ -77,17 +77,17 @@
+   void           startLog();
+   void           stopLog();
+ 
+-protected:
+-  virtual void   dropEvent( QDropEvent* );
+-  virtual void   mousePressEvent( QMouseEvent* );
+-  virtual void   mouseReleaseEvent( QMouseEvent* );
+-  virtual void   keyPressEvent ( QKeyEvent* );
+-  virtual void   customEvent( QEvent* );
+-  virtual void   insertFromMimeData( const QMimeData* );
+-  void           putLog( const QString& );
+-
+-  virtual QString getDumpFileName();
+-  virtual QString getLogFileName();
++// protected:
++//   virtual void   dropEvent( QDropEvent* );
++//   virtual void   mousePressEvent( QMouseEvent* );
++//   virtual void   mouseReleaseEvent( QMouseEvent* );
++//   virtual void   keyPressEvent ( QKeyEvent* );
++//   virtual void   customEvent( QEvent* );
++//   virtual void   insertFromMimeData( const QMimeData* );
++//   void           putLog( const QString& );
++// 
++//   virtual QString getDumpFileName();
++//   virtual QString getLogFileName();
+ 
+ private:
+   PyConsole_Editor( const PyConsole_Editor& );
+@@ -128,8 +128,8 @@
+   void                startLog( const QString& );
+   void                stopLog();
+ 
+-protected:
+-  virtual void        contextMenuEvent( QContextMenuEvent* );
++// protected:
++//  virtual void        contextMenuEvent( QContextMenuEvent* );
+ 
+ private:
+   PyConsole_Console( const PyConsole_Console& );

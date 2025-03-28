@@ -1,0 +1,10 @@
+--- SMESH/src/SMESHDS/CMakeLists.txt.org	2025-03-24 20:26:12.005495500 +0100
++++ SMESH/src/SMESHDS/CMakeLists.txt	2025-03-24 20:26:17.349982200 +0100
+@@ -51,6 +51,7 @@
+   SMDS  
+   SMESHUtils
+   ${TBB_LIBS}
++  ${TBB_ROOT_DIR}/lib/tbb12.lib # For some reason it is not fished.
+ )
+ 
+ # --- headers ---
