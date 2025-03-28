@@ -14,7 +14,7 @@ default :
     environ :
     {
         env_script : $name + '.py'
-   }
+    }
     depend :
     [
         'Python'
@@ -30,11 +30,11 @@ default :
     install_dir : 'base'
     properties :
     {
-      incremental : 'yes'
+        incremental : 'yes'
     }
     archive_info :
     {
-      archive_name : 'LIBBATCH.tgz'
+        archive_name : 'LIBBATCH.tgz'
     }
 }
 
@@ -46,18 +46,20 @@ default_win :
         'Python'
         'pthreads'
     ]
+    properties :
+    {
+        incremental : 'yes'
+        single_install_dir : 'yes'
+    }
 }
   
 version_V2_5_0 :
 {
     cmake_options : '-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DLIBBATCH_CXX_STANDARD=17 -DLIBBATCH_MKDIR_COMMAND=/bin/mkdir -DLIBBATCH_CP_COMMAND=/bin/cp -DLIBBATCH_SH_COMMAND=/bin/sh'
+    get_source : 'release'
 }
 
 version_V2_5_0_win :
 {
     cmake_options : '-DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\\=/%/bin/swig.exe -DLIBBATCH_CXX_STANDARD=17 '
-    properties :
-    {
-        single_install_dir : 'yes'
-    }
 }

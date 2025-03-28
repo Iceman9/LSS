@@ -40,16 +40,11 @@ default :
     }
 }
 
-default_win :
-{
-    compil_script : $name + '.bat'
-    archive_info :
-    {
-      archive_name : 'boost-' + $APPLICATION.products.boost + '_windows.tar.gz'
-    }
-}
-
 version_1_79_0 :
 {
     web_link : 'https://archives.boost.io/release/1.79.0/source/boost_1_79_0.tar.gz'
+    patches : 
+    [
+        'boost-1.79.0-MSVC-msvc_143_is_actually_144.patch'
+    ]
 }

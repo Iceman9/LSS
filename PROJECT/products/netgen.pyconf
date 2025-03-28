@@ -25,15 +25,53 @@ default :
     }
 }
 
+default_win :
+{
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
 version_6_2_2101 :
 {
     build_source : 'cmake'
     cmake_options : ' -DUSE_GUI=OFF -DUSE_PYTHON=OFF -DUSE_MPI=OFF -DUSE_OCC=ON -DUSE_INTERNAL_TCL=OFF -DBUILD_STUB_FILES=OFF -DOCC_INCLUDE_DIR=${CAS_ROOT_DIR}/include/opencascade -DOCC_LIBRARY_DIR=${CAS_ROOT_DIR}/lib -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_CXX_STANDARD=17  -DUSE_NATIVE_ARCH=OFF '
     patches :
     [
-        'netgen-6.2.0-2101-salome.patch'
         'netgen-6.2.0-2101-OCCT-7.8.0.patch'
+        # This patch makes next one redundant. But still it's good to have both
+        # patches.
+        'netgen-6.2.0-2101-core_version_catch_stoi_for_patch_version.patch'
         'netgen-6.2.0-2101-version.patch' # See what happens if you remove this
-                                          # 'innocent' patch
+                                          # 'innocent' patch without the
+                                          # previous patch applied.
+    ]
+}
+
+version_6_2_2101_win :
+{
+    build_source : 'cmake'
+    cmake_options : ' -DUSE_GUI=OFF -DUSE_PYTHON=OFF -DUSE_MPI=OFF -DUSE_OCC=ON -DUSE_INTERNAL_TCL=OFF -DBUILD_STUB_FILES=OFF -DOCC_INCLUDE_DIR=%CAS_ROOT_DIR%/inc -DOCC_LIBRARY_DIR=%CAS_ROOT_DIR%/win64/vc14/lib -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_CXX_STANDARD=17  -DUSE_NATIVE_ARCH=OFF '
+    patches :
+    [
+        # Additional DLL_HEADER exports otherwise you will get unresolved
+        # symbols when linking in NETGENPLUGIN.
+        'netgen-6.2.0-2101-MSVC-SALOME-additional_dll_exports.patch'
+        'netgen-6.2.0-2101-fix_occ_path_slashes.patch'
+        'netgen-6.2.0-2101-OCCT-7.8.0.patch'
+        # This patch makes next one redundant. But still it's good to have both
+        # patches.
+        'netgen-6.2.0-2101-core_version_catch_stoi_for_patch_version.patch'
+        'netgen-6.2.0-2101-version.patch' # See what happens if you remove this
+                                          # 'innocent' patch without the
+                                          # previous patch applied.
+    ]
+    depend :
+    [
+        'CAS'
+        'tcl'
+        'tk'
+        'zlib'
     ]
 }

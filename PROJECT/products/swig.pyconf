@@ -35,3 +35,19 @@ default :
         incremental : 'yes'
     }
 }
+
+default_win :
+{
+    web_link : 'https://sourceforge.net/projects/swig/files/swigwin/swigwin-4.0.2/swigwin-4.0.2.zip'
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
+version_4_0_2 : { }
+
+version_4_0_2_win :
+{
+    web_link : 'https://sourceforge.net/projects/swig/files/swigwin/swigwin-4.0.2/swigwin-4.0.2.zip'
+}

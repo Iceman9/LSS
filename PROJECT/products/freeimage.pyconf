@@ -39,12 +39,12 @@ default :
     }
 }
 
-version_3_16_0 :
+version_3_18_0 :
 {
     get_source : 'release'
-    web_link : 'https://sourceforge.net/projects/freeimage/files/Source%20Distribution/3.16.0/FreeImage3160.zip'
+    web_link : 'https://sourceforge.net/projects/freeimage/files/Source%20Distribution/3.18.0/FreeImage3180.zip'
     patches :
     [
-        'freeimage-3.16.0-gcc6.patch'
+        'freeimage-3.18.0-std17.patch'
     ]
 }

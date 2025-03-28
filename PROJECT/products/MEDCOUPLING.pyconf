@@ -17,7 +17,7 @@ default :
         'Python'
         'hdf5'
         'medfile'
-        'scotch'
+        # 'scotch'
         'metis'
         'libxml2'
         'numpy'
@@ -50,6 +50,7 @@ default :
 
 version_V9_14_0:
 {
+    cmake_options : '-DMEDCOUPLING_ENABLE_PARTITIONER=OFF -DMEDCOUPLING_ENABLE_RENUMBER=OFF -DMEDCOUPLING_PARTITIONER_METIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF'
     patches :
     [
         'MEDCOUPLING-9.11.0-medpartitioner_scotch.patch'
@@ -102,7 +103,7 @@ version_V9_11_0_MPI :
         'Python'
         'hdf5'
         'medfile'
-        'scotch'
+        # 'scotch'
         'libxml2'
         'numpy'
         'scipy'

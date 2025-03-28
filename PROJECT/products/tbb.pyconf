@@ -1,8 +1,7 @@
 default :
 {
     name : 'tbb'
-    build_source : 'script'
-    compil_script : $name + $VARS.scriptExtension
+    build_source : 'cmake'
     get_source : 'release'
     web_link : 'https://github.com/oneapi-src/oneTBB/archive/refs/tags/v' + $version +'.tar.gz'
     environ :
@@ -12,6 +11,8 @@ default :
     build_depend :
     [
         'cmake'
+        'Python'
+        'swig'
     ]
     depend : [ ]
     patches : [ ]
@@ -25,10 +26,10 @@ default :
     }
 }
 
-version_2020_3:
+version_2021_8_0 :
 {
     patches :
     [
-        "tbb-2020.3-gcc_egt_13.patch"
+        'tbb-2021.8.0-pr-866-958-gcc_12.patch'
     ]
 }

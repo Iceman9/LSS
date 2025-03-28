@@ -33,3 +33,12 @@ default :
     }
     patches : [ ]
 }
+
+default_win :
+{
+    cmake_options : '-DBOOST_ROOT=%BOOST_ROOT_DIR% -DBoost_ADDITIONAL_VERSIONS="%BOOST_VERSION% %BOOST_VERSION_MajorMinor%" -DBOOST_INCLUDEDIR=%BOOST_INCLUDE_DIR% -DBoost_INCLUDE_DIR=%Boost_INCLUDE_DIR% -DBoost_VERBOSE=ON -DBoost_DEBUG=ON'
+    properties :
+    {
+        incremental : 'yes'
+    }
+}

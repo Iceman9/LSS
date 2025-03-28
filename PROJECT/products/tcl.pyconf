@@ -39,7 +39,7 @@ default :
     }
 }
 
-version_8_6_0 :
+version_8_6_16 :
 {
-    web_link : 'https://github.com/tcltk/tcl/archive/refs/tags/core-8-6-0.tar.gz'
+    web_link : 'https://github.com/tcltk/tcl/archive/refs/tags/core-8-6-16.tar.gz'
 }

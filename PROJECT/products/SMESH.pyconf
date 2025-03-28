@@ -67,11 +67,27 @@ default :
     }
 }
 
+default_win :
+{
+    cmake_options : '-DSALOME_SMESH_USE_CGNS:BOOL=ON -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF -DSALOME_SMESH_USE_TBB=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% -DOpenCV_LIB_PATH=%OPENCV_ROOT_DIR%/lib'
+}
+
 version_V9_14_0 :
 {
     patches :
     [
         'SMESH-9.11.0-Qt-5.15.16.patch'
         'SMESH-9.11.0-qwt-6.3.0-port.patch'
+    ]
+}
+
+version_V9_14_0_win :
+{
+    patches :
+    [
+        'SMESH-9.11.0-Qt-5.15.16.patch'
+        'SMESH-9.11.0-qwt-6.3.0-port.patch'
+        'SMESH-9.14.0-Include_missing_tbb12lib.patch'
+        'SMESH-9.14.0-Fix_StdMeshers.test_CMakeLists.patch'
     ]
 }

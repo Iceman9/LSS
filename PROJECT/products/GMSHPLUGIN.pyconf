@@ -43,6 +43,11 @@ default :
     }
 }
 
+default_win :
+{
+    cmake_options : '-DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% -DOpenCV_LIB_PATH=%OPENCV_ROOT_DIR%/lib'
+}
+
 version_V9_14_0:
 {
     patches :

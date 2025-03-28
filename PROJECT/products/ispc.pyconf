@@ -1,22 +1,19 @@
 default :
 {
     name : 'ispc'
-    build_source : 'cmake'
-    cmake_options : '-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python '
+    build_source : 'script'
+    compil_script : $default.name + $VARS.scriptExtension
     get_source : 'release'
     web_link : 'https://github.com/ispc/ispc/releases/download/v' + $version + '/ispc-v' + $version + '-linux.tar.gz'
     environ :
     {
         env_script : $name + '.py'
     }
-    # The ISPC binary is statically linked so yes, let's retain the cmake
-    # command and the empty depend, although it would require llvm. It will
-    # have to be look into the future if ispc will be built from sources.
+    # The ISPC binary is statically linked so no need to have any dependencies
+    # as the software is only extracted and nothing else. Trying to avoid
+    # requiring llvm as much as possible.
     depend : [ ]
-    build_depend :
-    [
-        'cmake'
-    ]
+    build_depend : [ ]
     patches : [ ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -29,45 +26,20 @@ default :
 
 default_win :
 {
-    build_source : 'script'
-    compil_script : 'ispc.bat'
+    # You cannot reference $default.version or $version as the way it is used
+    # in salome tools, there will be an error as these two objects are not
+    # related.
+    # web_link : 'https://github.com/ispc/ispc/releases/download/v' + $version + '/ispc-v' + $version + '-windows.zip'
     properties :
     {
         incremental : 'yes'
         single_install_dir : 'yes'
     }
-    depend :
-    [
-        'Python'
-    ]
-    build_depend :
-    [
-        'cmake'
-        'llvm'
-    ]
 }
 
-version_1_15_0 :
-{
-    build_source : 'script'
-    compil_script : $default.name + $VARS.scriptExtension
-    archive_info :
-    {
-        archive_name : 'ispc-1.15.0-x86_64.tar.gz'
-    }
-    patches : [ ]
-    depend : [ ] # Does not require LLVM as it is statically linked insde
-}
+version_1_15_0 : { }
 
 version_1_15_0_win :
 {
-    archive_info :
-    {
-        archive_name : 'ispc-v1.15.0-windows.tar.gz'
-    }
-    build_depend :
-    [
-        'cmake'
-        'llvm'
-    ]
+    web_link : 'https://github.com/ispc/ispc/releases/download/v1.15.0/ispc-v1.15.0-windows.zip'
 }

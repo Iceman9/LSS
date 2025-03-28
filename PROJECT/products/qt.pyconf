@@ -34,4 +34,5 @@ version_5_15_16 :
     [
         'qt-5.12.10-gcc-gt-13.0.0.patch'
     ]
+    check_install : [ ]
 }

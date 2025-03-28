@@ -23,6 +23,7 @@ default :
         'GEOM'
         'SHAPER'
         'GUI'
+        'opencv'
     ]
     build_depend :
     [
@@ -41,4 +42,9 @@ default :
     {
         archive_name : 'SHAPERSTUDY.tgz'
     }
+}
+
+default_win :
+{
+    cmake_options : '-DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% -DOpenCV_LIB_PATH=%OPENCV_ROOT_DIR%/lib'
 }

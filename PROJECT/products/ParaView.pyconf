@@ -30,6 +30,7 @@ default :
         'tbb'
         'netcdf'
         'catalyst'
+        'zlib' # Windows
     ]
     build_depend :
     [
@@ -57,5 +58,6 @@ version_5_11_0 :
         'ParaView-5.11.0-third_party_gcc_egt_13.patch'
         'ParaView-5.11.0-VTK-9.2.0-python_3.13_port.patch'
         'ParaView-5.11.0-VTK-9.2.0-mpi4py_update_to_4.patch'
+        'ParaView-5.11.0-CMake-Fix_multiple_find_tbb.patch'
     ]
 }

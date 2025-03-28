@@ -23,5 +23,23 @@ default :
         incremental : 'yes'
         compile_and_runtime : 'yes'
     }
-    post_script : 'update_pip_and_install_bare_necesseties.sh'
+    post_script : 'update_pip_and_install_bare_necesseties' + $VARS.scriptExtension
+}
+
+default_win : 
+{
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
+version_3_13_2 : { }
+
+version_3_13_2_win :
+{
+    patches : 
+    [
+        'Python-3.13-Revert_safe_dll_loading_bpo36085_pr12302.patch'
+    ]
 }

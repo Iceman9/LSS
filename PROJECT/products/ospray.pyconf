@@ -12,6 +12,8 @@ default :
     depend :
     [
         'embree'
+        'openVKL'
+        'rkCommon'
     ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -22,13 +24,21 @@ default :
     }
 }
 
+default_win :
+{
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
 version_2_4_0 :
 {
-    cmake_options : '-DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_APPS=OFF  -DCMAKE_INSTALL_LIBDIR=lib -Drkcommon_DIR=${rkcommon_DIR}'
-    depend :
-    [
-        'embree'
-        'openVKL'
-        'rkCommon'
-    ]
+    cmake_options : '-DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_APPS=OFF  -DCMAKE_INSTALL_LIBDIR=lib -Drkcommon_DIR=${RKCOMMON_ROOT_DIR}'
+
+}
+
+version_2_4_0_win :
+{
+    cmake_options : '-DCMAKE_CXX_COMPILER=cl -DCMAKE_C_COMPILER=cl -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_APPS=OFF  -DCMAKE_INSTALL_LIBDIR=lib -Drkcommon_DIR=%RKCOMMON_ROOT_DIR%'
 }

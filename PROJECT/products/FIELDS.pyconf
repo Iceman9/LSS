@@ -34,6 +34,14 @@ default :
     }
 }
 
+default_win :
+{
+    patches : 
+    [
+        'FIELDS-9.14.0-do_not_salome_configure_VERSION.patch'
+    ]
+}
+
 default_MPI :
 {
     cmake_options : '-DSALOME_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON'

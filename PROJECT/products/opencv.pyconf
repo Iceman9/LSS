@@ -58,5 +58,6 @@ version_3_2_0 :
         'opencv-3.2.0-priority_to_openblas.patch'
         'opencv-3.2.0-python-3.10-port.patch'
         'opencv-3.2.0-python-3.12-port.patch'
+        'opencv-3.2.0-cpp17.patch'
     ]
 }

@@ -46,13 +46,37 @@ default :
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties :
     {
-      incremental : 'yes'
-      has_salome_gui : 'yes'
-      is_SALOME_module : 'yes'
-      has_unit_tests : True
+        incremental : 'yes'
+        has_salome_gui : 'yes'
+        is_SALOME_module : 'yes'
+        has_unit_tests : True
     }
     archive_info :
     {
-      archive_name : 'GEOM.tgz'
+        archive_name : 'GEOM.tgz'
     }
+}
+
+default_win :
+{
+    cmake_options : '-DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% -DOpenCV_LIB_PATH=%OPENCV_ROOT_DIR%/lib'
+
+    properties :
+    {
+        incremental : 'yes'
+        has_salome_gui : 'yes'
+        is_SALOME_module : 'yes'
+        has_unit_tests : True
+    }
+}
+
+version_V9_14_0 : { }
+
+version_V9_14_0_win :
+{
+    patches:
+    [
+        'GEOM-9.14.0-OCCT-7.8.0.patch'
+        'GEOM-9.14.0-MSVC-17-2022_restore_order_of_includes.patch'
+    ]
 }

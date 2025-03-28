@@ -14,6 +14,7 @@ default :
         'openblas'
         'hdf5'
         'medfile'
+        'cgns'
     ]
     build_depend :
     [
@@ -35,9 +36,16 @@ default_win :
     depend :
     [
         'CAS'
+        'openblas'
         'pthreads'
         'hdf5'
         'medfile'
+        'cgns'
+        'zlib'
+    ]
+    build_depend :
+    [
+        'cmake'
     ]
     properties :
     {
@@ -50,14 +58,6 @@ version_4_10_3 :
 {
     get_source : 'release'
     web_link : 'https://gitlab.onelab.info/gmsh/gmsh/-/archive/gmsh_4_10_3/gmsh-gmsh_4_10_3.tar.gz'
-    depend :
-    [
-        'CAS'
-        'openblas'
-        'hdf5'
-        'medfile'
-        'cgns'
-    ]
     patches :
     [
         'gmsh-4.10.3-OCCT-7.8.0.patch'
@@ -66,16 +66,13 @@ version_4_10_3 :
 
 version_4_10_3_win :
 {
-    depend :
-    [
-        'CAS'
-        'openblas'
-        'hdf5'
-        'medfile'
-        'cgns'
-    ]
+    get_source : 'release'
+    web_link : 'https://gitlab.onelab.info/gmsh/gmsh/-/archive/gmsh_4_10_3/gmsh-gmsh_4_10_3.tar.gz'
+
     patches :
     [
         'gmsh-4.10.3-windows.patch'
+        'gmsh-4.10.3-OCCT-7.8.0.patch'
+        'gmsh-4.10.3-add_medfile_include_dir_to_external_includes.patch'
     ]
 }

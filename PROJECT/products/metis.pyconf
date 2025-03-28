@@ -44,6 +44,14 @@ default :
     }
 }
 
+default_win : 
+{
+    properties :
+    {
+        incremental : 'yes'
+    }
+}
+
 version_5_1_0 :
 {
     get_source : 'git'
@@ -57,5 +65,17 @@ version_5_1_0 :
     [
         'metis-5.1.0-use_cat_not_more.patch'
         'metis-5.1.0-no_makeflags.patch'
+    ]
+}
+
+version_5_1_0_win :
+{
+    build_source : 'cmake'
+    cmake_options : '-DMETIS_INSTALL=True'
+    patches :
+    [
+        'metis-5.1.0-windows_rint.patch'
+        'metis-5.1.0-fix_cmakelists.patch'
+        'metis-5.1.0-windows_typewidth.patch'
     ]
 }

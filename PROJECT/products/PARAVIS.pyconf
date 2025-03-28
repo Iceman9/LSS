@@ -11,10 +11,10 @@ default :
         {
             github : $PROJECTS.projects.project.git_info.git_server.github.url + "paravis.git"
         }
-        git_commands:
-        [
-            'git submodule set-url src/Plugins/MEDReader https://github.com/SalomePlatform/medreader.git',
-        ]
+         git_commands:
+         [
+             'git submodule set-url src/Plugins/MEDReader https://github.com/SalomePlatform/medreader.git',
+         ]
     }
     environ :
     {
@@ -85,8 +85,12 @@ default_MPI :
     ]
 }
 
-version_V9_14_0 :
+version_V9_14_0 : { }
+
+version_V9_14_0_win :
 {
+
+    cmake_options : '-DSALOME_BUILD_TESTS=OFF -DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% -DOpenCV_LIB_PATH=%OPENCV_ROOT_DIR%/lib'
 }
 
 version_V9_14_0_MPI :

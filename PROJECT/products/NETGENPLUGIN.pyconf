@@ -51,6 +51,28 @@ default :
     }
 }
 
+default_win :
+{
+    cmake_options : '-DSALOME_CXX_STANDARD=17 -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% -DOpenCV_LIB_PATH=%OPENCV_ROOT_DIR%/lib'
+    depend :
+    [
+        'KERNEL'
+        'MEDCOUPLING'
+        'GEOM'
+        'SMESH'
+        'Python'
+        'freetype'
+        'qt'
+        'boost'
+        'CAS'
+        'hdf5'
+        'medfile'
+        'omniORB'
+        'netgen'
+        'zlib'
+    ]
+}
+
 version_V9_14_0:
 {
     patches :

@@ -2,7 +2,7 @@ default :
 {
     name : 'rkCommon'
     build_source : 'cmake'
-    cmake_options : '-DBUILD_TESTING=OFF -DCMAKE_INSTALL_LIBDIR=lib'
+    cmake_options : '-DBUILD_TESTING=OFF -DCMAKE_INSTALL_LIBDIR=lib -DINSTALL_DEPS=OFF'
     get_source : 'release'
     web_link : 'https://github.com/RenderKit/rkcommon/archive/refs/tags/v' + $version + '.tar.gz'
     environ :
@@ -31,6 +31,6 @@ version_1_5_1 :
 {
     patches :
     [
-        'rkCommon-1.5.1-specify_salome_tbb_version_in_rkCommon_macros.patch'
+        'rkCommon-1.5.1-CMake-Fix_multiple_find_tbb.patch'
     ]
 }

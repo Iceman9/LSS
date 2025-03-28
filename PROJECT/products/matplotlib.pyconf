@@ -2,7 +2,7 @@ default :
 {
     name : 'matplotlib'
     build_source : 'script'
-    compil_script : 'matplotlib.sh'
+    compil_script : 'matplotlib' + $VARS.scriptExtension
     get_source : 'release'
     web_link : 'https://github.com/matplotlib/matplotlib/archive/refs/tags/v' + $version + '.tar.gz'
     git_info :
@@ -49,7 +49,6 @@ default :
 
 default_win :
 {
-    compil_script : 'pip_install_whl' + $VARS.scriptExtension
     archive_info :
     {
         archive_name : 'matplotlib-' + $APPLICATION.products.matplotlib + '_windows.tar.gz'
