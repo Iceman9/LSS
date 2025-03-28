@@ -42,7 +42,7 @@ APPLICATION :
         doxygen : '1.9.7'
         eigen : '3.3.4'
         embree : '3.13.2'
-        freeimage : '3.16.0'
+        freeimage : '3.18.0'
         freetype : '2.9.1'
         gmsh : '4.10.3'
         graphviz : '2.50.0'
@@ -56,8 +56,8 @@ APPLICATION :
         netcdf : '4.6.2'
         netgen : '6.2.2101'
         numpy : '2.2.3'
-        omniORB : '4.3.0'
-        omniORBpy : '4.3.0'
+        omniORB : '4.3.2'
+        omniORBpy : '4.3.2'
         opencv : '3.2.0'
         openmpi : 'native'
         openVKL : '0.11.0'
@@ -87,9 +87,9 @@ APPLICATION :
         sip : '6.10.0'
         swig : '4.0.2'
         system_packages : 'native'
-        tbb : '2020.3'
-        tcl : '8.6.0'
-        tk : '8.6.0'
+        tbb : '2021.8.0'
+        tcl : '8.6.16'
+        tk : '8.6.16'
         TTK : 'f8dafde2d7'
         # SALOME MODULES
         'CommonGeomLib'
@@ -125,13 +125,7 @@ APPLICATION :
 
     profile :
     {
-        product : 'SALOME'
-        launcher_name : 'INSTALL/SALOME/salome'
-    }
-    virtual_app :
-    {
-        name : 'salome'
-        application_name : 'APPLI'
+        launcher_name : 'lss'
     }
     properties :
     {
@@ -143,3 +137,30 @@ APPLICATION :
         use_mesa : 'no'
     }
 }
+
+# Windows10 settings
+__overwrite__ :
+[
+    {
+        __condition__ : "VARS.dist == 'W10'"
+
+            # Modify environment
+            'APPLICATION.environ.CYGWIN_ROOT_DIR' : 'c:/cygwin64/bin'
+
+            # Add new products
+            'APPLICATION.products.zlib' : '1.2.13'
+            'APPLICATION.products.pthreads' : '2.9.1'
+
+            # Remove products
+            'APPLICATION.rm_products' : ['openmpi', 'scotch']
+
+            # Modify Cygwin location
+            'APPLICATION.environ.CGWIN_ROOT_DIR' : 'c:/cygwin64/bin'
+
+            # Overwrite existing packages
+            'APPLICATION.products.PARAVIS'     : {tag: 'V9_14_0', base: 'no', section: 'version_V9_14_0', hpc: 'yes'}
+            'APPLICATION.products.MEDCOUPLING' : {tag: 'V9_14_0', base: 'no', section: 'version_V9_14_0', hpc: 'yes'}
+
+
+    }
+]
