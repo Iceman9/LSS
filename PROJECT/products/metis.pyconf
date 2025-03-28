@@ -74,7 +74,6 @@ version_5_1_0_win :
     cmake_options : '-DMETIS_INSTALL=True'
     patches :
     [
-        'metis-5.1.0-windows_rint.patch'
         'metis-5.1.0-fix_cmakelists.patch'
         'metis-5.1.0-windows_typewidth.patch'
     ]

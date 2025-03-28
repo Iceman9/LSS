@@ -1,8 +1,8 @@
---- opencv_ref/cmake/OpenCVFindOpenBLAS.cmake	2020-07-07 14:00:04.290389001 +0200
+--- opencv/cmake/OpenCVFindOpenBLAS.cmake.org	2020-07-07 14:00:04.290389001 +0200
 +++ opencv/cmake/OpenCVFindOpenBLAS.cmake	2020-07-07 14:00:47.235117871 +0200
 @@ -44,35 +44,15 @@
  #license and copyright terms herein.
-
+ 
  SET(Open_BLAS_INCLUDE_SEARCH_PATHS
 -  /usr/include
 -  /usr/include/openblas
@@ -14,7 +14,7 @@
 -  $ENV{OpenBLAS_HOME}
    $ENV{OpenBLAS_HOME}/include
  )
-
+ 
  SET(Open_BLAS_LIB_SEARCH_PATHS
 -        /lib/
 -        /lib/openblas-base
@@ -30,10 +30,11 @@
 -        $ENV{OpenBLAS_HOME}
          $ENV{OpenBLAS_HOME}/lib
   )
-
+ 
 -FIND_PATH(OpenBLAS_INCLUDE_DIR NAMES cblas.h PATHS ${Open_BLAS_INCLUDE_SEARCH_PATHS})
 -FIND_LIBRARY(OpenBLAS_LIB NAMES openblas PATHS ${Open_BLAS_LIB_SEARCH_PATHS})
 +FIND_PATH(OpenBLAS_INCLUDE_DIR NAMES cblas.h PATHS ${Open_BLAS_INCLUDE_SEARCH_PATHS} NO_DEFAULT_PATH)
 +FIND_LIBRARY(OpenBLAS_LIB NAMES openblas PATHS ${Open_BLAS_LIB_SEARCH_PATHS} NO_DEFAULT_PATH)
-
+ 
  SET(OpenBLAS_FOUND ON)
+ 

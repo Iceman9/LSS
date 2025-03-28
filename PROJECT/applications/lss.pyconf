@@ -58,6 +58,7 @@ APPLICATION :
         numpy : '2.2.3'
         omniORB : '4.3.2'
         omniORBpy : '4.3.2'
+        openblas : '0.3.26'
         opencv : '3.2.0'
         openmpi : 'native'
         openVKL : '0.11.0'
@@ -69,8 +70,8 @@ APPLICATION :
             section : 'version_5_11_0'
             hpc : 'yes'
         }
-        openblas : '0.3.26'
         planegcs : '0.18-3cb6890'
+        pthreads : 'native'
         Python : '3.13.2'
         PyQt : '5.15.11'
         pyqt5sip : '12.17.0'
@@ -112,6 +113,7 @@ APPLICATION :
         'NETGENPLUGIN'
         'GMSHPLUGIN'
         'FIELDS'
+        'zlib': 'native'
         PARAVIS:
         {
             tag : 'V9_14_0'
@@ -152,7 +154,7 @@ __overwrite__ :
             'APPLICATION.products.pthreads' : '2.9.1'
 
             # Remove products
-            'APPLICATION.rm_products' : ['openmpi', 'scotch']
+            'APPLICATION.rm_products' : ['openmpi', 'scotch', 'system_packages']
 
             # Modify Cygwin location
             'APPLICATION.environ.CGWIN_ROOT_DIR' : 'c:/cygwin64/bin'

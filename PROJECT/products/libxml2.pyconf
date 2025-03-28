@@ -70,8 +70,4 @@ version_2_9_14_win :
     build_source : 'script'
     # CMake has problems finding Python and then tries to find Python2.
     #cmake_options : '-DLIBXML2_WITH_PYTHON=ON -DLIBXML2_WITH_ICONV=OFF -DLIBXML2_WITH_LZMA=OFF -DLIBXML2_WITH_ZLIB=OFF'
-    patches :
-    [
-        'libxml2-2.9.14-Windows.patch'
-    ]
 }
