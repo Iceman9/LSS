@@ -67,6 +67,7 @@ default :
             'libxt6'
             'zlib1g'
             'ninja'
+            'python-is-python3'
         ]
         apt_dev :
         [

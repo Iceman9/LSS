@@ -156,13 +156,8 @@ __overwrite__ :
             # Remove products
             'APPLICATION.rm_products' : ['openmpi', 'scotch', 'system_packages']
 
-            # Modify Cygwin location
-            'APPLICATION.environ.CGWIN_ROOT_DIR' : 'c:/cygwin64/bin'
-
             # Overwrite existing packages
             'APPLICATION.products.PARAVIS'     : {tag: 'V9_14_0', base: 'no', section: 'version_V9_14_0', hpc: 'yes'}
             'APPLICATION.products.MEDCOUPLING' : {tag: 'V9_14_0', base: 'no', section: 'version_V9_14_0', hpc: 'yes'}
-
-
     }
 ]
