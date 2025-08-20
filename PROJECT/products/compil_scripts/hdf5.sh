@@ -30,6 +30,13 @@ CMAKE_OPTIONS+=" -DHDF5_ENABLE_THREADSAFE:BOOL=ON"
 # OP Set to permit HDF5_BUILD_HL_LIB and HDF5_BUILD_CPP_LIB options to ON
 CMAKE_OPTIONS+=" -DALLOW_UNSUPPORTED:BOOL=ON"
 
+# Temporary solution for incompatible-pointer types and implicit declarations
+GCCVERSION=$(gcc -dumpversion)
+if [ ${GCCVERSION%%.*} -ge "14" ]; then
+    export CXXFLAGS="${CXXFLAGS} -Wno-error=implicit-function-declaration -Wno-error=incompatible-pointer-types"
+    export CFLAGS="${CFLAGS} -Wno-error=implicit-function-declaration -Wno-error=incompatible-pointer-types"
+fi
+
 echo
 echo "*** cmake" ${CMAKE_OPTIONS}
 cmake ${CMAKE_OPTIONS} ${SOURCE_DIR}

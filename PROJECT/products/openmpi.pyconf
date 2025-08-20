@@ -8,19 +8,11 @@ default :
     get_source : 'native'
     system_info : 
     {
-        apt :
-        {
-            'libopenmpi3'
-        }
-        apt_dev :
-        {
-            'libopenmpi-dev'
-        }
-        DB12 :
+        DB13 :
         {
             apt :
             {
-                'libopenmpi3'
+                'libopenmpi40'
             }
             apt_dev :
             {

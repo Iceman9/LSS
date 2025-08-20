@@ -25,12 +25,10 @@ default :
             'liblzma5'
             'libncurses5'
             'libnuma1'
-            'libpcre3'
             'libquadmath0'
             'libraw1394-11'
             'libsm6'
             'libstdc++6'
-            'libtiff5'
             'libudev1'
             'libusb-1.0-0'
             'libuuid1'
@@ -144,6 +142,42 @@ default :
                 'texlive-latex-base'
                 'texlive-latex-extra'
                 'dvipng'
+            ]
+        }
+        DB13 :
+        {
+            apt :
+            [
+                'libopenexr-3-1-30'
+                'libwebp7'
+                'libgfortran5'
+                'libevent-2.1-7'
+                'libpng16-16'
+                'libffi8'
+                'libtinfo6'
+                'libgphoto2-port12'
+                'libglx0'
+                'libopengl0'
+                'libzstd1'
+                'libglvnd0'
+                'libjsoncpp26'
+                'openmpi-bin'
+            ]
+            apt_dev :
+            [
+                'libgcc-14-dev'
+                'libtbb-dev'
+                'cython3'
+                'libfftw3-dev'
+                'libopenmpi-dev'
+                'libpng-dev'
+                'libtiff-dev'
+                'libjpeg-dev'
+                'libgif-dev'
+                'texlive-latex-base'
+                'texlive-latex-extra'
+                'dvipng'
+                'libtirpc-dev'
             ]
         }
     }

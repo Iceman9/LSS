@@ -17,6 +17,12 @@ if [ ${GCCVERSION%%.*} -ge "11" ]; then
     export CXXFLAGS="${CXXFLAGS} -std=c++11"
 fi
 
+# Temporary solution to implicit declaration of lseek, _byteswap_ulong...
+if [ ${GCCVERSION%%.*} -ge "14" ]; then
+	export CXXFLAGS="${CXXFLAGS} -Wno-error=implicit-function-declaration"
+	export CFLAGS="${CFLAGS} -Wno-error=implicit-function-declaration"
+fi
+
 echo -n ".. Patching freeimage sources: fix build procedure..." && \
 		sed -i "s%DESTDIR ?= /%DESTDIR ?= /usr%g;s%INCDIR ?= \$(DESTDIR)/usr/include%INCDIR ?= \$(DESTDIR)/include%g;s%INSTALLDIR ?= \$(DESTDIR)/usr/lib%INSTALLDIR ?= \$(DESTDIR)/lib%g;s%-o root -g root %%g" Makefile.gnu >& /dev/null && \
 		sed -i "s%DESTDIR ?= /%DESTDIR ?= /usr%g;s%INCDIR ?= \$(DESTDIR)/usr/include%INCDIR ?= \$(DESTDIR)/include%g;s%INSTALLDIR ?= \$(DESTDIR)/usr/lib%INSTALLDIR ?= \$(DESTDIR)/lib%g;s%-o root -g root %%g" Makefile.fip >& /dev/null

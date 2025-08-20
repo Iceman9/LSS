@@ -62,6 +62,10 @@ version_2_9_14 :
 {
     web_link : 'https://download.gnome.org/sources/libxml2/2.9/libxml2-2.9.14.tar.xz'
     post_script: 'create_libxml2_lib_to_lib64_symlink.sh'
+    patches :
+    [
+        'libxml-2.9.14-gcc-14_implicit_errors.patch'
+    ]
 }
 
 version_2_9_14_win :

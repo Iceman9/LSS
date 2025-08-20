@@ -2,7 +2,7 @@ default :
 {
     name : 'KERNEL'
     build_source : 'cmake'
-    cmake_options : '-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON'
+    cmake_options : '-DCMAKE_C_FLAGS=-Wno-implicit-function-declaration -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON'
     get_source : 'release'
     web_link : 'https://github.com/SalomePlatform/kernel/archive/refs/tags/' + $version + '.tar.gz'
     git_info :

@@ -30,6 +30,7 @@ version_2021_8_0 :
 {
     patches :
     [
-        'tbb-2021.8.0-pr-866-958-gcc_12.patch'
+        'tbb-2021.8.0-pr-866-958-gcc_12.patch' # GCC 12 and greater patch
+        'tbb-2021.8.0-gcc-14.patch'
     ]
 }
