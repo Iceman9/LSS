@@ -260,7 +260,7 @@ diff --color -ruNZ CONFIGURATION/cmake/UseSIP.cmake CONFIGURATION.new/cmake/UseS
 +    ENDFOREACH()
 +
 +    LIST(GET _sip_files 0 _main_sip_file)
-+
++    separate_arguments(_options NATIVE_COMMAND ${_options}) # Necessary for python options
 +    EXECUTE_PROCESS(
 +      COMMAND ${SIP_BUILD_EXECUTABLE} --no-compile --build-dir ${_output_build_dir} ${_options}
 +      WORKING_DIRECTORY  ${CMAKE_CURRENT_BINARY_DIR}

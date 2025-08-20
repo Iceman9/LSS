@@ -39,7 +39,7 @@ diff --color -ruNZ GUI/src/SALOME_PYQT/SalomePyQt/CMakeLists.txt GUI.new/src/SAL
  
  # sources / sip wrappings
 -PYQT_WRAP_SIP(_sip_SOURCES ${_sip_files})
-+PYQT_WRAP_SIP(_sip_SOURCES ${_sip_files} OPTIONS ${PYQT_SIP6FLAGS})
++PYQT_WRAP_SIP(_sip_SOURCES ${_sip_files})
  
  # sources / static
  SET(_other_SOURCES SalomePyQt.cxx)

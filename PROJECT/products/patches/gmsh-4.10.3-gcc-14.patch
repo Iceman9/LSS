@@ -1,0 +1,77 @@
+--- gmsh/src/mesh/meshGFacePack.cpp.org	2025-08-12 12:02:18.883862724 +0200
++++ gmsh/src/mesh/meshGFacePack.cpp	2025-08-12 12:02:41.279330097 +0200
+@@ -14,6 +14,8 @@
+ #include "meshTriangulation.h"
+ #include "robustPredicates.h"
+ 
++#include <stdint.h>
++
+ static void analyze2dMetric(std::vector<double> &val, double &C, double &S,
+                             double &h1, double &h2)
+ {
+--- gmsh/contrib/blossom/concorde97/TSP/prob_io.c.org	2025-08-12 12:09:25.173165097 +0200
++++ gmsh/contrib/blossom/concorde97/TSP/prob_io.c	2025-08-12 12:09:35.073075635 +0200
+@@ -71,6 +71,8 @@
+ #include "tsp.h"
+ #include "bigguy.h"
+ 
++#include <string.h>
++
+ #ifdef CC_PROTOTYPE_ANSI
+ 
+ static int
+--- gmsh/contrib/blossom/concorde97/TSP/tsp_lp.c.org	2025-08-12 12:13:48.475428468 +0200
++++ gmsh/contrib/blossom/concorde97/TSP/tsp_lp.c	2025-08-12 12:14:01.767370576 +0200
+@@ -218,6 +218,8 @@
+ #include "bigguy.h"
+ #include "cut.h"
+ 
++#include <string.h>
++
+ /*
+    parameters for addbad_variables.  Addbad generates edges (x,y) with
+    len(x,y) - pi_ub[x] - pi_ub[y] < 0 in chunks of PRICE_GEN, computes
+--- gmsh/contrib/blossom/concorde97/EDGEGEN/edgegen.c.org	2025-08-12 12:07:28.734397814 +0200
++++ gmsh/contrib/blossom/concorde97/EDGEGEN/edgegen.c	2025-08-12 12:09:05.601348593 +0200
+@@ -89,6 +89,8 @@
+ #include "linkern.h"
+ #include "fmatch.h"
+ 
++#include <string.h>
++
+ #define SWAP(x,y,t) ((t)=(x),(x)=(y),(y)=(t))
+ 
+ typedef struct intptr {
+--- gmsh/contrib/blossom/concorde97/UTIL/safe_io.c.org	2025-08-12 12:10:09.380782354 +0200
++++ gmsh/contrib/blossom/concorde97/UTIL/safe_io.c	2025-08-12 12:11:44.088096063 +0200
+@@ -57,6 +57,9 @@
+ #include "machdefs.h"
+ #include "util.h"
+ 
++#include <string.h>
++#include <unistd.h>
++
+ #ifndef SEEK_SET
+ #ifdef L_SET
+ #define SEEK_SET L_SET
+--- gmsh/contrib/blossom/concorde97/UTIL/getdata.c.org	2025-08-12 12:13:08.679616440 +0200
++++ gmsh/contrib/blossom/concorde97/UTIL/getdata.c	2025-08-12 12:13:19.151564778 +0200
+@@ -162,6 +162,8 @@
+ #include "machdefs.h"
+ #include "util.h"
+ 
++#include <string.h>
++
+ #define MATRAND_SCALE 10  /* Range of edge lengths: [0, MATRAND_SCALE * n) */
+ 
+ #ifdef CC_PROTOTYPE_ANSI
+--- gmsh/contrib/QuadMeshingTools/qmtMeshUtils.h.org	2025-08-12 12:22:11.278470580 +0200
++++ gmsh/contrib/QuadMeshingTools/qmtMeshUtils.h	2025-08-12 12:22:56.710472473 +0200
+@@ -10,6 +10,7 @@
+ #include <set>
+ #include <vector>
+ #include <string>
++#include <cstdint>
+ #include <unordered_map>
+ #include "SPoint2.h"
+ #include "SPoint3.h"

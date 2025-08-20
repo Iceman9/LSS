@@ -1,0 +1,10 @@
+--- tbb/test/common/utils_assert.h.org	2025-08-12 10:44:55.731653140 +0200
++++ tbb/test/common/utils_assert.h	2025-08-12 10:45:14.312014151 +0200
+@@ -19,6 +19,7 @@
+ 
+ #include "config.h"
+ #include "utils_report.h"
++#include <cstdlib>
+ 
+ #define REPORT_FATAL_ERROR REPORT
+ 
