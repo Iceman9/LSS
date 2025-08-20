@@ -19,7 +19,7 @@ of interest in trying to maintain those packages.
 
 ### Supported platforms
 
-#### Linux - Debian 12
+#### Linux - Debian 13
 
 Dependencies are covered when system_packages.pyconf gets checked. If any
 packages are missing you will receive a list of packages to install.
