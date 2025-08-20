@@ -1,8 +1,6 @@
-diff --git a/src/DSC/DSC_Python/calcium.i b/src/DSC/DSC_Python/calcium.i
-index b8350c59..0db7efa5 100644
---- a/src/DSC/DSC_Python/calcium.i
-+++ b/src/DSC/DSC_Python/calcium.i
-@@ -87,6 +87,34 @@ PyObject* dsc ;
+--- KERNEL/src/DSC/DSC_Python/calcium.i.org	2025-08-19 14:20:12.537058586 +0200
++++ KERNEL/src/DSC/DSC_Python/calcium.i	2025-08-19 14:21:14.094598509 +0200
+@@ -87,6 +87,34 @@
  #endif
  #include <numpy/arrayobject.h>
  
@@ -37,7 +35,7 @@ index b8350c59..0db7efa5 100644
  typedef PyArrayObject ArrayObject;
  
  /* Macros to extract array attributes.
-@@ -192,27 +220,29 @@ int type_match(int actual_type, int desired_type) {
+@@ -192,27 +220,29 @@
   */
  PyArrayObject* obj_to_array_no_conversion(PyObject* input, int typecode) {
    PyArrayObject* ary = NULL;
@@ -75,7 +73,7 @@ index b8350c59..0db7efa5 100644
    return ary;
  }
  
-@@ -226,9 +256,19 @@ PyArrayObject* obj_to_array_allow_conversion(PyObject* input, int typecode,
+@@ -226,9 +256,19 @@
  {
    PyArrayObject* ary = NULL;
    PyObject* py_obj;
