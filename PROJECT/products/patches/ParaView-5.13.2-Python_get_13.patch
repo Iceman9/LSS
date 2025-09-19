@@ -1,0 +1,45 @@
+--- ParaView/VTK/Wrapping/Python/vtkmodules/test/Testing.py.org	2024-12-30 00:41:05.000000000 +0100
++++ ParaView/VTK/Wrapping/Python/vtkmodules/test/Testing.py	2025-09-19 09:15:47.011663509 +0200
+@@ -515,8 +515,10 @@
+     """
+     # Make the test suites from the arguments.
+     suites = []
+-    for case in cases:
+-        suites.append(unittest.makeSuite(case[0], case[1]))
++    loader = unittest.TestLoader()
++    # the "name" is ignored (it was always just 'test')
++    for test,name in cases:
++        suites.append(loader.loadTestsFromTestCase(test))
+     test_suite = unittest.TestSuite(suites)
+ 
+     # Now run the tests.
+--- ParaView/VTK/Wrapping/PythonCore/PyVTKNamespace.cxx.org	2024-12-30 00:41:05.000000000 +0100
++++ ParaView/VTK/Wrapping/PythonCore/PyVTKNamespace.cxx	2025-09-19 09:14:51.108074284 +0200
+@@ -112,8 +112,10 @@
+   {
+     // make sure python has readied the type object
+     PyType_Ready(&PyVTKNamespace_Type);
+-    // call the allocator provided by python for this type
+-    self = PyVTKNamespace_Type.tp_alloc(&PyVTKNamespace_Type, 0);
++    // call the superclass new function
++    PyObject* empty = PyTuple_New(0);
++    self = PyVTKNamespace_Type.tp_base->tp_new(&PyVTKNamespace_Type, empty, nullptr);
++    Py_DECREF(empty);
+     // call the superclass init function
+     PyObject* pyname = PyUnicode_FromString(name);
+     PyObject* args = PyTuple_Pack(1, pyname);
+--- ParaView/VTK/Wrapping/PythonCore/PyVTKTemplate.cxx.org	2024-12-30 00:41:05.000000000 +0100
++++ ParaView/VTK/Wrapping/PythonCore/PyVTKTemplate.cxx	2025-09-19 09:14:01.404430438 +0200
+@@ -761,8 +761,10 @@
+ {
+   // make sure python has readied the type object
+   PyType_Ready(&PyVTKTemplate_Type);
+-  // call the allocator provided by python for this type
+-  PyObject* self = PyVTKTemplate_Type.tp_alloc(&PyVTKTemplate_Type, 0);
++  // call the superclass new function
++  PyObject* empty = PyTuple_New(0);
++  PyObject* self = PyVTKTemplate_Type.tp_base->tp_new(&PyVTKTemplate_Type, empty, nullptr);
++  Py_DECREF(empty);
+   // call the superclass init function
+   PyObject* pyname = PyUnicode_FromString(name);
+   PyObject* pydoc = PyUnicode_FromString(docstring);

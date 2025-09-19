@@ -27,10 +27,6 @@ default :
     [
         'cmake'
     ]
-    patches :
-    [
-        'medfile-4.1.1-port_to_python_greater_than_3.13.patch'
-    ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -41,11 +37,15 @@ default :
     }
   }
 
-version_4_1_1 :
+version_4_2_0 :
 {
     test_build : 'make check'
     build_depend :
     [
         'swig'
+    ]
+    patches :
+    [
+        'medfile-4.2.0-swig_cc_python.patch'
     ]
 }

@@ -74,7 +74,7 @@ default_win :
 }
 
 
-version_V9_14_0:
+version_V9_15_0:
 {
     patches :
     [
@@ -84,7 +84,7 @@ version_V9_14_0:
     ]
 }
 
-version_V9_14_0_win:
+version_V9_15_0_win:
 {
     patches :
     [

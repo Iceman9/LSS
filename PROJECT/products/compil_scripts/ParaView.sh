@@ -229,6 +229,9 @@ if [ -n "$NETCDF_ROOT_DIR" ]; then
     CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_VTK_netcdf:BOOL=ON"
     if [ "${SAT_netcdf_IS_NATIVE}" != "1" ]; then
         CMAKE_OPTIONS+=" -DNETCDF_ROOT_DIR=$NETCDF_ROOT_DIR"
+        CMAKE_OPTIONS+=" -DNetCDF_INCLUDE_DIR=$NETCDF_ROOT_DIR/include"
+        CMAKE_OPTIONS+=" -DNetCDF_LIBRARY=$NETCDF_ROOT_DIR/lib/libnetcdf.so"
+        CMAKE_OPTIONS+=" -DNETCDF_ROOT_DIR=$NETCDF_ROOT_DIR"
         CMAKE_OPTIONS+=" -Dnetcdf_DIR=$NETCDF_ROOT_DIR/lib/cmake/netCDF"
     fi
     if [ -n "${SAT_HPC}" ]; then

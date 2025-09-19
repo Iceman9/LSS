@@ -1,0 +1,108 @@
+--- ParaView/VTK/ThirdParty/mpi4py/vtkmpi4py/src/mpi4py.MPI.c.org	2025-09-19 10:40:54.551856039 +0200
++++ ParaView/VTK/ThirdParty/mpi4py/vtkmpi4py/src/mpi4py.MPI.c	2025-09-19 11:06:27.586393684 +0200
+@@ -1019,6 +1019,15 @@
+ #define __Pyx_FastGIL_Forget()
+ #define __Pyx_FastGilFuncInit()
+ 
++/* Python 3.13 Limited API */
++#if PY_VERSION_HEX >= 0x030D0000
++  #define CYTHON_LONG_AS_BYTEARRAY(v, bytes, n, is_little, is_signed) \
++      PyLong_AsNativeBytes((PyObject*)(v), (bytes), (n), \
++          (is_signed) ? ((is_little) ? -1 : 2) : ((is_little) ? 1 : 0))
++#else
++  #define CYTHON_LONG_AS_BYTEARRAY(v, bytes, n, is_little, is_signed) \
++      _PyLong_AsByteArray((PyLongObject*)(v), (bytes), (n), (is_little), (is_signed))
++#endif
+ 
+ /*--- Type declarations ---*/
+ struct PyMPIDatatypeObject;
+@@ -2309,7 +2318,7 @@
+   #define __pyx_assertions_enabled() (1)
+ #elif PY_VERSION_HEX < 0x03080000  ||  CYTHON_COMPILING_IN_PYPY  ||  defined(Py_LIMITED_API)
+   #define __pyx_assertions_enabled() (!Py_OptimizeFlag)
+-#elif CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030900A6
++#elif CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030900A6 && PY_VERSION_HEX < 0x030D0000
+   static int __pyx_assertions_enabled_flag;
+   #define __pyx_assertions_enabled() (__pyx_assertions_enabled_flag)
+   #undef __Pyx_init_assertions_enabled
+@@ -2596,7 +2605,7 @@
+                                       PyObject* code);
+ 
+ /* SetNameInClass.proto */
+-#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030500A1
++#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030500A1 && PY_VERSION_HEX < 0x030D0000
+ #define __Pyx_SetNameInClass(ns, name, value)\
+     (likely(PyDict_CheckExact(ns)) ? _PyDict_SetItem_KnownHash(ns, name, value, ((PyASCIIObject *) name)->hash) : PyObject_SetItem(ns, name, value))
+ #elif CYTHON_COMPILING_IN_CPYTHON
+@@ -193590,7 +193599,7 @@
+             if (likely(v)) {
+                 int one = 1; int is_little = (int)*(unsigned char *)&one;
+                 unsigned char *bytes = (unsigned char *)&val;
+-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
++                int ret = CYTHON_LONG_AS_BYTEARRAY(v,
+                                               bytes, sizeof(val),
+                                               is_little, !is_unsigned);
+                 Py_DECREF(v);
+@@ -193786,7 +193795,7 @@
+             if (likely(v)) {
+                 int one = 1; int is_little = (int)*(unsigned char *)&one;
+                 unsigned char *bytes = (unsigned char *)&val;
+-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
++                int ret = CYTHON_LONG_AS_BYTEARRAY(v,
+                                               bytes, sizeof(val),
+                                               is_little, !is_unsigned);
+                 Py_DECREF(v);
+@@ -194058,7 +194067,7 @@
+             if (likely(v)) {
+                 int one = 1; int is_little = (int)*(unsigned char *)&one;
+                 unsigned char *bytes = (unsigned char *)&val;
+-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
++                int ret = CYTHON_LONG_AS_BYTEARRAY(v,
+                                               bytes, sizeof(val),
+                                               is_little, !is_unsigned);
+                 Py_DECREF(v);
+@@ -194254,7 +194263,7 @@
+             if (likely(v)) {
+                 int one = 1; int is_little = (int)*(unsigned char *)&one;
+                 unsigned char *bytes = (unsigned char *)&val;
+-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
++                int ret = CYTHON_LONG_AS_BYTEARRAY(v,
+                                               bytes, sizeof(val),
+                                               is_little, !is_unsigned);
+                 Py_DECREF(v);
+@@ -194488,7 +194497,7 @@
+             if (likely(v)) {
+                 int one = 1; int is_little = (int)*(unsigned char *)&one;
+                 unsigned char *bytes = (unsigned char *)&val;
+-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
++                int ret = CYTHON_LONG_AS_BYTEARRAY(v,
+                                               bytes, sizeof(val),
+                                               is_little, !is_unsigned);
+                 Py_DECREF(v);
+@@ -194684,7 +194693,7 @@
+             if (likely(v)) {
+                 int one = 1; int is_little = (int)*(unsigned char *)&one;
+                 unsigned char *bytes = (unsigned char *)&val;
+-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
++                int ret = CYTHON_LONG_AS_BYTEARRAY(v,
+                                               bytes, sizeof(val),
+                                               is_little, !is_unsigned);
+                 Py_DECREF(v);
+@@ -194994,7 +195003,7 @@
+             if (likely(v)) {
+                 int one = 1; int is_little = (int)*(unsigned char *)&one;
+                 unsigned char *bytes = (unsigned char *)&val;
+-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
++                int ret = CYTHON_LONG_AS_BYTEARRAY(v,
+                                               bytes, sizeof(val),
+                                               is_little, !is_unsigned);
+                 Py_DECREF(v);
+@@ -195190,7 +195199,7 @@
+             if (likely(v)) {
+                 int one = 1; int is_little = (int)*(unsigned char *)&one;
+                 unsigned char *bytes = (unsigned char *)&val;
+-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
++                int ret = CYTHON_LONG_AS_BYTEARRAY(v,
+                                               bytes, sizeof(val),
+                                               is_little, !is_unsigned);
+                 Py_DECREF(v);

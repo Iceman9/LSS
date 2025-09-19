@@ -59,12 +59,10 @@ default_win :
     }
 }
 
-version_V9_14_0:
+version_V9_15_0:
 {
     patches:
     [
-        'KERNEL-9.11.0-numpy-2_calcium_compatibility.patch'
         'KERNEL-9.11.0-omniORB-4.3.0-no_comments_for_cfg_file.patch'
-        'KERNEL-9.11.0-python-3.12_port_1.patch'
     ]
 }

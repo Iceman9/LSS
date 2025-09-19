@@ -43,7 +43,7 @@ default :
     post_script : 'fix_permissions.sh'
 }
 
-version_1_10_3 :
+version_1_10_5 :
 {
     web_link : 'https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_10_3.tar.gz'
     patches :

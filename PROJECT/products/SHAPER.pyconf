@@ -27,6 +27,7 @@ default :
         'planegcs'
         'eigen'
         'libxml2'
+        'CommonGeomLib'
     ]
     build_depend :
     [
@@ -56,12 +57,19 @@ default_win :
     cmake_options : '-DNO_SolveSpace=TRUE -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig -DADD_COMPATIBILITY_TESTS=ON -DADD_MODELS_TESTS=ON -DADD_HDF_TESTS=ON'
 }
 
-version_V9_14_0 : { }
-
-version_V9_14_0_win : 
+version_V9_15_0 :
 {
     patches :
     [
+        'SHAPER-9.15.0-Check_if_LibXml2_was_already_found.patch'
+    ]
+}
+
+version_V9_15_0_win :
+{
+    patches :
+    [
+        'SHAPER-9.15.0-Check_if_LibXml2_was_already_found.patch'
         'SHAPER-9.14.0-MSVC-17-2022.patch'
     ]    
 }
