@@ -8,7 +8,7 @@
 +#if PY_VERSION_HEX >= 0x030D0000
 +  #define CYTHON_LONG_AS_BYTEARRAY(v, bytes, n, is_little, is_signed) \
 +      PyLong_AsNativeBytes((PyObject*)(v), (bytes), (n), \
-+          (is_signed) ? ((is_little) ? -1 : 2) : ((is_little) ? 1 : 0))
++          Py_ASNATIVEBYTES_DEFAULTS | ((is_signed) ? 0 : Py_ASNATIVEBYTES_UNSIGNED_BUFFER) | ((is_little) ? Py_ASNATIVEBYTES_LITTLE_ENDIAN | Py_ASNATIVEBYTES_BIG_ENDIAN))
 +#else
 +  #define CYTHON_LONG_AS_BYTEARRAY(v, bytes, n, is_little, is_signed) \
 +      _PyLong_AsByteArray((PyLongObject*)(v), (bytes), (n), (is_little), (is_signed))
