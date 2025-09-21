@@ -2,9 +2,10 @@
 
 ## Introduction
 
-LSS is a project for creating a SALOME application variant where only the basic
-modules: ``SHAPER, GEOM, SMESH, ParaVis and FIELDS`` are packaged. Or in other
-words, only the CAD, mesh and visualization modules are contained.
+LSS is a project for creating a [SALOME](https://www.salome-platform.org/)
+application variant where only the basic modules: ``SHAPER, GEOM, SMESH,
+ParaVis and FIELDS`` are packaged. Or in other words, only the CAD, mesh and
+visualization modules are contained.
 
 The application is configured to be built, ``at least`` on the latest
 Linux/Debian OS (at the time this is written). Apart from that the packages
@@ -15,7 +16,7 @@ Statistical (openturns) or geospatial packages are **not** included due to
 lack of use (from my perspective) or interest and subsequently there is a lack
 of interest in trying to maintain those packages.
 
-## Installation
+Currently supported SALOME is 9.15.0.
 
 ### Supported platforms
 
@@ -53,7 +54,7 @@ features to the standard SAT tools.
 git clone https://github.com/Iceman9/sat
 ```
 
-Then openning a terminal in navigating to the directory of LSS run the
+Then opening a terminal in navigating to the directory of LSS run the
 following commands to initiate the SAT tools:
 
 ```bash
@@ -64,19 +65,27 @@ ln -s /path/to/salomeTools/sat sat
 # Set the location of LOG files
 ./sat init -l ${PWD}/LOGS
 # Set the location of archives
-./sat init -a ${PWD}/ARCHIVES # Location of archive files
+./sat init -a ${PWD}/ARCHIVES
 # Set the workdir to LSS directory
 ./sat init -w ${PWD}
 ```
 
-On Windows system call ``sat`` as:
+On Windows system, use the following substitutions:
+ - sat -> python C:\path\to\salomeTools\sat
+ - ${PWD} -> %CD%
 
 ```cmd
-python C:\path\to\sat ...
+rem Set the project file
+python C:\path\to\salomeTools\sat init --add-project %CD%/PROJECT/project.pyconf
+rem Set the location of LOG files
+python C:\path\to\salomeTools\sat init -l %CD%/LOGS
+rem Set the location of archives
+python C:\path\to\salomeTools\sat init -a %CD%/ARCHIVES
+rem Also create the ARCHIVES directory
+mkdir ARCHIVES
+rem Set the workdir to LSS directory
+python C:\path\to\salomeTools\sat init -w %CD%
 ```
-
-and use **%CD%** instead of **${PWD}**. Create ARCHIVES directory on Windows
-system, otherwise the ``sat prepare`` command will fail.
 
 ### Preparing source
 
@@ -86,10 +95,6 @@ or FTPs) run
 ```bash
 ./sat prepare lss
 ```
-
-The packages openmpi and system_packages will normaly tell you which packages
-you require in order to build the software
-
 
 ### Building the software
 
