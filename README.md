@@ -69,13 +69,14 @@ ln -s /path/to/salomeTools/sat sat
 ./sat init -w ${PWD}
 ```
 
-On Windows system call sat as:
+On Windows system call ``sat`` as:
 
 ```cmd
 python C:\path\to\sat ...
 ```
 
-and use **%CD%** instead of **${PWD}**.
+and use **%CD%** instead of **${PWD}**. Create ARCHIVES directory on Windows
+system, otherwise the ``sat prepare`` command will fail.
 
 ### Preparing source
 
