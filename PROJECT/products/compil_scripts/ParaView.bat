@@ -245,6 +245,11 @@ cd %PRODUCT_INSTALL%\bin
 mkdir Lib
 MOVE /Y site-packages Lib\site-packages
 
+REM remove the useless inspect.py from ParaView installation. Introduced in
+REM a9df5b980044f3bc6e117d4983971595ed03e553. It clashes with Python inspect.
+
+if EXIST %PRODUCT_INSTALL%\bin\Lib\site-packages\paraview\inspect.py del /f /q %PRODUCT_INSTALL%\bin\Lib\site-packages\paraview\inspect.py
+
 REM move
 set MSBUILDDISABLENODEREUSE=1
 

@@ -62,7 +62,7 @@ default :
 
 default_win : 
 {
-    cmake_options : '-DSALOME_CMAKE_DEBUG=ON -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig -DSIP_INCLUDE_DIR=%PYQT_SIPS_DIR% -DBUILD_PYMODULE=On -DSALOME_USE_PLOT2DVIEWER=On'
+    cmake_options : '-DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR%/lib/zlib.lib -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig -DSIP_INCLUDE_DIR=%PYQT_SIPS_DIR% -DBUILD_PYMODULE=On -DSALOME_USE_PLOT2DVIEWER=On'
     get_source : 'release'
     cmake_generator : '"Visual Studio 17 2022"'
     properties :

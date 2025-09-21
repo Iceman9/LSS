@@ -39,3 +39,8 @@ default :
         archive_name : 'PARAVISADDONS.tgz'
     }
 }
+
+default_win:
+{
+    cmake_options : '-DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR%/lib/zlib.lib'
+}

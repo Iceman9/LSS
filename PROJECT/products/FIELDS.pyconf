@@ -36,6 +36,7 @@ default :
 
 default_win :
 {
+    cmake_options : '-DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR%/lib/zlib.lib'
     patches : 
     [
         'FIELDS-9.14.0-do_not_salome_configure_VERSION.patch'

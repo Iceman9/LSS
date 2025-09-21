@@ -28,3 +28,12 @@ default :
     }
     patches: []
 }
+
+default_win :
+{
+    depend :
+    [
+        'Python'
+        'pthreads'
+    ]
+}

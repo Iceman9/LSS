@@ -59,7 +59,7 @@ default :
 
 default_win :
 {
-    cmake_options : '-DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% -DOpenCV_LIB_PATH=%OPENCV_ROOT_DIR%/lib'
+    cmake_options : '-DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR%/lib/zlib.lib -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% -DOpenCV_LIB_PATH=%OPENCV_ROOT_DIR%/lib'
 
     properties :
     {
@@ -70,9 +70,9 @@ default_win :
     }
 }
 
-version_V9_14_0 : { }
+version_V9_15_0 : { }
 
-version_V9_14_0_win :
+version_V9_15_0_win :
 {
     patches:
     [
