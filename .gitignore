@@ -5,7 +5,10 @@ LOGS
 SOURCES
 env_launch.sh
 env_build.sh
+env_launch.bat
+env_build.bat
 lss
 sat
 notes
 __pycache__
+W64
