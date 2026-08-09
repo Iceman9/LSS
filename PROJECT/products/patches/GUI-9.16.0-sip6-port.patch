@@ -1,0 +1,175 @@
+--- GUI/tools/PyEditor/src/python/CMakeLists.txt.org	2026-08-09 18:25:08.239628123 +0200
++++ GUI/tools/PyEditor/src/python/CMakeLists.txt	2026-08-09 18:25:33.515554362 +0200
+@@ -36,6 +36,7 @@
+   ${PYTHON_INCLUDE_DIRS}
+   ${PROJECT_BINARY_DIR}
+   ${CMAKE_CURRENT_SOURCE_DIR}/..
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build/PyEditorPy
+ )
+ 
+ if (SALOME_USE_PYSIDE)
+@@ -107,6 +108,8 @@
+ else (SALOME_USE_PYSIDE)
+   # additional preprocessor / compiler flags
+   ADD_DEFINITIONS(${QT_DEFINITIONS})
++  # SIP6
++  ADD_DEFINITIONS(-DSIP_PROTECTED_IS_PUBLIC -Dprotected=public)
+ 
+   # libraries to link to
+   SET(_link_LIBRARIES ${QT_LIBRARIES} ${PYTHON_LIBRARIES} PyEditor)
+--- GUI/tools/PyConsole/src/python/CMakeLists.txt.org	2026-08-09 18:27:59.987182276 +0200
++++ GUI/tools/PyConsole/src/python/CMakeLists.txt	2026-08-09 18:28:49.879074162 +0200
+@@ -37,6 +37,7 @@
+   ${SIP_INCLUDE_DIR}
+   ${PROJECT_BINARY_DIR}
+   ${CMAKE_CURRENT_SOURCE_DIR}/..
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build/PyConsolePy
+ )
+ 
+ if (SALOME_USE_PYSIDE)
+@@ -52,6 +53,8 @@
+ 
+ # additional preprocessor / compiler flags
+ ADD_DEFINITIONS(${QT_DEFINITIONS})
++# SIP6
++ADD_DEFINITIONS(-DSIP_PROTECTED_IS_PUBLIC -Dprotected=public)
+ 
+ # libraries to link to
+ SET(_link_LIBRARIES ${QT_LIBRARIES} ${PYTHON_LIBRARIES} PyConsole)
+--- GUI/src/SALOME_PYQT/SalomePyQt/CMakeLists.txt.org	2026-08-09 18:26:34.051389798 +0200
++++ GUI/src/SALOME_PYQT/SalomePyQt/CMakeLists.txt	2026-08-09 18:27:31.095248882 +0200
+@@ -37,6 +37,8 @@
+   ${Boost_INCLUDE_DIRS}
+   ${SALOMEBOOTSTRAP_INCLUDE_DIRS}
+   ${CMAKE_CURRENT_SOURCE_DIR}
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build/SalomePyQt
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build
+   ${PROJECT_SOURCE_DIR}/src/CAM
+   ${PROJECT_SOURCE_DIR}/src/Event
+   ${PROJECT_SOURCE_DIR}/src/LightApp
+@@ -84,11 +86,11 @@
+     INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/Plot2d)
+   ELSE(SALOME_USE_PLOT2DVIEWER)
+     #disable 'ENABLE_PLOT2D' feature
+-    SET(PYQT_SIPFLAGS ${PYQT_SIPFLAGS} "-xENABLE_PLOT2D;")
++    SET(PYQT_SIP6FLAGS ${PYQT_SIP6FLAGS} "--disabled-feature ENABLE_PLOT2D")
+   ENDIF(SALOME_USE_PLOT2DVIEWER)
+   IF(SALOME_LIGHT_ONLY)
+     #disable 'ENABLE_CORBA' feature
+-    SET(PYQT_SIPFLAGS ${PYQT_SIPFLAGS} "-xENABLE_CORBA;")
++    SET(PYQT_SIP6FLAGS ${PYQT_SIP6FLAGS} "--disabled-feature ENABLE_CORBA")
+   ELSE(SALOME_LIGHT_ONLY)
+     INCLUDE_DIRECTORIES(
+       ${PROJECT_SOURCE_DIR}/src/SalomeApp
+@@ -107,6 +109,8 @@
+   ${OMNIORB_DEFINITIONS}
+   ${SALOMEBOOTSTRAP_DEFINITIONS}
+ )
++# SIP6
++ADD_DEFINITIONS(-DSIP_PROTECTED_IS_PUBLIC -Dprotected=public)
+ 
+ # libraries to link to
+ SET(_link_LIBRARIES
+--- GUI/src/SALOME_PYQT/SALOME_PYQT_GUILight/CMakeLists.txt.org	2026-08-09 18:29:52.774949257 +0200
++++ GUI/src/SALOME_PYQT/SALOME_PYQT_GUILight/CMakeLists.txt	2026-08-09 18:30:10.422916304 +0200
+@@ -36,6 +36,8 @@
+   ${PYTHON_INCLUDE_DIRS}
+   ${PTHREAD_INCLUDE_DIR}
+   ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build/SalomePyQtGUILight
++  ${CMAKE_CURRENT_BINARY_DIR}/sip_build
+   ${PROJECT_SOURCE_DIR}/src/CAM
+   ${PROJECT_SOURCE_DIR}/src/Event
+   ${PROJECT_SOURCE_DIR}/src/LightApp
+--- GUI/tools/PyConsole/src/python/pyproject.toml.in  1970-01-01 01:00:00.000000000 +0100
++++ GUI.new/tools/PyConsole/src/python/pyproject.toml.in 2025-02-25 15:11:39.200073411 +0100
+@@ -0,0 +1,20 @@
++# Specify the build system.
++[build-system]
++requires = ["sip >=5.0.0, <7", "PyQt-builder >=1.6, <2"]
++build-backend = "sipbuild.api"
++
++# Specify the PEP 621 metadata for the project.
++[project]
++name = "PyConsolePy"
++
++[tool.sip]
++project-factory = "pyqtbuild:PyQtProject"
++
++[tool.sip.project]
++sip-include-dirs = ["@PYQT_SIPS_DIR@"]
++sip-files-dir = "."
++abi-version = "12.15"
++
++[tool.sip.bindings.PyConsolePy]
++sip-file="PyConsolePy.sip"
++protected-is-public=true
+--- GUI/tools/PyEditor/src/python/pyproject.toml.in   1970-01-01 01:00:00.000000000 +0100
++++ GUI.new/tools/PyEditor/src/python/pyproject.toml.in  2025-02-25 15:14:12.452194501 +0100
+@@ -0,0 +1,20 @@
++# Specify the build system.
++[build-system]
++requires = ["sip >=5.0.0, <7", "PyQt-builder >=1.6, <2"]
++build-backend = "sipbuild.api"
++
++# Specify the PEP 621 metadata for the project.
++[project]
++name = "PyEditorPy"
++
++[tool.sip]
++project-factory = "pyqtbuild:PyQtProject"
++
++[tool.sip.project]
++sip-include-dirs = ["@PYQT_SIPS_DIR@"]
++sip-files-dir = "."
++abi-version = "12.15"
++
++[tool.sip.bindings.PyEditorPy]
++sip-file="PyEditorPy.sip"
++protected-is-public=true
+--- GUI/src/SALOME_PYQT/SALOME_PYQT_GUILight/pyproject.toml.in 1970-01-01 01:00:00.000000000 +0100
++++ GUI.new/src/SALOME_PYQT/SALOME_PYQT_GUILight/pyproject.toml.in   2025-02-24 15:57:49.247319590 +0100
+@@ -0,0 +1,19 @@
++# Specify the build system.
++[build-system]
++requires = ["sip >=6.8.6, <7", "PyQt-builder >=1.14.1, <2"]
++build-backend = "sipbuild.api"
++
++# Specify the PEP 621 metadata for the project.
++[project]
++name = "SalomePyQtGUILight"
++
++[tool.sip]
++project-factory = "pyqtbuild:PyQtProject"
++
++[tool.sip.project]
++sip-include-dirs = ["@PYQT_SIPS_DIR@"]
++sip-files-dir = "."
++abi-version = "12.15"
++
++[tool.sip.bindings.SalomePyQtGUILight]
++sip-file="SALOME_PYQT_GUILight.sip"
+--- GUI/src/SALOME_PYQT/SalomePyQt/pyproject.toml.in  1970-01-01 01:00:00.000000000 +0100
++++ GUI.new/src/SALOME_PYQT/SalomePyQt/pyproject.toml.in 2025-02-25 16:04:42.674984917 +0100
+@@ -0,0 +1,20 @@
++# Specify the build system.
++[build-system]
++requires = ["sip >=6.8.6, <7", "PyQt-builder >=1.14.1, <2"]
++build-backend = "sipbuild.api"
++
++# Specify the PEP 621 metadata for the project.
++[project]
++name = "SalomePyQt"
++
++[tool.sip]
++project-factory = "pyqtbuild:PyQtProject"
++
++[tool.sip.project]
++sip-include-dirs=["@PYQT_SIPS_DIR@"]
++sip-files-dir = "."
++abi-version = "12.15"
++
++[tool.sip.bindings.SalomePyQt]
++sip-file="SalomePyQt.sip"
++protected-is-public=true
+\ No newline at end of file

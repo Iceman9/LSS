@@ -74,23 +74,21 @@ default_win :
 }
 
 
-version_V9_15_0:
+version_V9_16_0:
 {
     patches :
     [
         'GUI-9.11.0-qwt-6.3.0-port.patch'
-        'GUI-9.11-0-sip6-port.patch'
-        'GUI-9.14.0-cmath.patch'
+        'GUI-9.16.0-sip6-port.patch'
     ]
 }
 
-version_V9_15_0_win:
+version_V9_16_0_win:
 {
     patches :
     [
         'GUI-9.11.0-qwt-6.3.0-port.patch'
         'GUI-9.11-0-Windows-no_protected_code_sip6-port.patch'
         'GUI-9.14.0-MSVC_typeinfo.patch'
-        'GUI-9.14.0-cmath.patch'
     ]
 }

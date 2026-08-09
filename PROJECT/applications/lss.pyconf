@@ -2,7 +2,7 @@
 APPLICATION :
 {
     name : "LSS"
-    tag : "V9_15_0"
+    tag : "V9_16_0"
     dev : 'no'
     verbose : 'no'
     debug : 'no'
@@ -19,6 +19,7 @@ APPLICATION :
             SALOME_USE_64BIT_IDS : '1'
             VTK_SMP_IMPLEMENTATION_TYPE : 'TBB'
             SALOME_GMSH_HEADERS_STD : '1'
+            OMNIORBPY_REMOVE_INIT: '0'
         }
         launch :
         {
@@ -34,7 +35,7 @@ APPLICATION :
     products :
     {
         boost : '1.79.0'
-        CAS : '7.9.1'
+        CAS : '7.9.3'
         catalyst : '2.0.0'
         cgns : '4.2.0'
         cmake : 'native'
@@ -44,41 +45,41 @@ APPLICATION :
         embree : '3.13.2'
         freeimage : '3.18.0'
         freetype : '2.9.1'
-        gmsh : '4.10.3'
+        gmsh : '4.14.1'
         graphviz : '2.50.0'
-        hdf5 : '1.10.5'
-        ispc : '1.15.0'
+        hdf5 : '1.14.6'
+        ispc : '1.21.0'
         libbatch : 'V2_6_1'
         libxml2 : '2.9.14'
         matplotlib : '3.10.0'
-        medfile : '4.2.0'
+        medfile : '6.0.1'
         metis : '5.1.0'
-        netcdf : '4.6.2'
+        netcdf : '4.9.2'
         netgen : '6.2.2101'
-        numpy : '2.2.3'
+        numpy : '2.5.1'
         omniORB : '4.3.2'
         omniORBpy : '4.3.2'
-        openblas : '0.3.26'
+        openblas : '0.3.32'
         opencv : '3.2.0'
         openmpi : 'native'
-        openVKL : '0.11.0'
-        ospray : '2.4.0'
+        openVKL : '1.0.1'
+        ospray : '2.7.1'
         ParaView :
         {
-            tag : '5.13.2'
+            tag : '6.1.1'
             base : 'no'
-            section : 'version_5_13_2'
+            section : 'version_6_1_1'
             hpc : 'yes'
         }
         planegcs : '0.18-3cb6890'
         pthreads : 'native'
-        Python : '3.13.2'
+        Python : '3.14.6'
         PyQt : '5.15.11'
         pyqt5sip : '12.17.0'
         qt : '5.15.16'
         qwt : '6.3.0'
-        rkCommon : '1.5.1'
-        scipy : '1.14.1'
+        rkCommon : '1.7.0'
+        scipy : '1.18.0'
         scotch :
         {
             tag : '6.1.2'
@@ -91,7 +92,6 @@ APPLICATION :
         tbb : '2021.8.0'
         tcl : '8.6.16'
         tk : '8.6.16'
-        TTK : 'f8dafde2d7'
         # SALOME MODULES
         'CommonGeomLib'
         'CONFIGURATION'
@@ -102,9 +102,9 @@ APPLICATION :
         'KERNEL'
         MEDCOUPLING :
         {
-            tag : 'V9_15_0'
+            tag : 'V9_16_0'
             base : 'no'
-            section : 'version_V9_15_0_MPI'
+            section : 'version_V9_16_0_MPI'
             hpc : 'yes'
         }
         'GUI'
@@ -116,9 +116,9 @@ APPLICATION :
         'zlib': 'native'
         PARAVIS:
         {
-            tag : 'V9_15_0'
+            tag : 'V9_16_0'
             base : 'no'
-            section : 'version_V9_15_0_MPI'
+            section : 'version_V9_16_0_MPI'
             hpc : 'yes'
         }
         'DOCUMENTATION'

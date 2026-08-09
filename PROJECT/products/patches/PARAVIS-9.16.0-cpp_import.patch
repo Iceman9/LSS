@@ -1,0 +1,11 @@
+--- PARAVIS/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkFileSeriesGroupReader.cxx.org	2026-08-09 19:08:09.848200928 +0200
++++ PARAVIS/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkFileSeriesGroupReader.cxx	2026-08-09 19:08:35.572152628 +0200
+@@ -43,6 +43,8 @@
+ #include <string>
+ #include <memory>
+ 
++#include <iostream>
++
+ vtkStandardNewMacro(vtkFileSeriesGroupReader);
+ 
+ //=============================================================================

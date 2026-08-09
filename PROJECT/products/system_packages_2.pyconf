@@ -1,0 +1,46 @@
+default :
+{
+    name : 'system_packages'
+    get_source : 'native'
+    system_info :
+    {
+        apt :
+        [
+            'libboost-all-dev'
+            'doxygen'
+            'intel-oneapi-embree-3.13.2'
+            # SIP tools
+            'sip-tools'
+            'python3-pyqt6.sip'
+
+        ]
+        apt_dev :
+        [
+            'libccpunit-dev'
+            'libeigen3-dev'
+        ]
+        DB12 :
+        {
+            apt :
+            [
+            ]
+            apt_dev :
+            [
+            ]
+        }
+        DB13 :
+        {
+            apt :
+            [
+            ]
+            apt_dev :
+            [
+            ]
+        }
+    }
+    depend : [ ]
+    properties :
+    {
+        incremental : 'yes'
+    }
+}

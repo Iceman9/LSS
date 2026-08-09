@@ -85,15 +85,29 @@ default_MPI :
     ]
 }
 
-version_V9_15_0 : { }
+version_V9_16_0 :
+{
+    patches :
+    [
+        'PARAVIS-9.16.0-cpp_import.patch'
+    ]
+}
 
-version_V9_15_0_win :
+version_V9_16_0_win :
 {
 
     cmake_options : '-DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR%/lib/zlib.lib -DSALOME_BUILD_TESTS=OFF -DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% -DOpenCV_LIB_PATH=%OPENCV_ROOT_DIR%/lib'
+    patches :
+    [
+        'PARAVIS-9.16.0-cpp_import.patch'
+    ]
 }
 
-version_V9_15_0_MPI :
+version_V9_16_0_MPI :
 {
     cmake_options : '-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON  -DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}'
+    patches :
+    [
+        'PARAVIS-9.16.0-cpp_import.patch'
+    ]
 }

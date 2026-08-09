@@ -283,19 +283,20 @@ then
 fi
 
 # SPN #18779
-MEMTOTAL=$(cat /proc/meminfo | grep MemTotal | awk ' {print $2}')
-MEMTHRESHOLD=15000000
-if [ "${MEMTOTAL}" -lt "${MEMTHRESHOLD}" ] || [ -n "${SAT_PARAVIEW_FORCE_MAKE_J1}" ]; then
-    echo "WARNING: ParaView build requires large memory for VTKm compilation step..."
-    echo "WARNING: ParaView build requires large memory for VTKm compilation step..."
-    echo "WARNING: Available RAM is smaller than 16GB... using -j 1"
-    MAKE_OPTIONS="-j 1 "
-fi
+# MEMTOTAL=$(cat /proc/meminfo | grep MemTotal | awk ' {print $2}')
+# MEMTHRESHOLD=15000000
+# if [ "${MEMTOTAL}" -lt "${MEMTHRESHOLD}" ] || [ -n "${SAT_PARAVIEW_FORCE_MAKE_J1}" ]; then
+#     echo "WARNING: ParaView build requires large memory for VTKm compilation step..."
+#     echo "WARNING: Available RAM is smaller than 16GB... using -j 1"
+#     MAKE_OPTIONS="-j 1 "
+# fi
 
 echo
 echo "*** ninja $MAKE_OPTIONS"
+# make -j1 vtkCommonCore
 # make $MAKE_OPTIONS
-ninja $MAKE_OPTIONS
+ninja -j1 vtkCommonCore.so
+ninja
 if [ $? -ne 0 ]
 then
     echo "ERROR on ninja"

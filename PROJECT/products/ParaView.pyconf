@@ -45,18 +45,16 @@ default :
     }
   }
 
-version_5_13_2 :
+version_6_1_1 :
 {
-    web_link : 'https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.13&type=source&os=Sources&downloadFile=ParaView-v5.13.2.tar.gz'
+    web_link : 'https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v6.1&type=source&os=Sources&downloadFile=ParaView-v6.1.1.tar.gz'
     patches :
     [
         'ParaView-5.11.0-find_cgns.patch'
         'ParaView-5.11.0-find_custom_libxml2.patch' # So that VTK can find LibXML2 or all packages required ParaView via Cmake will cause KO
         'ParaView-5.11.0-find_libxml2_no_cache_search.patch' # Find LibXml2 fails after find_library is called more than once...
         'ParaView-5.11.0-find_mpi.patch'
-        'ParaView-5.13.2-Python_get_13.patch'
-        'ParaView-5.13.2-vtkGLTFTexture.patch'
-        'ParaView-5.13.2-vtkmpi4py-Python-3.13.patch'
         'ParaView-5.11.0-CMake-Fix_multiple_find_tbb.patch'
+        'ParaView-6.1.1-fix-vtkModuleWrapPython.patch'
     ]
 }

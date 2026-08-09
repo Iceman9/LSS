@@ -54,6 +54,12 @@ default_win :
     }
 }
 
+version_4_14_1 :
+{
+    get_source : 'release'
+    web_link : 'https://gitlab.onelab.info/gmsh/gmsh/-/archive/gmsh_4_14_1/gmsh-gmsh_4_14_1.tar.gz'
+}
+
 version_4_10_3 :
 {
     get_source : 'release'

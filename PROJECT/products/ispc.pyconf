@@ -37,9 +37,9 @@ default_win :
     }
 }
 
-version_1_15_0 : { }
+version_1_21_1 : { }
 
-version_1_15_0_win :
+version_1_21_1_win :
 {
-    web_link : 'https://github.com/ispc/ispc/releases/download/v1.15.0/ispc-v1.15.0-windows.zip'
+    web_link : 'https://github.com/ispc/ispc/releases/download/v1.21.1/ispc-v1.21.1-windows.zip'
 }

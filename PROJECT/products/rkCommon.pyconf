@@ -27,10 +27,6 @@ default :
     }
 }
 
-version_1_5_1 :
+version_1_7_0 :
 {
-    patches :
-    [
-        'rkCommon-1.5.1-CMake-Fix_multiple_find_tbb.patch'
-    ]
 }

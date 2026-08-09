@@ -26,10 +26,7 @@ CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR=${PRODUCT_INSTALL}/lib" # strangely on U
 CMAKE_OPTIONS+=" -DCMAKE_PREFIX_PATH=${OPENBLAS_ROOT_DIR};${HDF5_ROOT_DIR};${MEDFILE_ROOT_DIR};" # set path of third libraries to our associated internal products
 CMAKE_OPTIONS+=" -DENABLE_OPENMP=ON"     # get OpenMP based parallelism working
 CMAKE_OPTIONS+=" -DENABLE_PLUGINS=OFF"   # needed for correct GmshFinalize() after version 4.3.0
-if [[ ${DIST_NAME} == "FD" && ${DIST_VERSION} == "32" ]]
-then
-    CMAKE_OPTIONS="${CMAKE_OPTIONS} -DENABLE_MMG3D=OFF" # removed anyhow in GMS 4.6
-fi
+
 if [ -n "${SAT_HPC}" ]
 then
     if [ -n "${MPI_ROOT_DIR}" ]; then

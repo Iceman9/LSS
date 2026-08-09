@@ -38,10 +38,6 @@ default :
     }
 }
 
-version_4_6_2 :
+version_4_9_2 :
 {
-    patches :
-    [
-      'netcdf-4.6.2-fix_finding_hdf5.h.patch'
-    ]
 }
