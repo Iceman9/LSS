@@ -16,7 +16,7 @@ Statistical (openturns) or geospatial packages are **not** included due to
 lack of use (from my perspective) or interest and subsequently there is a lack
 of interest in trying to maintain those packages.
 
-Currently supported SALOME is 9.15.0.
+Currently supported SALOME is 9.16.0.
 
 ### Supported platforms
 
